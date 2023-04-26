@@ -72,21 +72,14 @@ export const Cart = () => {
                 <p className="cart_title">In your cart</p>
                 <Container>{cart}</Container>
                 <Container sx={{
-                               marginTop: "1.0rem",
-                               fontSize: "1.2rem",
-                               color: "red",
-                               display: "flex",
-                               justifyContent: "flex-end"
-                           }}>
-                    Total Amount: ${totalPrices}</Container>
-
-
-                <Container sx={{
-                               marginTop: "0.5rem",
-                               display: "flex",
-                               justifyContent: "flex-end"
-                           }}>
-	            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+                    marginTop: "1.0rem",
+                    fontSize: "1.2rem",
+                    color: "red",
+                    display: "flex",
+                    justifyContent: "flex-end"
+                }}>
+                    Total Amount: ${totalPrices}
+                    <Button variant="outlined" color="primary" onClick={handleClickOpen} sx={{marginLeft: "2.0rem"}}>
 		        Purchase
 	            </Button>
 	        </Container>
