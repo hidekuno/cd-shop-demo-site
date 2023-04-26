@@ -1,3 +1,4 @@
+import Container from '@mui/material/Container'
 import "./App.css"
 import { Shop } from "./components/Shop"
 import { Cart } from "./components/Cart"
@@ -6,10 +7,10 @@ export const App = () => {
     return (
         <div>
             <header className="header">CD Shop <i><b>Demo</b></i> Site</header>
-            <div className="container">
+            <Container sx={{"padding": "1rem"}}>
                 <Shop />
                 <Cart />
-            </div>
+            </Container>
         </div>
     )
 }
