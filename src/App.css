@@ -5,34 +5,15 @@
     padding: 1rem;
     border-bottom: 1px solid #d0d0d0;
 }
-
 a {
     text-decoration: none;
     color: #484848;
     transition: 0.3s ease-out;
 }
-
 a:hover {
     color: #7fbfff;
 }
-
-.container {
-    padding: 1rem;
-}
-
-.shop {
-    overflow-x: scroll;
-    display: flex;
-    gap: 1rem;
-}
-
 .shop_item {
-    padding: 1rem;
-    border-bottom: 1px solid #d0d0d0;
-    box-shadow: 1px 1px 3px #b1b1b1;
-}
-
-.shop_itemName {
     text-align: left;
     font-weight: bold;
 }
@@ -44,31 +25,11 @@ a:hover {
     font-size: 12px;
     max-width: 300px;
 }
-.cart {
-    margin: 2rem;
-    display: grid;
-    justify-content: center;
-    border-top: 1px solid #d0d0d0;
-    padding-top: 1rem;
-}
-
-.cart_title {
+.shop_price {
+    text-align: center;
     font-weight: bold;
-    font-size: 1.25rem;
 }
-
 .cart_item {
-    display: flex;
-    align-items: center;
-    margin: 0.1rem;
-}
-
-.cart_block {
-    width: 600px;
-    margin-left: 0.2rem;
-}
-
-.cart_itemName {
     font-size: 1.0rem;
     margin: 0;
     font-weight: bold;
@@ -76,22 +37,12 @@ a:hover {
 .cart_price {
     margin: 0;
 }
-
 .cart_stock {
     font-size: 1.0rem;
     margin-left: 5rem;
     margin-right: 1rem;
 }
-
-.cart_total {
-    margin-top: 1.0rem;
-    font-size: 1.2rem;
-    color: red;
-    display: flex;
-    justify-content: flex-end;
-}
-.cart_purchage {
-    margin-top: 0.5rem;
-    display: flex;
-    justify-content: flex-end;
+.cart_title {
+    font-weight: bold;
+    font-size: 1.25rem;
 }
