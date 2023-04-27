@@ -4,15 +4,15 @@ import { Shop } from "./components/Shop"
 import { Cart } from "./components/Cart"
 
 export const App = () => {
-    return (
-        <div>
-            <header className="header">CD Shop <i><b>Demo</b></i> Site</header>
-            <Container sx={{"padding": "1rem"}}>
-                <Shop />
-                <Cart />
-            </Container>
-        </div>
-    )
+  return (
+    <div>
+      <header className="header">
+      CD Shop <i><b>Demo</b></i> Site</header>
+      <Container sx={{"padding": "1rem"}}>
+        <Shop />
+        <Cart />
+      </Container>
+    </div>
+  )
 }
-
 export default App
