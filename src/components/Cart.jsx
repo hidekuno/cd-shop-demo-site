@@ -11,28 +11,36 @@ import Switch from '@mui/material/Switch'
 import Container from '@mui/material/Container'
 
 import { useSelector, useDispatch } from "react-redux"
-import { delToCart, clearToCart } from "../actions"
+import { delToCart, clearToCart, delPoint } from "../actions"
 
 export const Cart = () => {
-  const DUMMY_POINTS = 20
-
   const [open, setOpen] = useState(false)
   const [checked, setChecked] = useState(false)
   const [message, setMessage] = useState("")
+  const initUi = () => {
+    setChecked(false)
+    setOpen(false)
+  }
 
   const handleClickOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
+  const handleClose = () => initUi()
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked)
   }
 
   const dispatch = useDispatch()
   const cartItems = useSelector((state) => state.cart)
+  const userPoint = useSelector((state) => state.point)
   const totalPrices = cartItems.map((item) => item.totalPrice).reduce((a, b) => a + b, 0)
   const calcTotalPrices = (total, checked) => {
-    const result = checked? total - DUMMY_POINTS : total
+    const result = checked? total - userPoint : total
     return (0 > result)? 0 : result
   }
+  const calcPoint = (point, total, checked) => {
+    const result = checked? (point - total) : point
+    return (0 > result)? 0 : result
+  }
+
   const cartClass = {
     margin: "2rem",
     display: "grid",
@@ -40,9 +48,19 @@ export const Cart = () => {
     borderTop: "1px solid #d0d0d0",
     paddingTop:"1rem"
   }
+  const dialogClass = {
+    display: 'inline',
+    fontWeight: 'bold',
+    mx: 0.5,
+    fontSize: 16,
+  }
+
   const handleOk = () => {
+    if (checked) {
+      dispatch(delPoint(totalPrices))
+    }
     dispatch(clearToCart())
-    setOpen(false)
+    initUi()
     setMessage("Thanks for your purchase.(This is a Demo Program.)")
   }
   if (cartItems.length === 0) {
@@ -100,20 +118,18 @@ export const Cart = () => {
       </Container>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>{"Confirm"}</DialogTitle>
+        <DialogContent>
+	  <DialogContentText sx={{...dialogClass, color: '#1976d2'}}>
+	    Your Point: ${calcPoint(userPoint,totalPrices,checked)}
+	  </DialogContentText>
+        </DialogContent>
 	<FormGroup sx={{marginLeft: "2.5rem"}}>
-	  <FormControlLabel
+	  <FormControlLabel disabled={(0 >= userPoint)}
 	    control={<Switch checked={checked} onChange={handleChange} name="points" />}
 	    label="Use Points" />
 	</FormGroup>
         <DialogContent>
-	  <DialogContentText
-	    sx={{
-	      color: 'success.dark',
-	      display: 'inline',
-	      fontWeight: 'bold',
-	      mx: 0.5,
-	      fontSize: 16,
-            }}>
+	  <DialogContentText sx={{...dialogClass, color: 'success.dark'}}>
 	    Total Amount: ${calcTotalPrices(totalPrices,checked)}
 	  </DialogContentText>
 	  <DialogContentText sx={{marginTop: "1.5rem"}}>
