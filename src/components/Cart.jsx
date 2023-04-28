@@ -11,7 +11,7 @@ import Switch from '@mui/material/Switch'
 import Container from '@mui/material/Container'
 
 import { useSelector, useDispatch } from "react-redux"
-import { delToCart, clearToCart, delPoint } from "../actions"
+import { delToCart, clearToCart, delPoint, addPoint } from "../actions"
 
 export const Cart = () => {
   const [open, setOpen] = useState(false)
@@ -58,6 +58,8 @@ export const Cart = () => {
   const handleOk = () => {
     if (checked) {
       dispatch(delPoint(totalPrices))
+    } else {
+      dispatch(addPoint(Math.floor(totalPrices/10)))
     }
     dispatch(clearToCart())
     initUi()
