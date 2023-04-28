@@ -1,4 +1,4 @@
-import {ADD_ITEM, DEL_ITEM, CLEAR_ITEMS} from "./reducers"
+import {ADD_ITEM, DEL_ITEM, CLEAR_ITEMS, ADD_POINT, DEL_POINT} from "./reducers"
 
 export const addToCart = (id, title, price, imageUrl) => ({
   type: ADD_ITEM,
@@ -17,4 +17,13 @@ export const delToCart = (item) => ({
 export const clearToCart = () => ({
   type: CLEAR_ITEMS,
   payload: {},
+})
+
+export const addPoint = (point) => ({
+  type: ADD_POINT,
+  payload: {point},
+})
+export const delPoint = (point) => ({
+  type: DEL_POINT,
+  payload: {point},
 })
