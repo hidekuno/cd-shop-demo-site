@@ -14,57 +14,55 @@ const initialState = { cart: [], point: POINT_INIT_VAL }
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
   case ADD_ITEM:
-    let newCart = []
-    if (existsItem(state.cart, action.payload.id)) {
-
-      const item = getItem(state.cart, action.payload.id)
-      newCart = [
-        {
-          ...item,
-          stock: item.stock + 1,
-          totalPrice: item.price * (item.stock + 1),
-        },
-        ...deleteItem(state.cart, action.payload.id),
-      ]
-    } else {
-      const { id, title, price, imageUrl } = action.payload
-      newCart = [
-        {
-          id,
-          title,
-          price,
-          imageUrl,
-          stock: 1,
-          totalPrice: price,
-        },
-        ...state.cart,
-      ]
-    }
     return {
       ...state,
-      cart: newCart,
+      cart: (() => {
+        if (existsItem(state.cart, action.payload.id)) {
+
+          const item = getItem(state.cart, action.payload.id)
+          return [
+            {
+              ...item,
+              stock: item.stock + 1,
+              totalPrice: item.price * (item.stock + 1),
+            },
+            ...deleteItem(state.cart, action.payload.id),
+          ]
+        } else {
+          const { id, title, price, imageUrl } = action.payload
+          return [
+            {
+              id,
+              title,
+              price,
+              imageUrl,
+              stock: 1,
+              totalPrice: price,
+            },
+            ...state.cart,
+          ]
+        }
+      })()
     }
   case DEL_ITEM:
     const item = getItem(state.cart, action.payload.id)
     const stock = item.stock - 1
-
-    if (stock === 0) {
-      return {
-        ...state,
-        cart: deleteItem(state.cart, action.payload.id),
-      }
-    }
-    const cart = [
-      {
-        ...item,
-        stock: stock,
-        totalPrice: item.price * stock,
-      },
-      ...deleteItem(state.cart, action.payload.id),
-    ]
     return {
       ...state,
-      cart: cart,
+      cart: (() => {
+        if (stock === 0) {
+          return deleteItem(state.cart, action.payload.id)
+        } else {
+          return [
+            {
+              ...item,
+              stock: stock,
+              totalPrice: item.price * stock,
+            },
+            ...deleteItem(state.cart, action.payload.id),
+          ]
+        }
+      })()
     }
   case CLEAR_ITEMS:
     return { cart: [], point: state.point }
@@ -73,7 +71,7 @@ const cartReducer = (state = initialState, action) => {
       return { cart: state.cart, point: state.point + action.payload.point }
 
   case DEL_POINT:
-      let point = state.point - action.payload.point
+      const point = state.point - action.payload.point
       return { cart: state.cart, point: (0 > point)? 0 : point }
   default:
     return state
