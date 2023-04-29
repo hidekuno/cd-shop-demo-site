@@ -24,9 +24,8 @@ export const Cart = () => {
 
   const handleClickOpen = () => setOpen(true)
   const handleClose = () => initUi()
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     setChecked(event.target.checked)
-  }
 
   const dispatch = useDispatch()
   const cartItems = useSelector((state) => state.cart)
@@ -115,32 +114,32 @@ export const Cart = () => {
                  }}>
         Total Amount: ${totalPrices}
         <Button variant="outlined" color="primary" onClick={handleClickOpen} sx={{marginLeft: "2.0rem"}}>
-	  Purchase
-	</Button>
+          Purchase
+        </Button>
       </Container>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>{"Confirm"}</DialogTitle>
         <DialogContent>
-	  <DialogContentText sx={{...dialogClass, color: '#1976d2'}}>
-	    Your Point: ${calcPoint(userPoint,totalPrices,checked)}
-	  </DialogContentText>
+          <DialogContentText sx={{...dialogClass, color: '#1976d2'}}>
+            Your Point: ${calcPoint(userPoint,totalPrices,checked)}
+          </DialogContentText>
         </DialogContent>
-	<FormGroup sx={{marginLeft: "2.5rem"}}>
-	  <FormControlLabel disabled={(0 >= userPoint)}
-	    control={<Switch checked={checked} onChange={handleChange} name="points" />}
-	    label="Use Points" />
-	</FormGroup>
+        <FormGroup sx={{marginLeft: "2.5rem"}}>
+          <FormControlLabel disabled={(0 >= userPoint)}
+            control={<Switch checked={checked} onChange={handleChange} name="points" />}
+            label="Use Points" />
+        </FormGroup>
         <DialogContent>
-	  <DialogContentText sx={{...dialogClass, color: 'success.dark'}}>
-	    Total Amount: ${calcTotalPrices(totalPrices,checked)}
-	  </DialogContentText>
-	  <DialogContentText sx={{marginTop: "1.5rem"}}>
-	    Would you like to buy?
-	  </DialogContentText>
+          <DialogContentText sx={{...dialogClass, color: 'success.dark'}}>
+            Total Amount: ${calcTotalPrices(totalPrices,checked)}
+          </DialogContentText>
+          <DialogContentText sx={{marginTop: "1.5rem"}}>
+            Would you like to buy?
+          </DialogContentText>
         </DialogContent>
         <DialogActions>
-	  <Button onClick={handleClose} >Cancel</Button>
-	  <Button onClick={handleOk} >OK</Button>
+          <Button onClick={handleClose} >Cancel</Button>
+          <Button onClick={handleOk} >OK</Button>
         </DialogActions>
       </Dialog>
     </Container>
