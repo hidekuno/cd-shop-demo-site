@@ -9,6 +9,7 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 import FormGroup from '@mui/material/FormGroup'
 import Switch from '@mui/material/Switch'
 import Container from '@mui/material/Container'
+import TextField from '@mui/material/TextField'
 
 import { useSelector, useDispatch } from "react-redux"
 import { delToCart, clearToCart, delPoint, addPoint } from "../actions"
@@ -48,7 +49,7 @@ export const Cart = () => {
     paddingTop:"1rem"
   }
   const dialogClass = {
-    display: 'inline',
+    textAlign: "center",
     fontWeight: 'bold',
     mx: 0.5,
     fontSize: 16,
@@ -120,20 +121,21 @@ export const Cart = () => {
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>{"Confirm"}</DialogTitle>
         <DialogContent>
-          <DialogContentText sx={{...dialogClass, color: '#1976d2'}}>
-            Your Point: ${calcPoint(userPoint,totalPrices,checked)}
+          <DialogContentText sx={{...dialogClass}}>
+            <span style={{ color: '#1976d2'}}> Your Point: ${calcPoint(userPoint,totalPrices,checked)} </span>
+            <FormControlLabel sx={{ paddingLeft: "1rem" }} disabled={(0 >= userPoint)}
+              control={<Switch checked={checked} onChange={handleChange} name="points" />}
+              label="Use Points" />
           </DialogContentText>
+          <FormGroup sx={{marginLeft: "0.5rem"}}>
+            <TextField id="email-address" label="Email" margin="dense" sx={{m: 1, width: '50ch'}} type="email" variant="standard" />
+          </FormGroup>
         </DialogContent>
-        <FormGroup sx={{marginLeft: "2.5rem"}}>
-          <FormControlLabel disabled={(0 >= userPoint)}
-            control={<Switch checked={checked} onChange={handleChange} name="points" />}
-            label="Use Points" />
-        </FormGroup>
         <DialogContent>
           <DialogContentText sx={{...dialogClass, color: 'success.dark'}}>
             Total Amount: ${calcTotalPrices(totalPrices,checked)}
           </DialogContentText>
-          <DialogContentText sx={{marginTop: "1.5rem"}}>
+          <DialogContentText sx={{marginTop: "1.5rem", textAlign: "center"}}>
             Would you like to buy?
           </DialogContentText>
         </DialogContent>
