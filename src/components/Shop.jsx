@@ -25,16 +25,17 @@ export const Shop = () => {
 
   return (
     <Container sx={{
-                 "overflow-x": "scroll",
+                 "overflowX": "scroll",
                  "display": "flex",
                  "gap": "1rem",
                }}>
       {
         data.map((item) => (
-          <Box sx={{
+          <Box key={item.id}
+               sx={{
                  "padding": "1rem",
-                 "border-bottom": "1px solid #d0d0d0",
-                 "box-shadow": "1px 1px 3px #b1b1b1"
+                 "borderBottom": "1px solid #d0d0d0",
+                 "boxShadow": "1px 1px 3px #b1b1b1"
                }}>
             <img src={item.imageUrl} width="120px" height="120px" alt="{item.title}" />
             <p className="shop_item">{item.title}</p>

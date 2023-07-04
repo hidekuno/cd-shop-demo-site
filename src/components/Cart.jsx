@@ -80,7 +80,8 @@ export const Cart = () => {
     )
   }
   const cart = cartItems.map((item) => (
-    <Container sx={{
+    <Container key={item.id}
+               sx={{
                  display: "flex",
                  alignItems: "center",
                  margin: "0.1rem"
