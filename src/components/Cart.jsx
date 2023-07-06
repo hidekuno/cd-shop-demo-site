@@ -25,8 +25,7 @@ export const Cart = () => {
 
   const handleClickOpen = () => setOpen(true)
   const handleClose = () => initUi()
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
-    setChecked(event.target.checked)
+  const handleChange = (event) => setChecked(event.target.checked)
 
   const dispatch = useDispatch()
   const cartItems = useSelector((state) => state.cart)
