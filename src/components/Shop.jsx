@@ -37,7 +37,7 @@ export const Shop = () => {
                  "borderBottom": "1px solid #d0d0d0",
                  "boxShadow": "1px 1px 3px #b1b1b1"
                }}>
-            <img src={item.imageUrl} width="120px" height="120px" alt="{item.title}" />
+            <img src={item.imageUrl} width="120px" height="120px" alt={item.title} />
             <p className="shop_item">{item.title}</p>
             <p className="shop_artist">{item.artist}</p>
             <p className="shop_description">{item.description}</p>
