@@ -136,4 +136,74 @@ describe('unit test', () => {
     expect(screen.getAllByText('Total Amount: $50')).toHaveLength(2)
     expect(screen.getByText('Would you like to buy?')).toBeInTheDocument()
   })
+  test("dialog cancel click test ", async () => {
+
+    await waitFor(() => {
+      render(<Provider store={store}>
+             <React.StrictMode>
+             <App />
+             </React.StrictMode>
+             </Provider>)
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getByRole("button", { name: 'Purchase' }))
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getByRole("button", { name: 'Cancel' }))
+    })
+
+    await waitFor(() => {
+      expect(screen.queryByAltText('Would you like to buy?')).not.toBeInTheDocument()
+    })
+  })
+  test("dialog use point change test ", async () => {
+
+    await waitFor(() => {
+      render(<Provider store={store}>
+             <React.StrictMode>
+             <App />
+             </React.StrictMode>
+             </Provider>)
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getByRole("button", { name: 'Purchase' }))
+    })
+    await waitFor(() => {
+      const switchElement = screen.getByLabelText('Use Points')
+      fireEvent.click(switchElement)
+      fireEvent.change(switchElement, { target: { checked: true }})
+    })
+    expect(screen.getByText('Your Point: $50')).toBeInTheDocument()
+    expect(screen.getByText('Total Amount: $0')).toBeInTheDocument()
+  })
+  test("dialog ok click test ", async () => {
+
+    await waitFor(() => {
+      render(<Provider store={store}>
+             <React.StrictMode>
+             <App />
+             </React.StrictMode>
+             </Provider>)
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getByRole("button", { name: 'Purchase' }))
+    })
+    await waitFor(() => {
+      const switchElement = screen.getByLabelText('Use Points')
+      fireEvent.click(switchElement)
+      fireEvent.change(switchElement, { target: { checked: true }})
+    })
+    expect(screen.getByText('Your Point: $50')).toBeInTheDocument()
+    expect(screen.getByText('Total Amount: $0')).toBeInTheDocument()
+    await waitFor(() => {
+      fireEvent.click(screen.getByRole("button", { name: 'OK' }))
+    })
+    expect(screen.getByText('Complete')).toBeInTheDocument()
+    expect(screen.getByText('Thanks for your purchase.(This is a Demo Program.)')).toBeInTheDocument()
+
+    await waitFor(() => {
+      fireEvent.click(screen.getByRole("button", { name: 'Close' }))
+    })
+    expect(screen.getByText('There are no items in your cart.')).toBeInTheDocument()
+  })
 })
