@@ -23,6 +23,16 @@ npm install
 npm start
 ```
 
+## Test
+```
+npm test
+```
+
+### snapshot update
+```
+npm test -- -u
+```
+
 ## Build
 ```
 npm run build
