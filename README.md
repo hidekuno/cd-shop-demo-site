@@ -37,3 +37,8 @@ npm test -- -u
 ```
 npm run build
 ```
+
+## Deploy to AWS
+```
+aws s3 sync build/ s3://${BUCKET_NAME}
+```
