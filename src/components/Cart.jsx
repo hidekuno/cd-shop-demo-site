@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import Button from '@mui/material/Button'
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
@@ -18,11 +18,23 @@ export const Cart = () => {
   const [open, setOpen] = useState(false)
   const [checked, setChecked] = useState(false)
   const [message, setMessage] = useState("")
+  const [mailAddr, setMailAddr] = useState("");
+  const [mailError, setMailError] = useState(false)
+  const mailAddrRef = useRef(null)
+
+  const validate = () => {
+
+    if (mailAddrRef.current) {
+      const v = mailAddrRef.current.validity.valid
+      setMailError(!v)
+      return(v)
+    }
+    return false
+  }
   const initUi = () => {
     setChecked(false)
     setOpen(false)
   }
-
   const handleClickOpen = () => setOpen(true)
   const handleClose = () => initUi()
   const handleChange = (event) => setChecked(event.target.checked)
@@ -55,6 +67,9 @@ export const Cart = () => {
   }
 
   const handleOk = () => {
+    if (!validate()) {
+      return
+    }
     if (checked) {
       dispatch(delPoint(totalPrices))
     } else {
@@ -128,7 +143,19 @@ export const Cart = () => {
               label="Use Points" />
           </DialogContentText>
           <FormGroup sx={{marginLeft: "0.5rem"}}>
-            <TextField id="email-address" label="Email" margin="dense" sx={{m: 1, width: '50ch'}} type="email" variant="standard" />
+            <TextField id="email-address"
+                       label="Email"
+                       margin="dense"
+                       sx={{m: 1, width: '50ch'}}
+                       type="email"
+                       variant="standard"
+                       inputRef={mailAddrRef}
+                       value={mailAddr}
+                       error={mailError}
+                       helperText={mailError && mailAddrRef.current && mailAddrRef.current.validationMessage}
+                       inputProps={{required: true}}
+                       onChange={(e) => setMailAddr(e.target.value)}
+                       required/>
           </FormGroup>
         </DialogContent>
         <DialogContent>
