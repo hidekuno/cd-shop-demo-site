@@ -195,6 +195,9 @@ describe('unit test', () => {
     })
     expect(screen.getByText('Your Point: $50')).toBeInTheDocument()
     expect(screen.getByText('Total Amount: $0')).toBeInTheDocument()
+    const textMail = screen.getByRole("textbox", { name: 'Email' })
+    fireEvent.change(textMail, {target: {value: 'foo@hoge.com'}})
+
     await waitFor(() => {
       fireEvent.click(screen.getByRole("button", { name: 'OK' }))
     })
