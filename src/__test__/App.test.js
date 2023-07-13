@@ -209,4 +209,47 @@ describe('unit test', () => {
     })
     expect(screen.getByText('There are no items in your cart.')).toBeInTheDocument()
   })
+  test("required validate test ", async () => {
+    await waitFor(() => {
+      render(<Provider store={store}>
+             <React.StrictMode>
+             <App />
+             </React.StrictMode>
+             </Provider>)
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getAllByRole("button", { name: 'Add to Cart' })[0])
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getByRole("button", { name: 'Purchase' }))
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getByRole("button", { name: 'OK' }))
+    })
+    expect(screen.queryByAltText('Would you like to buy?')).not.toBeInTheDocument()
+    const textMail = screen.getByRole("textbox", { name: 'Email' })
+    expect(screen.queryByText('Constraints not satisfied')).toBeInTheDocument()
+    expect(textMail).toBeInvalid()
+  })
+  test("email format validate test ", async () => {
+    await waitFor(() => {
+      render(<Provider store={store}>
+             <React.StrictMode>
+             <App />
+             </React.StrictMode>
+             </Provider>)
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getByRole("button", { name: 'Purchase' }))
+    })
+    const textMail = screen.getByRole("textbox", { name: 'Email' })
+    fireEvent.change(textMail, {target: {value: 'foo@hoge.'}})
+
+    await waitFor(() => {
+      fireEvent.click(screen.getByRole("button", { name: 'OK' }))
+    })
+    expect(screen.queryByAltText('Would you like to buy?')).not.toBeInTheDocument()
+    expect(screen.queryByText('Constraints not satisfied')).toBeInTheDocument()
+    expect(textMail).toBeInvalid()
+  })
 })

@@ -21,9 +21,11 @@ export const Cart = () => {
   const [mailAddr, setMailAddr] = useState("");
   const [mailError, setMailError] = useState(false)
   const mailAddrRef = useRef(null)
-
+  const handleMailChange = (e) => {
+    setMailAddr(e.target.value)
+    validate()
+  }
   const validate = () => {
-
     if (mailAddrRef.current) {
       const v = mailAddrRef.current.validity.valid
       setMailError(!v)
@@ -154,7 +156,7 @@ export const Cart = () => {
                        error={mailError}
                        helperText={mailError && mailAddrRef.current && mailAddrRef.current.validationMessage}
                        inputProps={{required: true}}
-                       onChange={(e) => setMailAddr(e.target.value)}
+                       onChange={handleMailChange}
                        required/>
           </FormGroup>
         </DialogContent>

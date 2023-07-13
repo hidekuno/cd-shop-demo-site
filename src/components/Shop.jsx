@@ -15,7 +15,6 @@ export const Shop = () => {
     const fetchData = async () => {
       const response = await fetch('cd.json')
       const jsonData = await response.json()
-      console.log(jsonData)
       setData(jsonData)
     }
     fetchData()
