@@ -1,4 +1,4 @@
-import {ADD_ITEM, DEL_ITEM, CLEAR_ITEMS, ADD_POINT, DEL_POINT} from "./reducers"
+import {ADD_ITEM, DEL_ITEM, CLEAR_ITEMS, ADD_POINT, DEL_POINT} from './reducers'
 
 export const addToCart = (id, title, price, imageUrl) => ({
   type: ADD_ITEM,

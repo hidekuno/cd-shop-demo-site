@@ -1,8 +1,8 @@
-export const ADD_ITEM = "ADD_ITEM"
-export const DEL_ITEM = "DEL_ITEM"
-export const CLEAR_ITEMS = "CLEAR_ITEMS"
-export const ADD_POINT = "ADD_POINT"
-export const DEL_POINT = "DEL_POINT"
+export const ADD_ITEM = 'ADD_ITEM'
+export const DEL_ITEM = 'DEL_ITEM'
+export const CLEAR_ITEMS = 'CLEAR_ITEMS'
+export const ADD_POINT = 'ADD_POINT'
+export const DEL_POINT = 'DEL_POINT'
 
 const POINT_INIT_VAL = 100
 
@@ -44,7 +44,7 @@ const cartReducer = (state = initialState, action) => {
         }
       })()
     }
-  case DEL_ITEM:
+  case DEL_ITEM: {
     const item = getItem(state.cart, action.payload.id)
     const stock = item.stock - 1
     return {
@@ -64,15 +64,17 @@ const cartReducer = (state = initialState, action) => {
         }
       })()
     }
+  }
   case CLEAR_ITEMS:
     return { cart: [], point: state.point }
 
   case ADD_POINT:
-      return { cart: state.cart, point: state.point + action.payload.point }
+    return { cart: state.cart, point: state.point + action.payload.point }
 
-  case DEL_POINT:
-      const point = state.point - action.payload.point
-      return { cart: state.cart, point: (0 > point)? 0 : point }
+  case DEL_POINT: {
+    const point = state.point - action.payload.point
+    return { cart: state.cart, point: (0 > point)? 0 : point }
+  }
   default:
     return state
   }
