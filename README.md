@@ -23,9 +23,10 @@ npm install
 npm start
 ```
 
-## Lint
+## Lint & fix
 ```
 npm run lint
+npm run lint:fix
 ```
 
 ## Test
