@@ -7,7 +7,7 @@ React demo site program
 | Item   | Ver. |Remarks|
 |--------|--------|--------|
 | os     | Darwin 21.6.0 |Monterey|
-| node    | 19.9.0||
+| node    | 16.20.0||
 
 ## Development(2)
 | Item   | Ver. |Remarks|
@@ -21,6 +21,12 @@ git clone https://github.com/hidekuno/cd-shop-demo-site
 cd cd-shop-demo-site
 npm install
 npm start
+```
+
+## Lint & fix
+```
+npm run lint
+npm run lint:fix
 ```
 
 ## Test

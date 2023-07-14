@@ -1,0 +1,29 @@
+{
+  "env": {
+    "es2022": true,
+    "jest": true,
+    "browser": true,
+    "node": true
+  },
+  "extends": ["eslint:recommended",
+              "plugin:import/errors",
+              "plugin:import/warnings",
+              "plugin:jsx-a11y/recommended"],
+  "plugins": ["react","jsx-a11y", "import"],
+  "parserOptions": {
+    "ecmaVersion": 13,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true
+    }
+  },
+  "rules": {
+    "import/no-unresolved": "off",
+    "indent": ["error",2],
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "linebreak-style": ["error","unix"],
+    "quotes": ["error","single"]
+  }
+}
