@@ -1,24 +1,27 @@
 {
   "name": "cd-shop-demo-site",
   "version": "0.1.0",
-  "author": "ics-morita<morita@ics-web.jp>",
   "private": true,
   "homepage": ".",
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@mui/material": "^5.12.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.1.1",
+    "react-scripts": "5.0.1",
+    "redux": "4.2.1",
+    "@babel/plugin-syntax-jsx": "^7.22.5",
+    "@babel/preset-react": "^7.22.5",
+    "@testing-library/react": "^14.0.0",
     "@testing-library/jest-dom": "^5.16.5",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-redux": "7.2.4",
-    "react-scripts": "4.0.3",
-    "redux": "4.1.0"
+    "@babel/plugin-proposal-private-property-in-object": "7.21.0-placeholder-for-preset-env.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "jest",
+    "test": "jest --env=jsdom",
     "lint": "eslint src --ext .js --ext .jsx",
     "lint:fix": "eslint src --fix"
   },
@@ -47,14 +50,5 @@
     "moduleNameMapper": {
       "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js"
     }
-  },
-  "devDependencies": {
-    "@babel/plugin-syntax-jsx": "^7.22.5",
-    "@babel/preset-react": "^7.22.5",
-    "@testing-library/react": "^12.0.0",
-    "eslint": "^8.44.0",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-jsx-a11y": "^6.7.1",
-    "eslint-plugin-react": "^7.32.2"
   }
 }
