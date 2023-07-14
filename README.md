@@ -7,13 +7,15 @@ React demo site program
 | Item   | Ver. |Remarks|
 |--------|--------|--------|
 | os     | Darwin 21.6.0 |Monterey|
-| node    | 16.20.0||
+| node    | 18.16.0||
+| react   | 18.2.0||
 
 ## Development(2)
 | Item   | Ver. |Remarks|
 |--------|--------|--------|
 | os     | Ubuntu 20.04 LTS |WSL2|
-| node    | 16.20.0||
+| node    | 18.16.0||
+| react   | 18.2.0||
 
 ## Install and Run
 ```
