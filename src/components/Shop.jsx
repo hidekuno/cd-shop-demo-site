@@ -1,14 +1,15 @@
 // fix. ReferenceError: React is not defined when npm test
-import React, {useEffect, useState} from 'react'
-import { useDispatch } from 'react-redux'
+import React, {useEffect, useState, useContext } from 'react'
 import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 
 import { addToCart } from '../actions'
+import { ShopContext } from '../store'
 
 export const Shop = () => {
 
+  const dispatch = useContext(ShopContext).dispatch
   const [data, setData] = useState([])
 
   useEffect(() => {
@@ -19,8 +20,6 @@ export const Shop = () => {
     }
     fetchData()
   }, [])
-
-  const dispatch = useDispatch()
 
   return (
     <Container sx={{'overflowX': 'scroll','display': 'flex','gap': '1rem',}}>
@@ -40,7 +39,7 @@ export const Shop = () => {
               variant='contained'
               color='primary'
               size='small'
-              onClick={() => {dispatch(addToCart(item.id, item.title, item.price, item.imageUrl)) }}>
+              onClick={() => {dispatch(addToCart(item.id, item.title, item.price, item.imageUrl))}}>
               Add to Cart
             </Button>
           </Box>

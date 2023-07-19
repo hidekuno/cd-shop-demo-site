@@ -4,18 +4,18 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
+    "@babel/plugin-syntax-jsx": "^7.22.5",
+    "@babel/preset-react": "^7.22.5",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@mui/material": "^5.12.1",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-redux": "^8.1.1",
-    "react-scripts": "5.0.1",
-    "redux": "4.2.1",
-    "@babel/plugin-syntax-jsx": "^7.22.5",
-    "@babel/preset-react": "^7.22.5",
-    "@testing-library/react": "^14.0.0",
-    "@testing-library/jest-dom": "^5.16.5",
+    "react-scripts": "5.0.1"
+  },
+  "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "7.21.0-placeholder-for-preset-env.2"
   },
   "scripts": {

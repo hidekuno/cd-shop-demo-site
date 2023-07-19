@@ -1,17 +1,12 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import { Provider } from 'react-redux'
+import { createRoot } from 'react-dom/client'
 import './index.css'
-import {App} from './App'
-import { configureStore } from './store'
+import { App } from './App'
+import { ShopContextProvider } from './store'
 
-const store = configureStore({})
-
-ReactDOM.render(
-  <Provider store={store}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </Provider>,
-  document.getElementById('root')
+const root = createRoot(document.getElementById('root'))
+root.render(
+  <ShopContextProvider>
+    <App />
+  </ShopContextProvider>
 )
