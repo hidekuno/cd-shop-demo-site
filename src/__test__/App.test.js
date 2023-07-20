@@ -1,13 +1,9 @@
 import React from 'react'
-import { Provider } from 'react-redux'
-
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom'
 
 import {App} from '../App'
-import { configureStore } from '../store'
-
-const store = configureStore({})
+import { ShopContextProvider } from '../store'
 
 const response = class {
   constructor(filename) {
@@ -25,22 +21,13 @@ describe('unit test', () => {
   test('snapshot test', async () => {
     let component
     await waitFor(() => {
-      component = render(<Provider store={store}>
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>
-      </Provider>)
+      component = render(<ShopContextProvider><App /></ShopContextProvider>)
     })
     expect(component.container).toMatchSnapshot()
   })
-
   test('initial test', async () => {
     await waitFor(() => {
-      render(<Provider store={store}>
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>
-      </Provider>)
+      render(<ShopContextProvider><App /></ShopContextProvider>)
     })
     expect(screen.getAllByRole('button', { name: 'Add to Cart' })).toHaveLength(10)
 
@@ -58,14 +45,9 @@ describe('unit test', () => {
     })
     expect(screen.getByText('There are no items in your cart.')).toBeInTheDocument()
   })
-
   test('add to cart click 1 test', async () => {
     await waitFor(() => {
-      render(<Provider store={store}>
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>
-      </Provider>)
+      render(<ShopContextProvider><App /></ShopContextProvider>)
     })
     await waitFor(() => {
       fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
@@ -83,14 +65,18 @@ describe('unit test', () => {
     })
     expect(screen.getByText('Total Amount: $69')).toBeInTheDocument()
   })
-
   test('delete click test', async () => {
     await waitFor(() => {
-      render(<Provider store={store}>
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>
-      </Provider>)
+      render(<ShopContextProvider><App /></ShopContextProvider>)
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[1])
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[2])
     })
     await waitFor(() => {
       fireEvent.click(screen.getAllByRole('button', { name: 'Delete' })[2])
@@ -106,11 +92,7 @@ describe('unit test', () => {
   })
   test('add to cart click 2unit test', async () => {
     await waitFor(() => {
-      render(<Provider store={store}>
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>
-      </Provider>)
+      render(<ShopContextProvider><App /></ShopContextProvider>)
     })
     await waitFor(() => {
       fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
@@ -123,12 +105,15 @@ describe('unit test', () => {
   })
   test('purchase click test', async () => {
     await waitFor(() => {
-      render(<Provider store={store}>
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>
-      </Provider>)
+      render(<ShopContextProvider><App /></ShopContextProvider>)
     })
+    await waitFor(() => {
+      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
+    })
+
     await waitFor(() => {
       fireEvent.click(screen.getByRole('button', { name: 'Purchase' }))
     })
@@ -139,11 +124,10 @@ describe('unit test', () => {
   test('dialog cancel click test', async () => {
 
     await waitFor(() => {
-      render(<Provider store={store}>
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>
-      </Provider>)
+      render(<ShopContextProvider><App /></ShopContextProvider>)
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
     })
     await waitFor(() => {
       fireEvent.click(screen.getByRole('button', { name: 'Purchase' }))
@@ -159,11 +143,13 @@ describe('unit test', () => {
   test('dialog use point change test', async () => {
 
     await waitFor(() => {
-      render(<Provider store={store}>
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>
-      </Provider>)
+      render(<ShopContextProvider><App /></ShopContextProvider>)
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
     })
     await waitFor(() => {
       fireEvent.click(screen.getByRole('button', { name: 'Purchase' }))
@@ -179,11 +165,13 @@ describe('unit test', () => {
   test('dialog ok click test', async () => {
 
     await waitFor(() => {
-      render(<Provider store={store}>
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>
-      </Provider>)
+      render(<ShopContextProvider><App /></ShopContextProvider>)
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
     })
     await waitFor(() => {
       fireEvent.click(screen.getByRole('button', { name: 'Purchase' }))
@@ -211,11 +199,7 @@ describe('unit test', () => {
   })
   test('required validate test', async () => {
     await waitFor(() => {
-      render(<Provider store={store}>
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>
-      </Provider>)
+      render(<ShopContextProvider><App /></ShopContextProvider>)
     })
     await waitFor(() => {
       fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
@@ -233,11 +217,10 @@ describe('unit test', () => {
   })
   test('email format validate test', async () => {
     await waitFor(() => {
-      render(<Provider store={store}>
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>
-      </Provider>)
+      render(<ShopContextProvider><App /></ShopContextProvider>)
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
     })
     await waitFor(() => {
       fireEvent.click(screen.getByRole('button', { name: 'Purchase' }))

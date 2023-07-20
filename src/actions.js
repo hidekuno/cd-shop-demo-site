@@ -9,7 +9,6 @@ export const addToCart = (id, title, price, imageUrl) => ({
     imageUrl,
   },
 })
-
 export const delToCart = (item) => ({
   type: DEL_ITEM,
   payload: item,
@@ -18,7 +17,6 @@ export const clearToCart = () => ({
   type: CLEAR_ITEMS,
   payload: {},
 })
-
 export const addPoint = (point) => ({
   type: ADD_POINT,
   payload: {point},

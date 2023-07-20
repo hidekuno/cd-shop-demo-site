@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useContext } from 'react'
 import Button from '@mui/material/Button'
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
@@ -11,10 +11,12 @@ import Switch from '@mui/material/Switch'
 import Container from '@mui/material/Container'
 import TextField from '@mui/material/TextField'
 
-import { useSelector, useDispatch } from 'react-redux'
 import { delToCart, clearToCart, delPoint, addPoint } from '../actions'
+import { ShopContext } from '../store'
 
 export const Cart = () => {
+  const {state, dispatch} = useContext(ShopContext)
+
   const [open, setOpen] = useState(false)
   const [checked, setChecked] = useState(false)
   const [message, setMessage] = useState('')
@@ -41,9 +43,8 @@ export const Cart = () => {
   const handleClose = () => initUi()
   const handleChange = (event) => setChecked(event.target.checked)
 
-  const dispatch = useDispatch()
-  const cartItems = useSelector((state) => state.cart)
-  const userPoint = useSelector((state) => state.point)
+  const cartItems = state.cart
+  const userPoint = state.point
   const totalPrices = cartItems.map((item) => item.totalPrice).reduce((a, b) => a + b, 0)
   const calcTotalPrices = (total, checked) => {
     const result = checked? total - userPoint : total

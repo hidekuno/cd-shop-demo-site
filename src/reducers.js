@@ -4,14 +4,11 @@ export const CLEAR_ITEMS = 'CLEAR_ITEMS'
 export const ADD_POINT = 'ADD_POINT'
 export const DEL_POINT = 'DEL_POINT'
 
-const POINT_INIT_VAL = 100
-
 const getItem = (cart, id) => cart.find((item) => item.id === id)
 const deleteItem = (cart, id) => cart.filter((item) => item.id !== id)
 const existsItem = (cart, id) =>  cart.some((item) => item.id === id)
-const initialState = { cart: [], point: POINT_INIT_VAL }
 
-const cartReducer = (state = initialState, action) => {
+export const cartReducer = (state, action) => {
   switch (action.type) {
   case ADD_ITEM:
     return {
@@ -79,4 +76,3 @@ const cartReducer = (state = initialState, action) => {
     return state
   }
 }
-export default cartReducer
