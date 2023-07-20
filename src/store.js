@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react'
-import cartReducer from './reducers'
+import { cartReducer } from './reducers'
 
 export const ShopContext = React.createContext({})
 const POINT_INIT_VAL = 100

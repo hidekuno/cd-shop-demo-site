@@ -8,7 +8,7 @@ const getItem = (cart, id) => cart.find((item) => item.id === id)
 const deleteItem = (cart, id) => cart.filter((item) => item.id !== id)
 const existsItem = (cart, id) =>  cart.some((item) => item.id === id)
 
-const cartReducer = (state, action) => {
+export const cartReducer = (state, action) => {
   switch (action.type) {
   case ADD_ITEM:
     return {
@@ -76,4 +76,3 @@ const cartReducer = (state, action) => {
     return state
   }
 }
-export default cartReducer
