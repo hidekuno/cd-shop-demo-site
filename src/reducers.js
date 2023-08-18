@@ -26,12 +26,13 @@ export const cartReducer = (state, action) => {
             ...deleteItem(state.cart, action.payload.id),
           ]
         } else {
-          const { id, title, price, imageUrl } = action.payload
+          const { id, title, artist, price, imageUrl } = action.payload
           return [
             {
               id,
               title,
               price,
+              artist,
               imageUrl,
               stock: 1,
               totalPrice: price,

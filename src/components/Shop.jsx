@@ -39,7 +39,7 @@ export const Shop = () => {
               variant='contained'
               color='primary'
               size='small'
-              onClick={() => {dispatch(addToCart(item.id, item.title, item.price, item.imageUrl))}}>
+              onClick={() => {dispatch(addToCart(item))}}>
               Add to Cart
             </Button>
           </Box>

@@ -30,7 +30,8 @@ describe('unit test', () => {
       render(<ShopContextProvider><App /></ShopContextProvider>)
     })
     expect(screen.getAllByRole('button', { name: 'Add to Cart' })).toHaveLength(10)
-
+    expect(screen.getAllByText('Pink Floyd')).toHaveLength(2)
+    expect(screen.getByText('Atom Heart Mother')).toBeInTheDocument()
     expect(screen.getByText('There are no items in your cart.')).toBeInTheDocument()
   })
   test('add to cart click 1 test', async () => {
@@ -52,6 +53,8 @@ describe('unit test', () => {
       fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[2])
     })
     expect(screen.getByText('Total Amount: $69')).toBeInTheDocument()
+    expect(screen.getAllByText('Revolver')).toHaveLength(2)
+    expect(screen.getAllByText('The Beatles')).toHaveLength(3)
   })
   test('delete click test', async () => {
     await waitFor(() => {

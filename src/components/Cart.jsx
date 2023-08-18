@@ -106,8 +106,8 @@ export const Cart = () => {
         <p className='cart_item'>{item.title}</p>
         <p className='cart_price'>${item.price}</p>
       </Container>
+      <p className='cart_artist'>{item.artist}</p>
       <p className='cart_stock'>{item.stock}</p>
-
       <Button variant='outlined' color='primary' size='small' onClick={() => {dispatch(delToCart(item))}}>
         Delete
       </Button>
