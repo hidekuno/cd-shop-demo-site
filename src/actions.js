@@ -1,13 +1,8 @@
 import {ADD_ITEM, DEL_ITEM, CLEAR_ITEMS, ADD_POINT, DEL_POINT} from './reducers'
 
-export const addToCart = (id, title, price, imageUrl) => ({
+export const addToCart = (item) => ({
   type: ADD_ITEM,
-  payload: {
-    id,
-    title,
-    price,
-    imageUrl,
-  },
+  payload: item,
 })
 export const delToCart = (item) => ({
   type: DEL_ITEM,
