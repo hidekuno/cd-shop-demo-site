@@ -39,6 +39,8 @@ describe('unit test', () => {
     expect(screen.getByText('Total Amount: $0')).toBeInTheDocument()
     const textMail = screen.getByRole('textbox', { name: 'Email' })
     fireEvent.change(textMail, {target: {value: 'foo@hoge.com'}})
+    const textAddress = screen.getByRole('textbox', { name: 'Address' })
+    fireEvent.change(textAddress, {target: {value: 'Osaka,Japan'}})
 
     await waitFor(() => {
       fireEvent.click(screen.getByRole('button', { name: 'OK' }))
@@ -51,7 +53,7 @@ describe('unit test', () => {
     })
     expect(screen.getByText('There are no items in your cart.')).toBeInTheDocument()
   })
-  test('required validate test', async () => {
+  test('email required validate test', async () => {
     await waitFor(() => {
       render(<ShopContextProvider><App /></ShopContextProvider>)
     })
@@ -88,5 +90,26 @@ describe('unit test', () => {
     expect(screen.queryByAltText('Would you like to buy?')).not.toBeInTheDocument()
     expect(screen.queryByText('Constraints not satisfied')).toBeInTheDocument()
     expect(textMail).toBeInvalid()
+  })
+  test('address format validate test', async () => {
+    await waitFor(() => {
+      render(<ShopContextProvider><App /></ShopContextProvider>)
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getByRole('button', { name: 'Purchase' }))
+    })
+    const textMail = screen.getByRole('textbox', { name: 'Email' })
+    fireEvent.change(textMail, {target: {value: 'foo@hoge.com'}})
+
+    await waitFor(() => {
+      fireEvent.click(screen.getByRole('button', { name: 'OK' }))
+    })
+    expect(screen.queryByAltText('Would you like to buy?')).not.toBeInTheDocument()
+    expect(screen.queryByText('Constraints not satisfied')).toBeInTheDocument()
+    const textAddr = screen.getByRole('textbox', { name: 'Address' })
+    expect(textAddr).toBeInvalid()
   })
 })

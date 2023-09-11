@@ -14,77 +14,96 @@ import TextField from '@mui/material/TextField'
 import { delToCart, clearToCart, delPoint, addPoint } from '../actions'
 import { ShopContext } from '../store'
 
+const cartClass = {
+  margin: '2rem',
+  display: 'grid',
+  justifyContent: 'center',
+  borderTop: '1px solid #d0d0d0',
+  paddingTop:'1rem'
+}
+const dialogClass = {
+  textAlign: 'center',
+  fontWeight: 'bold',
+  mx: 0.5,
+  fontSize: 16,
+}
+class Sale {
+  constructor(state) {
+    this.cartItems = state.cart
+    this.userPoint = state.point
+    this.totalPrices = this.cartItems.map((item) => item.totalPrice).reduce((a, b) => a + b, 0)
+  }
+  calcTotalPrices(checked) {
+    const result = checked? this.totalPrices - this.userPoint : this.totalPrices
+    return (0 > result)? 0 : result
+  }
+  calcPoint(checked) {
+    const result = checked? (this.userPoint - this.totalPrices) : this.userPoint
+    return (0 > result)? 0 : result
+  }
+  dispatchWrap(dispatch, checked) {
+    if (checked) {
+      dispatch(delPoint(this.totalPrices))
+    } else {
+      dispatch(addPoint(Math.floor(this.totalPrices/10)))
+    }
+    dispatch(clearToCart())
+  }
+}
+class TextValidation {
+  constructor() {
+    [this.value, this.setValue] = useState('');
+    [this.error, this.setError] = useState(false)
+    this.ref = useRef(null)
+  }
+  validateText() {
+    if (this.ref.current) {
+      const v = this.ref.current.validity.valid
+      this.setError(!v)
+      return(v)
+    }
+    return false
+  }
+  handleChange(e) {
+    this.setValue(e.target.value)
+    return this.validateText()
+  }
+  helpText() {
+    return this.error && this.ref.current && this.ref.current.validationMessage
+  }
+}
 export const Cart = () => {
   const {state, dispatch} = useContext(ShopContext)
 
   const [open, setOpen] = useState(false)
   const [checked, setChecked] = useState(false)
   const [message, setMessage] = useState('')
-  const [mailAddr, setMailAddr] = useState('');
-  const [mailError, setMailError] = useState(false)
-  const mailAddrRef = useRef(null)
-  const handleMailChange = (e) => {
-    setMailAddr(e.target.value)
-    validate()
-  }
-  const validate = () => {
-    if (mailAddrRef.current) {
-      const v = mailAddrRef.current.validity.valid
-      setMailError(!v)
-      return(v)
-    }
-    return false
-  }
+
+  const sale = new Sale(state)
+  const mailAddr = new TextValidation()
+  const recipentAddr = new TextValidation()
+
   const initUi = () => {
     setChecked(false)
     setOpen(false)
   }
-  const handleClickOpen = () => setOpen(true)
-  const handleClose = () => initUi()
-  const handleChange = (event) => setChecked(event.target.checked)
-
-  const cartItems = state.cart
-  const userPoint = state.point
-  const totalPrices = cartItems.map((item) => item.totalPrice).reduce((a, b) => a + b, 0)
-  const calcTotalPrices = (total, checked) => {
-    const result = checked? total - userPoint : total
-    return (0 > result)? 0 : result
-  }
-  const calcPoint = (point, total, checked) => {
-    const result = checked? (point - total) : point
-    return (0 > result)? 0 : result
-  }
-
-  const cartClass = {
-    margin: '2rem',
-    display: 'grid',
-    justifyContent: 'center',
-    borderTop: '1px solid #d0d0d0',
-    paddingTop:'1rem'
-  }
-  const dialogClass = {
-    textAlign: 'center',
-    fontWeight: 'bold',
-    mx: 0.5,
-    fontSize: 16,
-  }
-
   const handleOk = () => {
+    const validate = () => {
+      let v = mailAddr.validateText()
+      v &&= recipentAddr.validateText()
+      return v
+    }
     if (!validate()) {
       return
     }
-    if (checked) {
-      dispatch(delPoint(totalPrices))
-    } else {
-      dispatch(addPoint(Math.floor(totalPrices/10)))
-    }
-    dispatch(clearToCart())
+    sale.dispatchWrap(dispatch,checked)
     initUi()
     setMessage('Thanks for your purchase.(This is a Demo Program.)')
   }
-  if (cartItems.length === 0) {
+
+  if (sale.cartItems.length === 0) {
     return (
-      <Container sx={cartClass}>
+      <Container sx={{...cartClass}}>
         <Dialog open={message !== ''} onClose={() => setMessage('')}>
           <DialogTitle>Complete</DialogTitle>
           <DialogContent><DialogContentText>{message}</DialogContentText></DialogContent>
@@ -96,7 +115,7 @@ export const Cart = () => {
       </Container>
     )
   }
-  const cart = cartItems.map((item) => (
+  const cart = sale.cartItems.map((item) => (
     <Container
       key={item.id}
       sx={{display: 'flex',alignItems: 'center',margin: '0.1rem'}}>
@@ -119,18 +138,18 @@ export const Cart = () => {
       <Container>{cart}</Container>
       <Container
         sx={{marginTop: '1.0rem',fontSize: '1.2rem',color: 'red',display: 'flex',justifyContent: 'flex-end'}}>
-        Total Amount: ${totalPrices}
-        <Button variant='outlined' color='primary' onClick={handleClickOpen} sx={{marginLeft: '2.0rem'}}>
+        Total Amount: ${sale.totalPrices}
+        <Button variant='outlined' color='primary' onClick={() => setOpen(true)} sx={{marginLeft: '2.0rem'}}>
           Purchase
         </Button>
       </Container>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog open={open} onClose={() => initUi()}>
         <DialogTitle>{'Confirm'}</DialogTitle>
         <DialogContent>
           <DialogContentText sx={{...dialogClass}}>
-            <span style={{ color: '#1976d2'}}> Your Point: ${calcPoint(userPoint,totalPrices,checked)} </span>
-            <FormControlLabel sx={{ paddingLeft: '1rem' }} disabled={(0 >= userPoint)}
-              control={<Switch checked={checked} onChange={handleChange} name='points' />}
+            <span style={{ color: '#1976d2'}}> Your Point: ${sale.calcPoint(checked)} </span>
+            <FormControlLabel sx={{ paddingLeft: '1rem' }} disabled={(0 >= sale.userPoint)}
+              control={<Switch checked={checked} onChange={(e) => setChecked(e.target.checked)} name='points' />}
               label='Use Points' />
           </DialogContentText>
           <FormGroup sx={{marginLeft: '0.5rem'}}>
@@ -141,25 +160,38 @@ export const Cart = () => {
               sx={{m: 1, width: '50ch'}}
               type='email'
               variant='standard'
-              inputRef={mailAddrRef}
-              value={mailAddr}
-              error={mailError}
-              helperText={mailError && mailAddrRef.current && mailAddrRef.current.validationMessage}
+              inputRef={mailAddr.ref}
+              value={mailAddr.value}
+              error={mailAddr.error}
+              helperText={mailAddr.helpText()}
               inputProps={{required: true}}
-              onChange={handleMailChange}
+              onChange={(e) => {mailAddr.handleChange(e)}}
+              required/>
+            <TextField
+              id='recipent-address'
+              label='Address'
+              margin='dense'
+              sx={{m: 1, width: '50ch'}}
+              variant='standard'
+              inputRef={recipentAddr.ref}
+              value={recipentAddr.value}
+              error={recipentAddr.error}
+              helperText={recipentAddr.helpText()}
+              inputProps={{required: true}}
+              onChange={(e) => {recipentAddr.handleChange(e)}}
               required/>
           </FormGroup>
         </DialogContent>
         <DialogContent>
           <DialogContentText sx={{...dialogClass, color: 'success.dark'}}>
-            Total Amount: ${calcTotalPrices(totalPrices,checked)}
+            Total Amount: ${sale.calcTotalPrices(checked)}
           </DialogContentText>
           <DialogContentText sx={{marginTop: '1.5rem', textAlign: 'center'}}>
             Would you like to buy?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} >Cancel</Button>
+          <Button onClick={() => initUi()} >Cancel</Button>
           <Button onClick={handleOk} >OK</Button>
         </DialogActions>
       </Dialog>
