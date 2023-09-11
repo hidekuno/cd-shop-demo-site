@@ -26,6 +26,7 @@ cd cd-shop-demo-site
 npm install
 npm start
 ```
+![image](https://github.com/hidekuno/cd-shop-demo-site/assets/22115777/0b75a684-8cb0-4ec7-bcde-8685617c00f4)
 
 ## Lint & fix
 ```
