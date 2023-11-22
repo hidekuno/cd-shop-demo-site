@@ -1,3 +1,5 @@
+'use strict'
+
 // fix. ReferenceError: React is not defined when npm test
 import React from 'react'
 

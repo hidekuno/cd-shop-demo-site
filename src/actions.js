@@ -1,3 +1,5 @@
+'use strict'
+
 import {ADD_ITEM, DEL_ITEM, CLEAR_ITEMS, ADD_POINT, DEL_POINT} from './reducers'
 
 export const addToCart = (item) => ({
