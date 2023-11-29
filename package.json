@@ -21,7 +21,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "jest --env=jsdom --maxWorkers=3",
+    "test": "jest --env=jsdom --maxWorkers=3 --coverage",
     "lint": "eslint src --ext .js --ext .jsx",
     "lint:fix": "eslint src --fix"
   },

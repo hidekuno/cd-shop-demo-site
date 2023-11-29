@@ -76,6 +76,6 @@ export const cartReducer = (state, action) => {
     return { cart: state.cart, point: (0 > point)? 0 : point }
   }
   default:
-    return state
+    throw new Error('No such action type')
   }
 }

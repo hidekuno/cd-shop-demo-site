@@ -91,4 +91,35 @@ describe('unit test', () => {
     expect(screen.getByText('Your Point: $50')).toBeInTheDocument()
     expect(screen.getByText('Total Amount: $0')).toBeInTheDocument()
   })
+  test('dialog use point change test (0 point)', async () => {
+
+    await waitFor(() => {
+      render(<ShopContextProvider><App /></ShopContextProvider>)
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getByRole('button', { name: 'Purchase' }))
+    })
+    await waitFor(() => {
+      const switchElement = screen.getByLabelText('Use Points')
+      fireEvent.click(switchElement)
+      fireEvent.change(switchElement, { target: { checked: true }})
+    })
+    expect(screen.getByText('Your Point: $0')).toBeInTheDocument()
+    expect(screen.getByText('Total Amount: $25')).toBeInTheDocument()
+  })
 })
