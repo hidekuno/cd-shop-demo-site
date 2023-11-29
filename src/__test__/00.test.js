@@ -83,4 +83,19 @@ describe('unit test', () => {
     })
     expect(screen.getByText('There are no items in your cart.')).toBeInTheDocument()
   })
+  test('delete click test multi', async () => {
+    await waitFor(() => {
+      render(<ShopContextProvider><App /></ShopContextProvider>)
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getAllByRole('button', { name: 'Delete' })[0])
+    })
+    expect(screen.getByText('Total Amount: $25')).toBeInTheDocument()
+  })
 })

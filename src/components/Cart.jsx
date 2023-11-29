@@ -64,7 +64,6 @@ class TextValidation {
       this.setError(!v)
       return(v)
     }
-    return false
   }
   handleChange(e) {
     this.setValue(e.target.value)

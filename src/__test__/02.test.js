@@ -55,6 +55,82 @@ describe('unit test', () => {
     })
     expect(screen.getByText('There are no items in your cart.')).toBeInTheDocument()
   })
+  test('dialog ok click test point less zero', async () => {
+    await waitFor(() => {
+      render(<ShopContextProvider><App /></ShopContextProvider>)
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getByRole('button', { name: 'Purchase' }))
+    })
+    await waitFor(() => {
+      const switchElement = screen.getByLabelText('Use Points')
+      fireEvent.click(switchElement)
+      fireEvent.change(switchElement, { target: { checked: true }})
+    })
+    expect(screen.getByText('Your Point: $0')).toBeInTheDocument()
+    expect(screen.getByText('Total Amount: $25')).toBeInTheDocument()
+    const textMail = screen.getByRole('textbox', { name: 'Email' })
+    fireEvent.change(textMail, {target: {value: 'foo@hoge.com'}})
+    const textAddress = screen.getByRole('textbox', { name: 'Address' })
+    fireEvent.change(textAddress, {target: {value: 'Osaka,Japan'}})
+
+    await waitFor(() => {
+      fireEvent.click(screen.getByRole('button', { name: 'OK' }))
+    })
+    expect(screen.getByText('Complete')).toBeInTheDocument()
+    expect(screen.getByText('Thanks for your purchase.(This is a Demo Program.)')).toBeInTheDocument()
+
+    await waitFor(() => {
+      fireEvent.click(screen.getByRole('button', { name: 'Close' }))
+    })
+    expect(screen.getByText('There are no items in your cart.')).toBeInTheDocument()
+  })
+  test('dialog ok click test(no point)', async () => {
+    await waitFor(() => {
+      render(<ShopContextProvider><App /></ShopContextProvider>)
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getByRole('button', { name: 'Purchase' }))
+    })
+    expect(screen.getByText('Your Point: $100')).toBeInTheDocument()
+    expect(screen.getAllByText('Total Amount: $50')).toHaveLength(2)
+    const textMail = screen.getByRole('textbox', { name: 'Email' })
+    fireEvent.change(textMail, {target: {value: 'foo@hoge.com'}})
+    const textAddress = screen.getByRole('textbox', { name: 'Address' })
+    fireEvent.change(textAddress, {target: {value: 'Osaka,Japan'}})
+
+    await waitFor(() => {
+      fireEvent.click(screen.getByRole('button', { name: 'OK' }))
+    })
+    expect(screen.getByText('Complete')).toBeInTheDocument()
+    expect(screen.getByText('Thanks for your purchase.(This is a Demo Program.)')).toBeInTheDocument()
+
+    await waitFor(() => {
+      fireEvent.click(screen.getByRole('button', { name: 'Close' }))
+    })
+    expect(screen.getByText('There are no items in your cart.')).toBeInTheDocument()
+  })
   test('email required validate test', async () => {
     await waitFor(() => {
       render(<ShopContextProvider><App /></ShopContextProvider>)
