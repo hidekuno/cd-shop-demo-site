@@ -1,13 +1,7 @@
 'use strict'
 
-import React from 'react'
-import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom'
-
-import {App} from '../App'
-import { ShopContextProvider } from '../store'
 import {cartReducer, DEL_POINT} from '../reducers.js'
-import {Cart} from '../components/Cart'
 
 describe('unit test etc', () => {
   test('exception  test', async () => {
