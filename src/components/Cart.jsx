@@ -56,21 +56,25 @@ class TextValidation {
   constructor() {
     [this.value, this.setValue] = useState('');
     [this.error, this.setError] = useState(false)
+
+    // https://react.dev/learn/manipulating-the-dom-with-refs#getting-a-ref-to-the-node
+    //
+    // Usually, you will access refs from event handlers. If you want to do something with a ref,
+    // but there is no particular event to do it in, you might need an Effect.
+    // We will discuss effects on the next pages.
     this.ref = useRef(null)
   }
   validateText() {
-    if (this.ref.current) {
-      const v = this.ref.current.validity.valid
-      this.setError(!v)
-      return(v)
-    }
+    const v = this.ref.current.validity.valid
+    this.setError(!v)
+    return(v)
   }
   handleChange(e) {
     this.setValue(e.target.value)
     return this.validateText()
   }
   helpText() {
-    return this.error && this.ref.current && this.ref.current.validationMessage
+    return this.error && this.ref.current.validationMessage
   }
 }
 export const Cart = () => {
