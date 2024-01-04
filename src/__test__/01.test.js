@@ -69,6 +69,29 @@ describe('unit test', () => {
       expect(screen.queryByAltText('Would you like to buy?')).not.toBeInTheDocument()
     })
   })
+  test('dialog escape key test', async () => {
+
+    await waitFor(() => {
+      render(<ShopContextProvider><App /></ShopContextProvider>)
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getByRole('button', { name: 'Purchase' }))
+    })
+    await waitFor(() => {
+      fireEvent.keyDown(screen.getByRole('button', { name: 'Cancel' }), {
+        key: 'Escape',
+        code: 'Escape',
+        keyCode: 27,
+        charCode: 27
+      })
+    })
+    await waitFor(() => {
+      expect(screen.queryByAltText('Would you like to buy?')).not.toBeInTheDocument()
+    })
+  })
   test('dialog use point change test', async () => {
 
     await waitFor(() => {
