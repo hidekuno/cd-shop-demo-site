@@ -12,16 +12,18 @@ import FormGroup from '@mui/material/FormGroup'
 import Switch from '@mui/material/Switch'
 import Container from '@mui/material/Container'
 import TextField from '@mui/material/TextField'
+import Payment from '@mui/icons-material/Payment'
+import Delete from '@mui/icons-material/Delete'
 
 import { delToCart, clearToCart, delPoint, addPoint } from '../actions'
 import { ShopContext } from '../store'
 
 const cartClass = {
-  margin: '2rem',
+  margin: '0.5rem',
   display: 'grid',
   justifyContent: 'center',
   borderTop: '1px solid #d0d0d0',
-  paddingTop:'1rem'
+  paddingTop:'0.1rem'
 }
 const dialogClass = {
   textAlign: 'center',
@@ -132,7 +134,12 @@ export const Cart = () => {
       </Container>
       <p className='cart_artist'>{item.artist}</p>
       <p className='cart_stock'>{item.stock}</p>
-      <Button variant='outlined' color='primary' size='small' onClick={() => {dispatch(delToCart(item))}}>
+      <Button
+        variant='outlined'
+        color='primary'
+        size='small'
+        startIcon={<Delete />}
+        onClick={() => {dispatch(delToCart(item))}}>
         Delete
       </Button>
     </Container>))
@@ -140,12 +147,17 @@ export const Cart = () => {
   return (
     <Container sx={cartClass}>
       <p className='cart_title'>In your cart</p>
-      <Container>{cart}</Container>
+      <Container sx={{marginTop: '0.1rem'}}>{cart}</Container>
       <Container
-        sx={{marginTop: '1.0rem',fontSize: '1.2rem',color: 'red',display: 'flex',justifyContent: 'flex-end'}}>
+        sx={{marginTop: '0.5rem', fontSize: '1.2rem',color: 'red',display: 'flex',justifyContent: 'flex-end',alignItems: 'center'}}>
         Total Amount: ${sale.totalPrices}
-        <Button variant='outlined' color='primary' onClick={() => setOpen(true)} sx={{marginLeft: '2.0rem'}}>
-          Purchase
+        <Button
+          variant='outlined'
+          color='primary'
+          onClick={() => setOpen(true)}
+          startIcon={<Payment />}
+          sx={{marginLeft: '2.0rem'}}>
+          Buy
         </Button>
       </Container>
       <Dialog open={open} onClose={() => initUi()}>

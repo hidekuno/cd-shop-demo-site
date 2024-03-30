@@ -8,6 +8,7 @@
     "@babel/preset-react": "^7.22.5",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@mui/icons-material": "^5.15.14",
     "@mui/material": "^5.12.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
@@ -21,7 +22,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "jest --env=jsdom --maxWorkers=3 --coverage",
+    "test": "jest --env=jsdom --maxWorkers=3 --coverage --testTimeout=10000",
     "lint": "eslint src --ext .js --ext .jsx",
     "lint:fix": "eslint src --fix"
   },

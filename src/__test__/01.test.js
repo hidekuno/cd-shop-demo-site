@@ -16,7 +16,7 @@ const response = class {
     return JSON.parse(fs.readFileSync(this.filename, 'utf8'))
   }
 }
-global.fetch = jest.fn(() => new response('public/cd.json'))
+global.fetch = jest.fn(() => new response('public/cd-mini.json'))
 
 describe('unit test', () => {
   test('add to cart click 2unit test', async () => {
@@ -24,10 +24,10 @@ describe('unit test', () => {
       render(<ShopContextProvider><App /></ShopContextProvider>)
     })
     await waitFor(() => {
-      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
+      fireEvent.click(screen.getAllByRole('button', { name: 'Cart' })[0])
     })
     await waitFor(() => {
-      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
+      fireEvent.click(screen.getAllByRole('button', { name: 'Cart' })[0])
     })
     expect(screen.getByText('Total Amount: $50')).toBeInTheDocument()
     expect(screen.getByText('2')).toBeInTheDocument()
@@ -37,14 +37,14 @@ describe('unit test', () => {
       render(<ShopContextProvider><App /></ShopContextProvider>)
     })
     await waitFor(() => {
-      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
+      fireEvent.click(screen.getAllByRole('button', { name: 'Cart' })[0])
     })
     await waitFor(() => {
-      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
+      fireEvent.click(screen.getAllByRole('button', { name: 'Cart' })[0])
     })
 
     await waitFor(() => {
-      fireEvent.click(screen.getByRole('button', { name: 'Purchase' }))
+      fireEvent.click(screen.getByRole('button', { name: 'Buy' }))
     })
     expect(screen.getByText('Your Point: $100')).toBeInTheDocument()
     expect(screen.getAllByText('Total Amount: $50')).toHaveLength(2)
@@ -56,10 +56,10 @@ describe('unit test', () => {
       render(<ShopContextProvider><App /></ShopContextProvider>)
     })
     await waitFor(() => {
-      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
+      fireEvent.click(screen.getAllByRole('button', { name: 'Cart' })[0])
     })
     await waitFor(() => {
-      fireEvent.click(screen.getByRole('button', { name: 'Purchase' }))
+      fireEvent.click(screen.getByRole('button', { name: 'Buy' }))
     })
     await waitFor(() => {
       fireEvent.click(screen.getByRole('button', { name: 'Cancel' }))
@@ -75,10 +75,10 @@ describe('unit test', () => {
       render(<ShopContextProvider><App /></ShopContextProvider>)
     })
     await waitFor(() => {
-      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
+      fireEvent.click(screen.getAllByRole('button', { name: 'Cart' })[0])
     })
     await waitFor(() => {
-      fireEvent.click(screen.getByRole('button', { name: 'Purchase' }))
+      fireEvent.click(screen.getByRole('button', { name: 'Buy' }))
     })
     await waitFor(() => {
       fireEvent.keyDown(screen.getByRole('button', { name: 'Cancel' }), {
@@ -98,13 +98,13 @@ describe('unit test', () => {
       render(<ShopContextProvider><App /></ShopContextProvider>)
     })
     await waitFor(() => {
-      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
+      fireEvent.click(screen.getAllByRole('button', { name: 'Cart' })[0])
     })
     await waitFor(() => {
-      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
+      fireEvent.click(screen.getAllByRole('button', { name: 'Cart' })[0])
     })
     await waitFor(() => {
-      fireEvent.click(screen.getByRole('button', { name: 'Purchase' }))
+      fireEvent.click(screen.getByRole('button', { name: 'Buy' }))
     })
     await waitFor(() => {
       const switchElement = screen.getByLabelText('Use Points')
@@ -120,22 +120,22 @@ describe('unit test', () => {
       render(<ShopContextProvider><App /></ShopContextProvider>)
     })
     await waitFor(() => {
-      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
+      fireEvent.click(screen.getAllByRole('button', { name: 'Cart' })[0])
     })
     await waitFor(() => {
-      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
+      fireEvent.click(screen.getAllByRole('button', { name: 'Cart' })[0])
     })
     await waitFor(() => {
-      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
+      fireEvent.click(screen.getAllByRole('button', { name: 'Cart' })[0])
     })
     await waitFor(() => {
-      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
+      fireEvent.click(screen.getAllByRole('button', { name: 'Cart' })[0])
     })
     await waitFor(() => {
-      fireEvent.click(screen.getAllByRole('button', { name: 'Add to Cart' })[0])
+      fireEvent.click(screen.getAllByRole('button', { name: 'Cart' })[0])
     })
     await waitFor(() => {
-      fireEvent.click(screen.getByRole('button', { name: 'Purchase' }))
+      fireEvent.click(screen.getByRole('button', { name: 'Buy' }))
     })
     await waitFor(() => {
       const switchElement = screen.getByLabelText('Use Points')

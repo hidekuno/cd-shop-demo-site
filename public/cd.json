@@ -1,84 +1,196 @@
 [
-        {
-            "id": 1,
-            "title": "Revolver",
-            "artist": "The Beatles",
-            "price": 25,
-            "description": "This is the seventh studio album by the English rock band the Beatles in August 1966",
-            "imageUrl": "https://m.media-amazon.com/images/I/617oXibcXRL._AC_UL320_.jpg"
-        },
-        {
-            "id": 2,
-            "title": "Pet Shop Sounds",
-            "artist": "The Beach Boys",
-            "price": 23,
-            "description": "This is the eleventh studio album by the American rock band the Beach Boys in May 1966",
-            "imageUrl": "https://m.media-amazon.com/images/I/51D4ZYSXJ6L._AC_UL320_.jpg"
-        },
-        {
-            "id": 3,
-            "title": "Strange Days",
-            "artist": "The Doors",
-            "price": 21,
-            "description": "This is the second studio album by the American rock band the Doors in September 1967",
-            "imageUrl": "https://m.media-amazon.com/images/I/51M-Dh4hDTL._AC_UL320_.jpg"
-        },
-        {
-            "id": 4,
-            "title": "Atom Heart Mother",
-            "artist": "Pink Floyd",
-            "price": 20,
-            "description": "This is the fifth studio album by the English band Pink Floyd in in October 1970",
-            "imageUrl": "https://m.media-amazon.com/images/I/81bl1CsAm7L._AC_UL320_.jpg"
-        },
-        {
-            "id": 5,
-            "title": "In the Court of the Crimson King",
-            "artist": "King Crimson",
-            "price": 21,
-            "description": "This is the debut studio album by English rock band King Crimson in October 1969",
-            "imageUrl": "https://m.media-amazon.com/images/I/61FTYY6ZP3L._AC_UL320_.jpg"
-        },
-        {
-            "id": 6,
-            "title": "Led Zeppelin IV",
-            "artist": "Led Zeppelin",
-            "price": 21,
-            "description": "This is the 4th studio album by English rock band Led Zeppelin in October 1971",
-            "imageUrl": "https://m.media-amazon.com/images/I/81evsr3Oq0L._AC_SX320_.jpg"
-        },
-        {
-            "id": 7,
-            "title": "Dark Side Of The Moon",
-            "artist": "Pink Floyd",
-            "price": 23,
-            "description": "This is the eighth studio album by the English rock band Pink Floyd, released on 1 March 1973",
-            "imageUrl": "https://m.media-amazon.com/images/I/81aTawcGdmL._AC_SX320_.jpg"
+    {
+        "id": 1,
+        "title": "Revolver",
+        "artist": "The Beatles",
+        "price": 25,
+        "description": "Revolver is the seventh studio album by the English rock band the Beatles in August 1966",
+        "imageUrl": "https://m.media-amazon.com/images/I/617oXibcXRL._AC_UL320_.jpg"
+    },
+    {
+        "id": 2,
+        "title": "Pet Shop Sounds",
+        "artist": "The Beach Boys",
+        "price": 23,
+        "description": "Pet Shop Sounds is the eleventh studio album by the American rock band the Beach Boys in May 1966",
+        "imageUrl": "https://m.media-amazon.com/images/I/51D4ZYSXJ6L._AC_UL320_.jpg"
+    },
+    {
+        "id": 3,
+        "title": "Strange Days",
+        "artist": "The Doors",
+        "price": 21,
+        "description": "Strange Days is the second studio album by the American rock band the Doors in September 1967",
+        "imageUrl": "https://m.media-amazon.com/images/I/51M-Dh4hDTL._AC_UL320_.jpg"
+    },
+    {
+        "id": 4,
+        "title": "The Velvet Underground & Nico",
+        "artist": "The Velvet Underground",
+        "price": 29,
+        "description": "The Velvet Underground & Nico is the debut studio album by the American rock band the Velvet Underground and the German singer Nico, released in March 1967",
+        "imageUrl": "https://m.media-amazon.com/images/I/71YJlc9Wb6L._AC_SX320_.jpg"
+    },
+    {
+        "id": 5,
+        "title": "In the Court of the Crimson King",
+        "artist": "King Crimson",
+        "price": 21,
+        "description": "In the Court of the Crimson King is the debut studio album by English rock band King Crimson in October 1969",
+        "imageUrl": "https://m.media-amazon.com/images/I/61FTYY6ZP3L._AC_UL320_.jpg"
+    },
+    {
+        "id": 6,
+        "title": "Abbey Road",
+        "artist": "The Beatles",
+        "price": 24,
+        "description": "Abbey Road is the eleventh studio album by the English rock band the Beatles on 26 September 1969",
+        "imageUrl": "https://m.media-amazon.com/images/I/516d1jud2FL._AC_SY320_.jpg"
+    },
+    {
+        "id": 7,
+        "title": "Let It Bleed",
+        "artist": "The Rolling Stones",
+        "price": 22,
+        "description": "Let It Bleed is a studio album by the English rock band the Rolling Stones, released on 28 November 1969",
+        "imageUrl": "https://m.media-amazon.com/images/I/71kdccs6U7L._AC_SX320_.jpg"
+    },
+    {
+        "id": 8,
+        "title": "Atom Heart Mother",
+        "artist": "Pink Floyd",
+        "price": 20,
+        "description": "Atom Heart Mother is the fifth studio album by the English band Pink Floyd in in October 1970",
+        "imageUrl": "https://m.media-amazon.com/images/I/81bl1CsAm7L._AC_UL320_.jpg"
+    },
+    {
+        "id": 9,
+        "title": "Led Zeppelin IV",
+        "artist": "Led Zeppelin",
+        "price": 21,
+        "description": "Led Zeppelin IV is the 4th studio album by English rock band Led Zeppelin in October 1971",
+        "imageUrl": "https://m.media-amazon.com/images/I/81evsr3Oq0L._AC_SX320_.jpg"
+    },
+    {
+        "id": 10,
+        "title": "Dark Side Of The Moon",
+        "artist": "Pink Floyd",
+        "price": 23,
+        "description": "Dark Side Of The Moon is the eighth studio album by the English rock band Pink Floyd, released on 1 March 1973",
+        "imageUrl": "https://m.media-amazon.com/images/I/81aTawcGdmL._AC_SX320_.jpg"
 
-        },
-        {
-            "id": 8,
-            "title": "Physical Graffiti",
-            "artist": "Led Zeppelin",
-            "price": 30,
-            "description": "This is the sixth studio album by the English rock band Led Zeppelin as a double album on 24 February 1975",
-            "imageUrl": "https://m.media-amazon.com/images/I/91xy3KDOSCL._AC_SY320_.jpg"
-        },
-	{
-            "id": 9,
-            "title": "Abbey Road",
-            "artist": "The Beatles",
-            "price": 24,
-            "description": "This is the eleventh studio album by the English rock band the Beatles on 26 September 1969",
-            "imageUrl": "https://m.media-amazon.com/images/I/516d1jud2FL._AC_SY320_.jpg"
-        },
-        {
-            "id": 10,
-            "title": "Exile on Main St.",
-            "artist": "The Rolling Stones",
-            "price": 25,
-            "description": "This is the 10th British and 12th American studio album by the English rock band the Rolling Stones, released on May 1972",
-            "imageUrl": "https://m.media-amazon.com/images/I/61Ij0JBPRdL._AC_SY320_.jpg"
+    },
+    {
+        "id": 11,
+        "title": "Exile on Main St.",
+        "artist": "The Rolling Stones",
+        "price": 25,
+        "description": "Exile on Main St. is the 10th British and 12th American studio album by the English rock band the Rolling Stones, released on May 1972",
+        "imageUrl": "https://m.media-amazon.com/images/I/61Ij0JBPRdL._AC_SY320_.jpg"
 
-        }
+    },
+    {
+        "id": 12,
+        "title": "Physical Graffiti",
+        "artist": "Led Zeppelin",
+        "price": 30,
+        "description": "Physical Graffiti is the sixth studio album by the English rock band Led Zeppelin as a double album on 24 February 1975",
+        "imageUrl": "https://m.media-amazon.com/images/I/91xy3KDOSCL._AC_SY320_.jpg"
+    },
+    {
+        "id": 13,
+        "title": "Never Mind the Bollocks",
+        "artist": "The Sex Pistols",
+        "price": 20,
+        "description": "Never Mind the Bollocks, Here's the Sex Pistols is the only studio album by English punk rock band the Sex Pistols, released on 28 October 1977",
+        "imageUrl": "https://m.media-amazon.com/images/I/41o8KsrVk6L._AC_SY320.jpg"
+    },
+    {
+        "id": 14,
+        "title": "London Calling",
+        "artist": "The Clash",
+        "price": 30,
+        "description": "London Calling is the third studio album by the English rock band the Clash. It was originally released as a double album in the United Kingdom on 14 December 1979",
+        "imageUrl": "https://m.media-amazon.com/images/I/71DUFxaoLGL._AC_SY320.jpg"
+    },
+    {
+        "id": 15,
+        "title": "Unknown Pleasures",
+        "artist": "Joy Division",
+        "price": 22,
+        "description": "Unknown Pleasures is the debut studio album by the English rock band Joy Division, released on 15 June 1979",
+        "imageUrl": "https://m.media-amazon.com/images/I/81T-loBJ40L._AC_SX320_.jpg"
+    },
+    {
+        "id": 16,
+        "title": "Low Life",
+        "artist": "New Order",
+        "price": 23,
+        "description": "Low-Life is the third studio album by English rock band New Order, released on 13 May 1985",
+        "imageUrl": "https://m.media-amazon.com/images/I/618+zdVVF4L._AC_SX320_.jpg"
+    },
+    {
+        "id": 17,
+        "title": "Automatic For The People",
+        "artist": "R.E.M",
+        "price": 23,
+        "description": "Automatic for the People is the eighth studio album by American alternative rock band R.E.M on October 5, 1992",
+        "imageUrl": "https://m.media-amazon.com/images/I/71fKxMccbgL._AC_SX320_.jpg"
+    },
+    {
+        "id": 18,
+        "title": "OK Computer",
+        "artist": "Radiohead",
+        "price": 23,
+        "description": "OK Computer is the third studio album by the English rock band Radiohead, released on 21 May 1997",
+        "imageUrl": "https://m.media-amazon.com/images/I/71qtTEW46SL._AC_SX320_.jpg"
+    },
+    {
+        "id": 19,
+        "title": "Kid A",
+        "artist": "Radiohead",
+        "price": 23,
+        "description": "Kid A is the fourth studio album by the English rock band Radiohead, released on 2 October 2000",
+        "imageUrl": "https://m.media-amazon.com/images/I/71VsE62mIBL._AC_SX320_.jpg"
+    },
+    {
+        "id": 20,
+        "title": "Amnesiac",
+        "artist": "Radiohead",
+        "price": 23,
+        "description": "Amnesiac is the fifth studio album by the English rock band Radiohead, released on 30 May 2001",
+        "imageUrl": "https://m.media-amazon.com/images/I/51QWuyGnj0L._AC_SX320_.jpg"
+    },
+    {
+        "id": 21,
+        "title": "Hail to the Thief",
+        "artist": "Radiohead",
+        "price": 23,
+        "description": "Hail to the Thief is the sixth studio album by the English rock band Radiohead. It was released on 9 June 2003",
+        "imageUrl": "https://m.media-amazon.com/images/I/61vc2i2uncL._AC_SX320_.jpg"
+    },
+    {
+        "id": 22,
+        "title": "In Rainbows",
+        "artist": "Radiohead",
+        "price": 23,
+        "description": "In Rainbows is the seventh studio album by the English rock band Radiohead. It was self-released on 10 October 2007",
+        "imageUrl": "https://m.media-amazon.com/images/I/A1MwaIeBpwL._AC_SX320_.jpg"
+    },
+    {
+        "id": 23,
+        "title": "The King of Limbs",
+        "artist": "Radiohead",
+        "price": 23,
+        "description": "The King of Limbs is the eighth studio album by the English rock band Radiohead. It was self-released on 18 February 2011",
+        "imageUrl": "https://m.media-amazon.com/images/I/71QutlpFZYL._AC_SX320_.jpg"
+    },
+    {
+        "id": 24,
+        "title": "A Moon Shaped Pool",
+        "artist": "Radiohead",
+        "price": 23,
+        "description": "A Moon Shaped Pool is the ninth studio album by the English rock band Radiohead. It was released digitally on 8 May 2016",
+        "imageUrl": "https://m.media-amazon.com/images/I/61nLj6QgRqL._AC_SX320_.jpg"
+    }
 ]
