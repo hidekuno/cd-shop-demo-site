@@ -1,6 +1,6 @@
 'use strict'
 
-import {ADD_ITEM, DEL_ITEM, CLEAR_ITEMS, ADD_POINT, DEL_POINT} from './reducers'
+import {ADD_ITEM, DEL_ITEM, CLEAR_ITEMS, ADD_POINT, DEL_POINT, SET_JSONFILE} from './reducers'
 
 export const addToCart = (item) => ({
   type: ADD_ITEM,
@@ -21,4 +21,8 @@ export const addPoint = (point) => ({
 export const delPoint = (point) => ({
   type: DEL_POINT,
   payload: {point},
+})
+export const setJsonFile = (jsonfile) => ({
+  type: SET_JSONFILE,
+  payload: {jsonfile},
 })

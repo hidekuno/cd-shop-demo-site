@@ -38,17 +38,17 @@ const tooltipTop = {
 
 export const Shop = () => {
 
-  const dispatch = useContext(ShopContext).dispatch
+  const {state, dispatch} = useContext(ShopContext)
   const [data, setData] = useState([])
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('cd.json')
+      const response = await fetch(state.jsonfile)
       const jsonData = await response.json()
       setData(jsonData)
     }
     fetchData()
-  }, [])
+  }, [state.jsonfile])
 
   return (
     <Container sx={{height: '405px', overflowY: 'auto',}}>

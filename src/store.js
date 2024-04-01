@@ -5,7 +5,7 @@ import { cartReducer } from './reducers'
 
 export const ShopContext = React.createContext({})
 const POINT_INIT_VAL = 100
-const initialState = { cart: [], point: POINT_INIT_VAL }
+const initialState = { cart: [], point: POINT_INIT_VAL, jsonfile: 'cd.json' }
 
 export const ShopContextProvider = (props) => {
   const [state, dispatch] = useReducer(cartReducer, initialState)

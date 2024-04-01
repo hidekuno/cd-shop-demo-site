@@ -7,12 +7,12 @@ import Container from '@mui/material/Container'
 import './App.css'
 import { Shop } from './components/Shop'
 import { Cart } from './components/Cart'
+import { Header } from './components/Header'
 
 export const App = () => {
   return (
     <div>
-      <header className='header'>
-      CD Shop <i><b>Demo</b></i> Site</header>
+      <Header />
       <Container sx={{'padding': '1rem'}}>
         <Shop />
         <Cart />
