@@ -19,12 +19,11 @@ export const Header = () => {
     <header className="header">
       CD Shop <i><b>Demo</b></i> Site
       <Select
-        labelId={'demo-select-label'}
-        data-testid={'demo-select-test'}
-        sx={{ height: 30, marginLeft: 10 }}
+        labelId="demo-simple-select-label"
+        sx={{ height: 30, marginLeft : 10}}
         onChange={handleChange}
         value={state.jsonfile}
-        id={'demo-select'}>
+        id="demo-simple-select">
         <MenuItem value={'cd.json'}>CD</MenuItem>
         <MenuItem value={'lp.json'}>LP</MenuItem>
         <MenuItem value={'mp3.json'}>MP3</MenuItem>
