@@ -1,0 +1,50 @@
+[
+    {
+        "id": 71,
+        "title": "Autobahn",
+        "artist": "Kraftwerk",
+        "price": 25,
+        "description": "Autobahn is the fourth studio album by German electronic music band Kraftwerk, released in November 1974",
+        "imageUrl": "https://m.media-amazon.com/images/I/517mWFDZMbL._AC_SX320_.jpg"
+    },
+    {
+        "id": 72,
+        "title": "Trans Europa Express",
+        "artist": "Kraftwerk",
+        "price": 23,
+        "description": "Trans-Europe Express is the sixth studio album by German band Kraftwerk. Recorded in 1976",
+        "imageUrl": "https://m.media-amazon.com/images/I/71PekB5GDPL._AC_SX320_.jpg"
+    },
+    {
+        "id": 73,
+        "title": "Man Machine",
+        "artist": "Kraftwerk",
+        "price": 21,
+        "description": "The Man-Machine is the seventh studio album by German electronic music band Kraftwerk. It was released in May 1978",
+        "imageUrl": "https://m.media-amazon.com/images/I/81GyoilQ1EL._AC_SX320_.jpg"
+    },
+    {
+        "id": 74,
+        "title": "Low",
+        "artist": "David Bowie",
+        "price": 20,
+        "description": "Low is the eleventh studio album by the English musician David Bowie, released on 14 January 1977",
+        "imageUrl": "https://m.media-amazon.com/images/I/81s+UFcFaUL._AC_SX320_.jpg"
+    },
+    {
+        "id": 75,
+        "title": "BGM",
+        "artist": "YMO",
+        "price": 24,
+        "description": "BGM is the fourth studio album by Yellow Magic Orchestra, released on March 21, 1981",
+        "imageUrl": "https://m.media-amazon.com/images/I/51hU2dhkD1L._AC_SX320_.jpg"
+    },
+    {
+        "id": 76,
+        "title": "Technodelic",
+        "artist": "YMO",
+        "price": 24,
+        "description": "Technodelic is the fifth studio album by Yellow Magic Orchestra, released in 1981",
+        "imageUrl": "https://m.media-amazon.com/images/I/61C54-c9rWL._AC_SX320_.jpg"
+    }
+]

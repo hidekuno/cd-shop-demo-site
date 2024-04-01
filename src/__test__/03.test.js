@@ -1,7 +1,8 @@
 'use strict'
 
 import '@testing-library/jest-dom'
-import {cartReducer, DEL_POINT} from '../reducers.js'
+import {cartReducer, DEL_POINT, SET_JSONFILE} from '../reducers.js'
+import {setJsonFile} from '../actions.js'
 
 describe('unit test etc', () => {
   test('exception  test', async () => {
@@ -18,5 +19,15 @@ describe('unit test etc', () => {
     }
     let rec = cartReducer({point: 0, cart:10}, action)
     expect(rec.point).toEqual(0)
+  })
+  test('execute set_jsonfile', async () => {
+    expect(setJsonFile('LP.json').payload.jsonfile).toEqual('LP.json')
+
+    let action = {
+      type: SET_JSONFILE,
+      payload: {jsonfile: 'LP.json'},
+    }
+    let rec = cartReducer({point: 0, cart:10, jsonfile:'CD.json'}, action)
+    expect(rec.jsonfile).toEqual('LP.json')
   })
 })

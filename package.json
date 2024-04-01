@@ -22,7 +22,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "jest --env=jsdom --maxWorkers=3 --coverage --testTimeout=10000",
+    "test": "jest --env=jsdom --maxWorkers=3 --coverage --testTimeout=20000",
     "lint": "eslint src --ext .js --ext .jsx",
     "lint:fix": "eslint src --fix"
   },

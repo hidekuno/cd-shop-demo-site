@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 1rem;
+    padding: 0.5rem;
     border-bottom: 1px solid #d0d0d0;
 }
 a {
@@ -37,6 +37,7 @@ a:hover {
 .cart_artist {
     font-size: 1.0rem;
     margin: 0;
+    width: 300px;
 }
 .cart_price {
     margin: 0;

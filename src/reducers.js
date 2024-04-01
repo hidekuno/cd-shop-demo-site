@@ -5,6 +5,7 @@ export const DEL_ITEM = 'DEL_ITEM'
 export const CLEAR_ITEMS = 'CLEAR_ITEMS'
 export const ADD_POINT = 'ADD_POINT'
 export const DEL_POINT = 'DEL_POINT'
+export const SET_JSONFILE = 'SET_JSONFILE'
 
 const getItem = (cart, id) => cart.find((item) => item.id === id)
 const deleteItem = (cart, id) => cart.filter((item) => item.id !== id)
@@ -66,15 +67,18 @@ export const cartReducer = (state, action) => {
     }
   }
   case CLEAR_ITEMS:
-    return { cart: [], point: state.point }
+    return { cart: [], point: state.point, jsonfile: state.jsonfile }
 
   case ADD_POINT:
-    return { cart: state.cart, point: state.point + action.payload.point }
+    return { cart: state.cart, point: state.point + action.payload.point, jsonfile: state.jsonfile }
 
   case DEL_POINT: {
     const point = state.point - action.payload.point
-    return { cart: state.cart, point: (0 > point)? 0 : point }
+    return { cart: state.cart, point: (0 > point)? 0 : point, jsonfile: state.jsonfile }
   }
+  case SET_JSONFILE:
+    return { cart: state.cart, point: state.point, jsonfile: action.payload.jsonfile }
+
   default:
     throw new Error('No such action type')
   }

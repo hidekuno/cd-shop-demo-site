@@ -1,0 +1,66 @@
+[
+    {
+        "id": 51,
+        "title": "A Hard Day's Night",
+        "artist": "The Beatles",
+        "price": 25,
+        "description": "A Hard Day's Night is the third studio album by the English rock band the Beatles, released on 10 July 1964",
+        "imageUrl": "https://m.media-amazon.com/images/I/51BiR6yRF2L._AC_SX320_.jpg"
+    },
+    {
+        "id": 52,
+        "title": "Rubber Soul",
+        "artist": "The Beatles",
+        "price": 23,
+        "description": "Rubber Soul is the sixth studio album by the English rock band the Beatles. It was released on 3 December 1965",
+        "imageUrl": "https://m.media-amazon.com/images/I/91KkwIzbsKL._AC_SX320_.jpg"
+    },
+    {
+        "id": 53,
+        "title": "Highway 61 Revisited",
+        "artist": "Bob Dylan",
+        "price": 21,
+        "description": "Highway 61 Revisited is the sixth studio album by American singer-songwriter Bob Dylan, released on August 30, 1965",
+        "imageUrl": "https://m.media-amazon.com/images/I/71kbAAdrzGL._AC_SX320_.jpg"
+    },
+    {
+        "id": 54,
+        "title": "Blonde on Blonde",
+        "artist": "Bob Dylan",
+        "price": 20,
+        "description": "Blonde on Blonde is the seventh studio album by American singer-songwriter Bob Dylan, released as a double album on June 20, 1966",
+        "imageUrl": "https://m.media-amazon.com/images/I/813NalkyBjL._AC_SX320_.jpg"
+    },
+    {
+        "id": 55,
+        "title": "John Wesley Harding",
+        "artist": "Bob Dylan",
+        "price": 24,
+        "description": "John Wesley Harding is the eighth studio album by American singer-songwriter Bob Dylan, released on December 27, 1967",
+        "imageUrl": "https://m.media-amazon.com/images/I/71jFBSrV4TL._AC_SX320_.jpg"
+    },
+    {
+        "id": 56,
+        "title": "Big Hits (High Tide & Green Grass)",
+        "artist": "The Rolling Stones",
+        "price": 21,
+        "description": "Big Hits (High Tide and Green Grass) is the first compilation album by the Rolling Stones. With different cover art and track listings, it was released on 28 March 1966",
+        "imageUrl": "https://m.media-amazon.com/images/I/71O3uEbFjeL._AC_SX320_.jpg"
+    },
+    {
+        "id": 57,
+        "title": "Magical Mystery Tour",
+        "artist": "The Beatles",
+        "price": 23,
+        "description": "Magical Mystery Tour is a record by the English rock band the Beatles that was released as a double EP in the UK on 8 December 1967",
+        "imageUrl": "https://m.media-amazon.com/images/I/61DmMehFu5L._AC_SX320_.jpg"
+    },
+    {
+        "id": 58,
+        "title": "Beggars Banquet",
+        "artist": "The Rolling Stones",
+        "price": 21,
+        "description": "Beggars Banquet is a studio album by the English rock band the Rolling Stones, released on 6 December 1968",
+        "imageUrl": "https://m.media-amazon.com/images/I/61BHZ1RWEcL._AC_SX425_.jpg"
+    }
+]
