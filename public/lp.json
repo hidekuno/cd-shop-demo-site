@@ -49,18 +49,50 @@
     },
     {
         "id": 57,
+        "title": "Sgt. Pepper's Lonely Hearts Club Band",
+        "artist": "The Beatles",
+        "price": 22,
+        "description": "Sgt. Pepper's Lonely Hearts Club Band is the eighth studio album by the English rock band the Beatles. Released on 26 May 1967",
+        "imageUrl": "https://m.media-amazon.com/images/I/81RYPONu5dL._AC_SX320_.jpg"
+    },
+    {
+        "id": 58,
         "title": "Magical Mystery Tour",
         "artist": "The Beatles",
-        "price": 23,
+        "price": 20,
         "description": "Magical Mystery Tour is a record by the English rock band the Beatles that was released as a double EP in the UK on 8 December 1967",
         "imageUrl": "https://m.media-amazon.com/images/I/61DmMehFu5L._AC_SX320_.jpg"
     },
     {
-        "id": 58,
+        "id": 59,
+        "title": "Electric Ladyland",
+        "artist": "Jimi Hendrix",
+        "price": 30,
+        "description": "Electric Ladyland is the third and final studio album by the Jimi Hendrix Experience, released in October 1968",
+        "imageUrl": "https://m.media-amazon.com/images/I/51GJiDiwsPL._AC_.jpg"
+    },
+    {
+        "id": 60,
+        "title": "The Beatles(as the White Album)",
+        "artist": "The Beatles",
+        "price": 23,
+        "description": "The Beatles, also referred to colloquially as the White Album, is the ninth studio album and only double album by the English rock band the Beatles, released on 22 November 1968",
+        "imageUrl": "https://m.media-amazon.com/images/I/61Wp039+nnL._AC_SX320_.jpg"
+    },
+    {
+        "id": 61,
         "title": "Beggars Banquet",
         "artist": "The Rolling Stones",
-        "price": 21,
+        "price": 22,
         "description": "Beggars Banquet is a studio album by the English rock band the Rolling Stones, released on 6 December 1968",
         "imageUrl": "https://m.media-amazon.com/images/I/61BHZ1RWEcL._AC_SX425_.jpg"
+    },
+    {
+        "id": 62,
+        "title": "The Rise and Fall of Ziggy Stardust and the Spiders from Mars",
+        "artist": "David Bowie",
+        "price": 21,
+        "description": "The Rise and Fall of Ziggy Stardust and the Spiders from Mars is the fifth studio album by the English musician David Bowie, released on 16 June 1972",
+        "imageUrl": "https://m.media-amazon.com/images/I/91WJORzpHML._AC_SX320_.jpg"
     }
 ]

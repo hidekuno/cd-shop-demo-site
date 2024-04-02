@@ -23,6 +23,7 @@ export const Header = () => {
         sx={{ height: 30, marginLeft : 10}}
         onChange={handleChange}
         value={state.jsonfile}
+        data-testid="select-element"
         id="demo-simple-select">
         <MenuItem value={'cd.json'}>CD</MenuItem>
         <MenuItem value={'lp.json'}>LP</MenuItem>

@@ -1,7 +1,7 @@
 'use strict'
 
 import React from 'react'
-import { render, screen, waitFor, fireEvent } from '@testing-library/react'
+import { render, screen, waitFor, fireEvent, within } from '@testing-library/react'
 import '@testing-library/jest-dom'
 
 import {App} from '../App'
@@ -144,5 +144,17 @@ describe('unit test', () => {
     })
     expect(screen.getByText('Your Point: $0')).toBeInTheDocument()
     expect(screen.getByText('Total Amount: $25')).toBeInTheDocument()
+  })
+  test('select test', async () => {
+    await waitFor(() => {
+      render(<ShopContextProvider><App /></ShopContextProvider>)
+    })
+    const button = within(screen.getByTestId('select-element')).getByRole("button")
+    fireEvent.mouseDown(button)
+    const options = within(within(screen.getByRole("presentation")).getByRole("listbox")).getAllByRole("option")
+    await waitFor(() => {
+      fireEvent.click(options[1])
+    })
+    expect(button).toHaveTextContent("LP");
   })
 })

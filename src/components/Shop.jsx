@@ -19,12 +19,12 @@ const StyledTooltip = styled(({ className, ...props }) => (
 ))(({ theme }) => ({
   zIndex: theme.zIndex.tooltip + 1,
   ['& .MuiTooltip-tooltip']: {
-    maxWidth: 200,
+    maxWidth: '200px',
     fontFamily: 'Helvetica',
-    fontSize: '14px',
+    fontSize: '12px',
     backgroundColor: 'rgba(255,255,255)',
-    margin: 4,
-    padding: 8,
+    margin: '4px',
+    padding: '8px',
     whiteSpace: 'pre-line'
   }
 }))
@@ -58,7 +58,7 @@ export const Shop = () => {
             <Grid item xs={2} key={item.id}>
               <Box
                 sx={{padding: '0.5rem',borderBottom: '1px solid #d0d0d0',boxShadow: '1px 1px 3px #b1b1b1',textAlign: 'center'}}>
-                <StyledTooltip title={item.description} placement="bottom" sx={tooltipTop}>
+                <StyledTooltip arrow title={item.description} placement="left" sx={tooltipTop}>
                   <img src={item.imageUrl} width='120px' height='120px' alt={item.title} />
                 </StyledTooltip>
                 <Stack direction='row' sx={{marginTop: '0.2rem',alignItems:'center',justifyContent: 'center'}}>
