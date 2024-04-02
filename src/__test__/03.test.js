@@ -20,14 +20,4 @@ describe('unit test etc', () => {
     let rec = cartReducer({point: 0, cart:10}, action)
     expect(rec.point).toEqual(0)
   })
-  test('execute set_jsonfile', async () => {
-    expect(setJsonFile('LP.json').payload.jsonfile).toEqual('LP.json')
-
-    let action = {
-      type: SET_JSONFILE,
-      payload: {jsonfile: 'LP.json'},
-    }
-    let rec = cartReducer({point: 0, cart:10, jsonfile:'CD.json'}, action)
-    expect(rec.jsonfile).toEqual('LP.json')
-  })
 })

@@ -130,9 +130,9 @@ export const Cart = () => {
 
       <Container sx={{width: '600px',marginLeft: '0.2rem'}}>
         <p className='cart_item'>{item.title}</p>
-        <p className='cart_price'>${item.price}</p>
       </Container>
       <p className='cart_artist'>{item.artist}</p>
+      <p className='cart_price'>${item.price}</p>
       <p className='cart_stock'>{item.stock}</p>
       <Button
         variant='outlined'
