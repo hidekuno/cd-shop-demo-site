@@ -7,13 +7,13 @@ import MenuItem from '@mui/material/MenuItem'
 
 import '../App.css'
 import { ShopContext } from '../store'
-import { setJsonFile } from '../actions'
+import { changeItemList } from '../actions/shopAction'
 
 export const Header = () => {
   const {state, dispatch} = useContext(ShopContext)
 
   const handleChange = (event) => {
-    dispatch(setJsonFile(event.target.value))
+    dispatch(changeItemList(event.target.value))
   }
   return (
     <header className="header">

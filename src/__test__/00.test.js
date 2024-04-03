@@ -5,7 +5,7 @@ import { render, screen, waitFor, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom'
 
 import {App} from '../App'
-import { ShopContextProvider } from '../store'
+import { ShopContextProvider, CartContextProvider } from '../store'
 
 const response = class {
   constructor(filename) {
@@ -18,26 +18,31 @@ const response = class {
 }
 global.fetch = jest.fn(() => new response('public/cd-mini.json'))
 
+const testRender = () => {
+  return render(
+    <ShopContextProvider>
+      <CartContextProvider>
+        <App />
+      </CartContextProvider>
+    </ShopContextProvider>
+  )
+}
 describe('unit test', () => {
+  let component
 
   test('snapshot test', async () => {
-    let component
     await waitFor(() => {
-      component = render(<ShopContextProvider><App /></ShopContextProvider>)
+      component = testRender()
     })
     expect(component.container).toMatchSnapshot()
   })
   test('initial test', async () => {
-    await waitFor(() => {
-      render(<ShopContextProvider><App /></ShopContextProvider>)
-    })
+    await waitFor(() => { testRender() })
     expect(screen.getAllByRole('button', { name: 'Cart' })).toHaveLength(10)
     expect(screen.getByText('There are no items in your cart.')).toBeInTheDocument()
   })
   test('add to cart click 1 test', async () => {
-    await waitFor(() => {
-      render(<ShopContextProvider><App /></ShopContextProvider>)
-    })
+    await waitFor(() => { testRender() })
     await waitFor(() => {
       fireEvent.click(screen.getAllByRole('button', { name: 'Cart' })[0])
     })
@@ -56,9 +61,7 @@ describe('unit test', () => {
     expect(screen.getAllByText('Revolver')).toHaveLength(1)
   })
   test('delete click test', async () => {
-    await waitFor(() => {
-      render(<ShopContextProvider><App /></ShopContextProvider>)
-    })
+    await waitFor(() => { testRender() })
     await waitFor(() => {
       fireEvent.click(screen.getAllByRole('button', { name: 'Cart' })[0])
     })
@@ -81,9 +84,7 @@ describe('unit test', () => {
     expect(screen.getByText('There are no items in your cart.')).toBeInTheDocument()
   })
   test('delete click test multi', async () => {
-    await waitFor(() => {
-      render(<ShopContextProvider><App /></ShopContextProvider>)
-    })
+    await waitFor(() => { testRender() })
     await waitFor(() => {
       fireEvent.click(screen.getAllByRole('button', { name: 'Cart' })[0])
     })
