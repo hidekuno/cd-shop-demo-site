@@ -15,8 +15,8 @@ import TextField from '@mui/material/TextField'
 import Payment from '@mui/icons-material/Payment'
 import Delete from '@mui/icons-material/Delete'
 
-import { delToCart, clearToCart, delPoint, addPoint } from '../actions'
-import { ShopContext } from '../store'
+import { delToCart, clearToCart, delPoint, addPoint } from '../actions/cartAction'
+import { CartContext } from '../store'
 
 const cartClass = {
   margin: '0.5rem',
@@ -80,7 +80,7 @@ class TextValidation {
   }
 }
 export const Cart = () => {
-  const {state, dispatch} = useContext(ShopContext)
+  const {state, dispatch} = useContext(CartContext)
 
   const [open, setOpen] = useState(false)
   const [checked, setChecked] = useState(false)

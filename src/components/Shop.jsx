@@ -11,8 +11,8 @@ import AddShoppingCart from '@mui/icons-material/AddShoppingCart'
 import Tooltip from '@mui/material/Tooltip'
 import { styled } from '@mui/material/styles'
 
-import { addToCart } from '../actions'
-import { ShopContext } from '../store'
+import { addToCart } from '../actions/cartAction'
+import { ShopContext, CartContext } from '../store'
 
 const StyledTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} />
@@ -37,8 +37,8 @@ const tooltipTop = {
 }
 
 export const Shop = () => {
-
-  const {state, dispatch} = useContext(ShopContext)
+  const state = useContext(ShopContext).state
+  const dispatch = useContext(CartContext).dispatch
   const [data, setData] = useState([])
 
   useEffect(() => {

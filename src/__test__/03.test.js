@@ -1,10 +1,17 @@
 'use strict'
 
 import '@testing-library/jest-dom'
-import {cartReducer, DEL_POINT, SET_JSONFILE} from '../reducers.js'
-import {setJsonFile} from '../actions.js'
+import {cartReducer, DEL_POINT} from '../reducers/cartReducer'
+import {shopReducer} from '../reducers/shopReducer'
 
 describe('unit test etc', () => {
+  test('exception  test', async () => {
+    let action = {
+      type: 'TEST',
+      payload: null,
+    }
+    expect(() => shopReducer('dummy' , action)).toThrow(new Error('No such action type'))
+  })
   test('exception  test', async () => {
     let action = {
       type: 'TEST',

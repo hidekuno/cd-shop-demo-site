@@ -5,7 +5,7 @@ import { render, screen, waitFor, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom'
 
 import {App} from '../App'
-import { ShopContextProvider } from '../store'
+import { ShopContextProvider, CartContextProvider } from '../store'
 
 const response = class {
   constructor(filename) {
@@ -18,11 +18,18 @@ const response = class {
 }
 global.fetch = jest.fn(() => new response('public/cd-mini.json'))
 
+const testRender = () => {
+  return render(
+    <ShopContextProvider>
+      <CartContextProvider>
+        <App />
+      </CartContextProvider>
+    </ShopContextProvider>
+  )
+}
 describe('unit test', () => {
   test('dialog ok click test', async () => {
-    await waitFor(() => {
-      render(<ShopContextProvider><App /></ShopContextProvider>)
-    })
+    await waitFor(() => { testRender() })
     await waitFor(() => {
       fireEvent.click(screen.getAllByRole('button', { name: 'Cart' })[0])
     })
@@ -56,9 +63,7 @@ describe('unit test', () => {
     expect(screen.getByText('There are no items in your cart.')).toBeInTheDocument()
   })
   test('dialog escape key test', async () => {
-    await waitFor(() => {
-      render(<ShopContextProvider><App /></ShopContextProvider>)
-    })
+    await waitFor(() => { testRender() })
     await waitFor(() => {
       fireEvent.click(screen.getAllByRole('button', { name: 'Cart' })[0])
     })
@@ -94,9 +99,7 @@ describe('unit test', () => {
     expect(screen.getByText('There are no items in your cart.')).toBeInTheDocument()
   })
   test('dialog ok click test point less zero', async () => {
-    await waitFor(() => {
-      render(<ShopContextProvider><App /></ShopContextProvider>)
-    })
+    await waitFor(() => { testRender() })
     await waitFor(() => {
       fireEvent.click(screen.getAllByRole('button', { name: 'Cart' })[0])
     })
@@ -139,9 +142,7 @@ describe('unit test', () => {
     expect(screen.getByText('There are no items in your cart.')).toBeInTheDocument()
   })
   test('dialog ok click test(no point)', async () => {
-    await waitFor(() => {
-      render(<ShopContextProvider><App /></ShopContextProvider>)
-    })
+    await waitFor(() => { testRender() })
     await waitFor(() => {
       fireEvent.click(screen.getAllByRole('button', { name: 'Cart' })[0])
     })
@@ -170,9 +171,7 @@ describe('unit test', () => {
     expect(screen.getByText('There are no items in your cart.')).toBeInTheDocument()
   })
   test('email required validate test', async () => {
-    await waitFor(() => {
-      render(<ShopContextProvider><App /></ShopContextProvider>)
-    })
+    await waitFor(() => { testRender() })
     await waitFor(() => {
       fireEvent.click(screen.getAllByRole('button', { name: 'Cart' })[0])
     })
@@ -188,9 +187,7 @@ describe('unit test', () => {
     expect(textMail).toBeInvalid()
   })
   test('email format validate test', async () => {
-    await waitFor(() => {
-      render(<ShopContextProvider><App /></ShopContextProvider>)
-    })
+    await waitFor(() => { testRender() })
     await waitFor(() => {
       fireEvent.click(screen.getAllByRole('button', { name: 'Cart' })[0])
     })
@@ -208,9 +205,7 @@ describe('unit test', () => {
     expect(textMail).toBeInvalid()
   })
   test('address format validate test', async () => {
-    await waitFor(() => {
-      render(<ShopContextProvider><App /></ShopContextProvider>)
-    })
+    await waitFor(() => { testRender() })
     await waitFor(() => {
       fireEvent.click(screen.getAllByRole('button', { name: 'Cart' })[0])
     })
