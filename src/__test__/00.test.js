@@ -96,4 +96,24 @@ describe('unit test', () => {
     })
     expect(screen.getByText('Total Amount: $25')).toBeInTheDocument()
   })
+  test('image click test', async () => {
+    await waitFor(() => { testRender() })
+    await waitFor(() => {
+      fireEvent.click(screen.getByAltText('Revolver'))
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getByRole('button', { name: 'Close' }))
+    })
+    await waitFor(() => {
+      fireEvent.click(screen.getByAltText('Revolver'))
+    })
+    await waitFor(() => {
+      fireEvent.keyDown(screen.getByRole('button', { name: 'Close' }), {
+        key: 'Escape',
+        code: 'Escape',
+        keyCode: 27,
+        charCode: 27
+      })
+    })
+  })
 })
