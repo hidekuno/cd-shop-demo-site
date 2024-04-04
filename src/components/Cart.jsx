@@ -165,7 +165,7 @@ export const Cart = () => {
         <DialogContent>
           <DialogContentText sx={{...dialogClass}}>
             <span style={{ color: '#1976d2'}}> Your Point: ${sale.calcPoint(checked)} </span>
-            <FormControlLabel sx={{ paddingLeft: '1rem' }} disabled={(0 >= sale.userPoint)}
+            <FormControlLabel sx={{paddingLeft: '1rem'}} disabled={(0 >= sale.userPoint)}
               control={<Switch checked={checked} onChange={(e) => setChecked(e.target.checked)} name='points' />}
               label='Use Points' />
           </DialogContentText>
