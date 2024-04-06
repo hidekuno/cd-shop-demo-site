@@ -1,32 +1,12 @@
 'use strict'
 
 import React from 'react'
-import { render, screen, waitFor, fireEvent } from '@testing-library/react'
+import {screen, waitFor, fireEvent, within} from '@testing-library/react'
 import '@testing-library/jest-dom'
+import {testRender, response} from './common'
 
-import {App} from '../App'
-import { ShopContextProvider, CartContextProvider } from '../store'
-
-const response = class {
-  constructor(filename) {
-    this.filename = filename
-  }
-  json() {
-    const fs = require('fs')
-    return JSON.parse(fs.readFileSync(this.filename, 'utf8'))
-  }
-}
 global.fetch = jest.fn(() => new response('public/cd-mini.json'))
 
-const testRender = () => {
-  return render(
-    <ShopContextProvider>
-      <CartContextProvider>
-        <App />
-      </CartContextProvider>
-    </ShopContextProvider>
-  )
-}
 describe('unit test', () => {
   test('dialog ok click test', async () => {
     await waitFor(() => { testRender() })

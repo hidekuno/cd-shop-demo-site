@@ -1,8 +1,18 @@
 'use strict'
 
+import React from 'react'
 import '@testing-library/jest-dom'
+import {waitFor} from '@testing-library/react'
 import {cartReducer, DEL_POINT} from '../reducers/cartReducer'
 import {shopReducer} from '../reducers/shopReducer'
+import {testRender} from './common'
+
+export const response = class {
+  constructor() {
+    this.status = 400
+  }
+}
+global.fetch = jest.fn(() => new response())
 
 describe('unit test etc', () => {
   test('exception  test', async () => {
@@ -26,5 +36,8 @@ describe('unit test etc', () => {
     }
     let rec = cartReducer({point: 0, cart:10}, action)
     expect(rec.point).toEqual(0)
+  })
+  test('fetch error test', async () => {
+    await waitFor(() => { testRender() })
   })
 })
