@@ -50,9 +50,17 @@ export const Shop = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(state.jsonfile)
-      const jsonData = await response.json()
-      setData(jsonData)
+      try {
+        const response = await fetch(state.jsonfile)
+
+        if (response.status >= 400) {
+          throw new Error(response.status + ' error')
+        }
+        const jsonData = await response.json()
+        setData(jsonData)
+      } catch (err) {
+        console.log('fetch error!', err)
+      }
     }
     fetchData()
   }, [state.jsonfile])
