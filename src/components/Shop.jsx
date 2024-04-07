@@ -15,6 +15,8 @@ import DialogTitle from '@mui/material/DialogTitle'
 import DialogContent from '@mui/material/DialogContent'
 import DialogContentText from '@mui/material/DialogContentText'
 import DialogActions from '@mui/material/DialogActions'
+import Alert from '@mui/material/Alert'
+import AlertTitle from '@mui/material/AlertTitle'
 
 import { addToCart } from '../actions/cartAction'
 import { ShopContext, CartContext } from '../store'
@@ -47,11 +49,12 @@ export const Shop = () => {
   const [data, setData] = useState([])
   const [open, setOpen] = useState(false)
   const [work, setWork] = useState({})
+  const [error, setError] = useState('')
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(state.jsonfile)
+        const response = await fetch(state.jsonfile,{ signal: AbortSignal.timeout(5000) })
 
         if (response.status >= 400) {
           throw new Error(response.status + ' error')
@@ -59,6 +62,7 @@ export const Shop = () => {
         const jsonData = await response.json()
         setData(jsonData)
       } catch (err) {
+        setError(err.message)
         console.log('fetch error!', err)
       }
     }
@@ -67,6 +71,12 @@ export const Shop = () => {
 
   return (
     <Container sx={{height: '405px', overflowY: 'auto',}}>
+      {(error.length > 0)?
+        <Alert variant='outlined' severity='error' onClose={() => {setError('')}}>
+          <AlertTitle>Error</AlertTitle>
+          {error}
+        </Alert> : <></>
+      }
       <Dialog open={open} onClose={() => setOpen(false)}>
         <DialogTitle sx={{paddingBottom: 0}}>{work.title}</DialogTitle>
         <DialogContentText sx={{marginLeft: '2.0rem', fontSize: 14}}>{work.artist}</DialogContentText>

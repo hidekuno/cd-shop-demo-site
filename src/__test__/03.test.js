@@ -2,7 +2,7 @@
 
 import React from 'react'
 import '@testing-library/jest-dom'
-import {waitFor} from '@testing-library/react'
+import {screen, waitFor, fireEvent,} from '@testing-library/react'
 import {cartReducer, DEL_POINT} from '../reducers/cartReducer'
 import {shopReducer} from '../reducers/shopReducer'
 import {testRender} from './common'
@@ -13,6 +13,7 @@ export const response = class {
   }
 }
 global.fetch = jest.fn(() => new response())
+AbortSignal.timeout = jest.fn().mockReturnValue({ timeout: 5000 })
 
 describe('unit test etc', () => {
   test('exception  test', async () => {
@@ -39,5 +40,7 @@ describe('unit test etc', () => {
   })
   test('fetch error test', async () => {
     await waitFor(() => { testRender() })
+    const button = screen.getByTestId('CloseIcon')
+    fireEvent.click(button)
   })
 })
