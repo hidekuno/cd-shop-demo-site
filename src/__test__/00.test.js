@@ -6,6 +6,7 @@ import '@testing-library/jest-dom'
 import {testRender, response} from './common'
 
 global.fetch = jest.fn(() => new response('public/cd-mini.json'))
+AbortSignal.timeout = jest.fn().mockReturnValue({ timeout: 5000 })
 
 describe('unit test', () => {
   let component
