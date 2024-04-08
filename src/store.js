@@ -3,13 +3,12 @@
 import React, { useReducer } from 'react'
 import { cartReducer } from './reducers/cartReducer.js'
 import { shopReducer } from './reducers/shopReducer.js'
+import { POINT_INIT_VAL, JSON_INIT_VAL} from './constants'
 
 export const ShopContext = React.createContext({})
 export const CartContext = React.createContext({})
 
-
 export const ShopContextProvider = (props) => {
-  const JSON_INIT_VAL = 'cd.json'
   const initialState = { jsonfile: JSON_INIT_VAL }
   const [state, dispatch] = useReducer(shopReducer, initialState)
 
@@ -20,7 +19,6 @@ export const ShopContextProvider = (props) => {
   )
 }
 export const CartContextProvider = (props) => {
-  const POINT_INIT_VAL = 100
   const initialState = { cart: [], point: POINT_INIT_VAL }
   const [state, dispatch] = useReducer(cartReducer, initialState)
 

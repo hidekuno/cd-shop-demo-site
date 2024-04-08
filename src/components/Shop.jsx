@@ -20,6 +20,7 @@ import AlertTitle from '@mui/material/AlertTitle'
 
 import { addToCart } from '../actions/cartAction'
 import { ShopContext, CartContext } from '../store'
+import { FETCH_TIMEOUT, BAD_REQUEST } from '../constants'
 
 const StyledTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} />
@@ -54,9 +55,9 @@ export const Shop = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(state.jsonfile,{ signal: AbortSignal.timeout(5000) })
+        const response = await fetch(state.jsonfile,{ signal: AbortSignal.timeout(FETCH_TIMEOUT) })
 
-        if (response.status >= 400) {
+        if (response.status >= BAD_REQUEST) {
           throw new Error(response.status + ' error')
         }
         const jsonData = await response.json()
