@@ -17,6 +17,7 @@ import Delete from '@mui/icons-material/Delete'
 
 import { delToCart, clearToCart, delPoint, addPoint } from '../actions/cartAction'
 import { CartContext } from '../store'
+import { COMPLETE_MESSAGE, NOCART_MESSAGE } from '../constants'
 
 const cartClass = {
   margin: '0.5rem',
@@ -105,7 +106,7 @@ export const Cart = () => {
     }
     sale.dispatchWrap(dispatch,checked)
     initUi()
-    setMessage('Thanks for your purchase.(This is a Demo Program.)')
+    setMessage(COMPLETE_MESSAGE)
   }
 
   if (sale.cartItems.length === 0) {
@@ -118,7 +119,7 @@ export const Cart = () => {
             <Button onClick={() => setMessage('')} color='primary'>Close</Button>
           </DialogActions>
         </Dialog>
-        There are no items in your cart.
+        {NOCART_MESSAGE}
       </Container>
     )
   }

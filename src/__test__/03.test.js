@@ -14,6 +14,8 @@ export const response = class {
 }
 global.fetch = jest.fn(() => new response())
 AbortSignal.timeout = jest.fn().mockReturnValue({ timeout: 5000 })
+const spyLog = jest.spyOn(console, 'log')
+spyLog.mockImplementation(x => x)
 
 describe('unit test etc', () => {
   test('exception  test', async () => {
@@ -40,6 +42,7 @@ describe('unit test etc', () => {
   })
   test('fetch error test', async () => {
     await waitFor(() => { testRender() })
+    expect(console.log).toBeCalled()
     const button = screen.getByTestId('CloseIcon')
     fireEvent.click(button)
   })
