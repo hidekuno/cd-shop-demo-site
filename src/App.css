@@ -13,6 +13,10 @@ a {
 a:hover {
     color: #7fbfff;
 }
+
+.shop_username {
+    margin: 0 0 0 auto;
+}
 .shop_item {
     text-align: left;
     font-weight: bold;

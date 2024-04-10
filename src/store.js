@@ -9,7 +9,7 @@ export const ShopContext = React.createContext({})
 export const CartContext = React.createContext({})
 
 export const ShopContextProvider = (props) => {
-  const initialState = { jsonfile: JSON_INIT_VAL }
+  const initialState = { jsonfile: JSON_INIT_VAL, username: '' }
   const [state, dispatch] = useReducer(shopReducer, initialState)
 
   return (
