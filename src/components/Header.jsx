@@ -35,7 +35,8 @@ export const Header = () => {
         <MenuItem value={'lp.json'}>LP</MenuItem>
         <MenuItem value={'mp3.json'}>MP3</MenuItem>
       </Select>
-      <Link underline='hover' href='#' onClick={handleSignout} sx={{ marginLeft: '60%' }}>Sign out</Link>
+      <p className='shop_username'>{state.username}</p>
+      <Link underline='hover' href='#' onClick={handleSignout}>Sign out</Link>
     </header>
   )
 }

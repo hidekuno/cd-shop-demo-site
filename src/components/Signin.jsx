@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useContext} from 'react'
 import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import CssBaseline from '@mui/material/CssBaseline'
@@ -11,8 +11,12 @@ import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import { useNavigate } from 'react-router-dom'
 
+import { ShopContext } from '../store'
+import { signinUsername } from '../actions/shopAction'
+
 export const Signin = () => {
   const navigate = useNavigate()
+  const dispatch = useContext(ShopContext).dispatch
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -21,10 +25,9 @@ export const Signin = () => {
       username: data.get('username'),
       password: data.get('password'),
     })
+    dispatch(signinUsername(data.get('username')))
     navigate('/shop')
   }
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
 
   return (
     <Container component="main" maxWidth="xs">
@@ -43,7 +46,7 @@ export const Signin = () => {
         <Typography component="h1" variant="h5">
           Sign in to CD Shop <i><b>Demo</b></i> Site
         </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+        <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
           <TextField
             margin="normal"
             required
@@ -52,8 +55,7 @@ export const Signin = () => {
             label="Username"
             name="username"
             autoComplete="username"
-            value={username}
-            onChange={e => { setUsername(e.target.value) }}
+            inputProps={{ maxLength: 32 }}
           />
           <TextField
             margin="normal"
@@ -64,8 +66,6 @@ export const Signin = () => {
             type="password"
             id="password"
             autoComplete="current-password"
-            value={password}
-            onChange={e => { setPassword(e.target.value) }}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}

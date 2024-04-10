@@ -1,6 +1,5 @@
 'use strict'
 
-import React from 'react'
 import '@testing-library/jest-dom'
 import {screen, waitFor, fireEvent,} from '@testing-library/react'
 import {testRender, testLoginRender, response,} from './common'
