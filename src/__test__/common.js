@@ -3,7 +3,9 @@
 import React from 'react'
 import {render} from '@testing-library/react'
 import {App} from '../App'
+import {Signin} from '../components/Signin'
 import {ShopContextProvider, CartContextProvider} from '../store'
+import {BrowserRouter} from 'react-router-dom'
 
 export const response = class {
   constructor(filename) {
@@ -18,7 +20,20 @@ export const testRender = () => {
   return render(
     <ShopContextProvider>
       <CartContextProvider>
-        <App />
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </CartContextProvider>
+    </ShopContextProvider>
+  )
+}
+export const testLoginRender = () => {
+  return render(
+    <ShopContextProvider>
+      <CartContextProvider>
+        <BrowserRouter>
+          <Signin />
+        </BrowserRouter>
       </CartContextProvider>
     </ShopContextProvider>
   )
