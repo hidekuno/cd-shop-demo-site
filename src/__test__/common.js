@@ -5,7 +5,7 @@ import {render} from '@testing-library/react'
 import {App} from '../App'
 import {Signin} from '../components/Signin'
 import {ShopContextProvider, CartContextProvider} from '../store'
-import {BrowserRouter} from 'react-router-dom'
+import {BrowserRouter,Routes,Route} from 'react-router-dom'
 
 export const response = class {
   constructor(filename) {
@@ -32,7 +32,11 @@ export const testLoginRender = () => {
     <ShopContextProvider>
       <CartContextProvider>
         <BrowserRouter>
-          <Signin />
+          <Routes>
+            <Route path={'/'} element={<Signin />} />
+            <Route path={'/shop'} element={<App />} />
+            <Route path={'*'} element={<Signin />} />
+          </Routes>
         </BrowserRouter>
       </CartContextProvider>
     </ShopContextProvider>

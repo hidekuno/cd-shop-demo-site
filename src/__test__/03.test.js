@@ -13,8 +13,7 @@ export const response = class {
 }
 global.fetch = jest.fn(() => new response())
 AbortSignal.timeout = jest.fn().mockReturnValue({ timeout: 5000 })
-const spyLog = jest.spyOn(console, 'log')
-spyLog.mockImplementation(x => x)
+jest.spyOn(console, 'log').mockImplementation(x => x)
 
 describe('unit test etc', () => {
   test('exception  test', async () => {
