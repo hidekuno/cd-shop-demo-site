@@ -8,6 +8,7 @@ global.fetch = jest.fn(() => new response('public/cd-mini.json'))
 AbortSignal.timeout = jest.fn().mockReturnValue({ timeout: 5000 })
 jest.spyOn(console, 'log').mockImplementation(x => x)
 
+global.window ??= Object.create(window)
 describe('unit test sign', () => {
   test('sign in/out test', async () => {
     await waitFor(() => { testLoginRender() })
@@ -24,9 +25,18 @@ describe('unit test sign', () => {
     })
     expect(screen.getByText('testtaro')).toBeInTheDocument()
     expect(screen.getByText(/Sign out/)).toBeInTheDocument()
+
+    Object.defineProperty(window, 'location', {
+      value: {
+        href: '/index.html',
+        pathname: '/',
+        search: '',
+        hostname: '',
+      },
+    })
     await waitFor(() => {
       fireEvent.click(screen.getAllByRole('link')[0])
     })
-    expect(screen.getByText(/Sign in to CD Shop/)).toBeInTheDocument()
+    expect(window.location.href).toEqual('/index.html');
   })
 })

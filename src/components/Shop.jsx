@@ -17,6 +17,7 @@ import DialogContentText from '@mui/material/DialogContentText'
 import DialogActions from '@mui/material/DialogActions'
 import Alert from '@mui/material/Alert'
 import AlertTitle from '@mui/material/AlertTitle'
+import { useNavigate } from 'react-router-dom'
 
 import { addToCart } from '../actions/cartAction'
 import { ShopContext, CartContext } from '../store'
@@ -51,8 +52,12 @@ export const Shop = () => {
   const [open, setOpen] = useState(false)
   const [work, setWork] = useState({})
   const [error, setError] = useState('')
+  const navigate = useNavigate()
 
   useEffect(() => {
+    if (state.username === '') {
+      navigate('/')
+    }
     const fetchData = async () => {
       try {
         const response = await fetch(state.jsonfile,{ signal: AbortSignal.timeout(FETCH_TIMEOUT) })

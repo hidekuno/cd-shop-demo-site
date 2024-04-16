@@ -7,19 +7,18 @@ import MenuItem from '@mui/material/MenuItem'
 import Link from '@mui/material/Link'
 
 import '../App.css'
-import { ShopContext } from '../store'
+import { ShopContext,CartContext } from '../store'
 import { changeItemList } from '../actions/shopAction'
-import { useNavigate } from 'react-router-dom'
 
 export const Header = () => {
-  const navigate = useNavigate()
   const {state, dispatch} = useContext(ShopContext)
+  const cart = useContext(CartContext).state
 
   const handleChange = (event) => {
     dispatch(changeItemList(event.target.value))
   }
   const handleSignout = () => {
-    navigate('/')
+    window.location.href = '/index.html'
   }
   return (
     <header className="header">
@@ -35,6 +34,7 @@ export const Header = () => {
         <MenuItem value={'lp.json'}>LP</MenuItem>
         <MenuItem value={'mp3.json'}>MP3</MenuItem>
       </Select>
+      <span style={{ marginLeft: '20%', 'fontWeight': 'bold', color: '#1976d2'}}>Your Point: {cart.point}</span>
       <p className='shop_username'>{state.username}</p>
       <Link underline='hover' href='#' onClick={handleSignout}>Sign out</Link>
     </header>
