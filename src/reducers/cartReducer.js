@@ -66,14 +66,14 @@ export const cartReducer = (state, action) => {
     }
   }
   case CLEAR_ITEMS:
-    return { cart: [], point: state.point, }
+    return {...state, cart: [],}
 
   case ADD_POINT:
-    return { cart: state.cart, point: state.point + action.payload.point, }
+    return {...state, point: state.point + action.payload.point,}
 
   case DEL_POINT: {
     const point = state.point - action.payload.point
-    return { cart: state.cart, point: (0 > point)? 0 : point, }
+    return {...state, point: (0 > point)? 0 : point,}
   }
   default:
     throw new Error('No such action type')
