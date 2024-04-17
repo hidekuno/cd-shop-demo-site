@@ -8,14 +8,25 @@ import './App.css'
 import { Shop } from './components/Shop'
 import { Cart } from './components/Cart'
 import { Header } from './components/Header'
+import { History } from './components/History'
 
-export const App = () => {
+export const Store = () => {
   return (
     <div>
       <Header />
       <Container sx={{'padding': '1rem'}}>
         <Shop />
         <Cart />
+      </Container>
+    </div>
+  )
+}
+export const Order = () => {
+  return (
+    <div>
+      <Header />
+      <Container sx={{'padding': '1rem'}}>
+        <History />
       </Container>
     </div>
   )
