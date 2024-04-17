@@ -55,7 +55,7 @@ export const Shop = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (state.username === '') {
+    if (!state.username) {
       navigate('/')
     }
     const fetchData = async () => {

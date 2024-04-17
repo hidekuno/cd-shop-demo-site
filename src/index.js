@@ -5,7 +5,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import { Signin } from './components/Signin'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { App } from './App'
+import { Store, Order } from './App'
 import { ShopContextProvider, CartContextProvider } from './store'
 
 const root = createRoot(document.getElementById('root'))
@@ -15,7 +15,8 @@ root.render(
       <BrowserRouter>
         <Routes>
           <Route path={'/'} element={<Signin />} />
-          <Route path={'/shop'} element={<App />} />
+          <Route path={'/shop'} element={<Store />} />
+          <Route path={'/history'} element={<Order />} />
           <Route path={'*'} element={<Signin />} />
         </Routes>
       </BrowserRouter>

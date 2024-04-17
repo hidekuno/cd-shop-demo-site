@@ -6,9 +6,9 @@ export const SIGNIN_USERNAME = 'SIGNIN_USERNAME'
 export const shopReducer = (state, action) => {
   switch (action.type) {
   case CHANGE_ITEM_LIST:
-    return { jsonfile: action.payload.jsonfile, username: state.username }
+    return { ...state, jsonfile: action.payload.jsonfile, }
   case SIGNIN_USERNAME:
-    return { jsonfile: state.jsonfile, username: action.payload.username }
+    return { ...state, username: action.payload.username, }
   default:
     throw new Error('No such action type')
   }
