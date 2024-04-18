@@ -13,7 +13,7 @@ import { History } from './components/History'
 export const Store = () => {
   return (
     <div>
-      <Header />
+      <Header index={0} />
       <Container sx={{'padding': '1rem'}}>
         <Shop />
         <Cart />
@@ -24,7 +24,8 @@ export const Store = () => {
 export const Order = () => {
   return (
     <div>
-      <Header />
+      <Header index={1} />
+      <p style={{marginLeft: '40%'}}>Order History(<b>Under Construction</b>)</p>
       <Container sx={{'padding': '1rem'}}>
         <History />
       </Container>

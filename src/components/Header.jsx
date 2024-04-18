@@ -14,22 +14,14 @@ import { ShopContext,CartContext } from '../store'
 import { changeItemList } from '../actions/shopAction'
 
 const menuLinks = ['/shop', '/history']
-const getMenuIndex = (path) => {
-  for (const i in menuLinks) {
-    if (path == menuLinks[i]) {
-      return Number(i)
-    }
-  }
-  return 0
-}
 
-export const Header = () => {
+export const Header = (props) => {
   const path = useLocation().pathname
   const {state, dispatch} = useContext(ShopContext)
   const cart = useContext(CartContext).state
   const navigate = useNavigate()
   const menubar = {minHeight: '20px', height: '20px'}
-  const [value, setValue] = useState(getMenuIndex(path))
+  const [value, setValue] = useState(props.index)
 
   const handleChange = (event) => {
     dispatch(changeItemList(event.target.value))
