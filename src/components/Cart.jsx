@@ -150,7 +150,7 @@ export const Cart = () => {
       <p className='cart_title'>In your cart</p>
       <Container sx={{marginTop: '0.1rem'}}>{cart}</Container>
       <Container
-        sx={{marginTop: '0.5rem', fontSize: '1.2rem',color: 'red',display: 'flex',justifyContent: 'flex-end',alignItems: 'center'}}>
+        sx={{marginTop: '0.5rem', fontSize: '1.2rem',color: '#c9171e',display: 'flex',justifyContent: 'flex-end',alignItems: 'center'}}>
         Total Amount: ${sale.totalPrices}
         <Button
           variant='outlined'
