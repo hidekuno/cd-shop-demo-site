@@ -13,7 +13,7 @@ import '../App.css'
 import { ShopContext,CartContext } from '../store'
 import { changeItemList } from '../actions/shopAction'
 
-const menuLinks = ['/shop', '/history']
+const menuLinks = ['/shop', '/cart', '/order']
 
 export const Header = (props) => {
   const path = useLocation().pathname
@@ -35,7 +35,8 @@ export const Header = (props) => {
       CD Shop <i><b>Demo</b></i> Site
       <Tabs sx={{...menubar, marginLeft:'5%'}} value={value} onChange={handleTabChange} aria-label="menu">
         <Tab label='Shop' component="a" sx={{...menubar, width:'55px',minWidth:'55px'}}/>
-        <Tab label='History'component="a" sx={{...menubar,width:'80px',minWidth:'80px'}}/>
+        <Tab label='Cart' component="a" sx={{...menubar,width:'55px',minWidth:'55px'}}/>
+        <Tab label='Order' component="a" sx={{...menubar,width:'60px',minWidth:'60px'}}/>
       </Tabs>
       { path === '/shop' &&
         <Select
@@ -50,11 +51,11 @@ export const Header = (props) => {
           <MenuItem value={'mp3.json'}>MP3</MenuItem>
         </Select>
       }
-      {
-        path === '/shop' &&
-        <span style={{'fontWeight': 'bold', color: '#1976d2'}}>Your Point: {cart.point}</span>
-      }
       <p className='shop_username'>{state.username}</p>
+      {
+        menuLinks.slice(0,2).includes(path) &&
+        <span style={{'fontWeight': 'bold', color: '#e3811e'}}>Your Point: {cart.point}</span>
+      }
       <Link underline='hover' href='#' onClick={() => navigate('/shop')}>Home</Link>
       <Link underline='hover' href=''  onClick={() => navigate('/')}>Sign out</Link>
     </header>

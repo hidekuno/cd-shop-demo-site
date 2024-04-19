@@ -45,10 +45,15 @@ describe('unit test link', () => {
     expect(screen.getByText('testtaro')).toBeInTheDocument()
 
     await waitFor(() => {
-      fireEvent.click(screen.getByRole('tab', { selected: false }))
-      //fireEvent.click(screen.getByLabelText(/History/))
+      fireEvent.click(screen.getByRole('tab', { name: 'Order', selected: false }))
     })
     expect(screen.getByText(/Order History/)).toBeInTheDocument()
+
+    await waitFor(() => {
+       fireEvent.click(screen.getByRole('tab', { name: 'Cart', selected: false }))
+    })
+    expect(screen.getByText(/There are no items in your cart./)).toBeInTheDocument()
+
     await waitFor(() => {
       fireEvent.click(screen.getAllByRole('link')[0])
     })
