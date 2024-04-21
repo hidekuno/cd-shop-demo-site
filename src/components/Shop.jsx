@@ -1,6 +1,11 @@
+/*
+ * cd shop demo program
+ *
+ * hidekuno@gmail.com
+ *
+ */
 'use strict'
 
-// fix. ReferenceError: React is not defined when npm test
 import React, {useEffect, useState, useContext } from 'react'
 import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
@@ -103,7 +108,12 @@ export const Shop = () => {
               <Box
                 sx={{padding: '0.5rem',borderBottom: '1px solid #d0d0d0',boxShadow: '1px 1px 3px #b1b1b1',textAlign: 'center'}}>
                 <StyledTooltip arrow title={'Please click'} placement="bottom" sx={tooltipTop}>
-                  <Box component="img" sx={{width: '120px', height: '120px'}} alt={item.title} src={item.imageUrl} onClick={() => {setWork(item); setOpen(true)}}/>
+                  <Box
+                    component="img"
+                    sx={{width: '120px', height: '120px'}}
+                    alt={item.title}
+                    src={item.imageUrl}
+                    onClick={() => {setWork(item); setOpen(true)}}/>
                 </StyledTooltip>
                 <Stack direction='row' sx={{marginTop: '0.2rem',alignItems:'center',justifyContent: 'center'}}>
                   <p className='shop_price'>${item.price}</p>

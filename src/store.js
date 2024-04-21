@@ -1,3 +1,9 @@
+/*
+ * cd shop demo program
+ *
+ * hidekuno@gmail.com
+ *
+ */
 'use strict'
 
 import React, { useReducer } from 'react'
@@ -9,7 +15,7 @@ export const ShopContext = React.createContext({})
 export const CartContext = React.createContext({})
 
 export const ShopContextProvider = (props) => {
-  const initialState = { jsonfile: JSON_INIT_VAL, username: '' }
+  const initialState = { jsonfile: JSON_INIT_VAL, username: '' , order: []}
   const [state, dispatch] = useReducer(shopReducer, initialState)
 
   return (

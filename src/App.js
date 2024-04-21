@@ -1,3 +1,9 @@
+/*
+ * cd shop demo program
+ *
+ * hidekuno@gmail.com
+ *
+ */
 'use strict'
 
 // fix. ReferenceError: React is not defined when npm test
@@ -35,7 +41,7 @@ export const Order = () => {
   return (
     <div>
       <Header index={2} />
-      <p style={{marginLeft: '40%'}}>Order History(<b>Under Construction</b>)</p>
+      <p style={{marginLeft: '40%'}}>Order History</p>
       <Container sx={{'padding': '1rem'}}>
         <History />
       </Container>

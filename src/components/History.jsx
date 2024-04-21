@@ -1,7 +1,12 @@
+/*
+ * cd shop demo program
+ *
+ * hidekuno@gmail.com
+ *
+ */
 'use strict'
 
-// fix. ReferenceError: React is not defined when npm test
-import React from 'react'
+import React, { Fragment, useContext } from 'react'
 import { styled } from '@mui/material/styles'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -10,6 +15,8 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
+import { ShopContext } from '../store'
+
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -20,10 +27,9 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     fontSize: 14,
   },
 }))
-
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.action.hover,
+    color: theme.palette.common.white,
   },
   // hide last border
   '&:last-child td, &:last-child th': {
@@ -31,67 +37,45 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }))
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-]
-
 export const History = () => {
+  const state = useContext(ShopContext).state
+  const order = state.order
+  const doller = (n) => '$' + n
+  const rowspan = (row) => row.detail.length + 1
+
   return (
     <TableContainer component={Paper} sx={{ height: '80vh' }}>
-      <Table sx={{ minWidth: 650 , tableLayout: 'fixed'}} aria-label="customized table">
+      <Table stickyHeader sx={{ minWidth: 750 , tableLayout: 'fixed'}} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>Dessert (100g serving)</StyledTableCell>
-            <StyledTableCell align="right">Calories</StyledTableCell>
-            <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell>
+            <StyledTableCell style={{ width: 240 }}>Order No.</StyledTableCell>
+            <StyledTableCell style={{ width: 140 }}>Order Date Time</StyledTableCell>
+            <StyledTableCell style={{ width: 50 }}>Payment</StyledTableCell>
+            <StyledTableCell style={{ width: 50 }}>Total</StyledTableCell>
+            <StyledTableCell>Title</StyledTableCell>
+            <StyledTableCell style={{ width: 30 }}align="right">Price</StyledTableCell>
+            <StyledTableCell style={{ width: 30 }}align="right">Qty</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row, index) => (
-            <StyledTableRow key={index}>
-              <StyledTableCell component="th" scope="row">
-                {row.name}
-              </StyledTableCell>
-              <StyledTableCell align="right">{row.calories}</StyledTableCell>
-              <StyledTableCell align="right">{row.fat}</StyledTableCell>
-              <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-              <StyledTableCell align="right">{row.protein}</StyledTableCell>
-            </StyledTableRow>
+          {order.map((row, index) => (
+            <Fragment>
+              <StyledTableRow key={index}>
+                <StyledTableCell component="th" scope="row" rowSpan={rowspan(row)}>
+                  {row.orderno}
+                </StyledTableCell>
+                <StyledTableCell rowSpan={ rowspan(row) }>{row.orderDatetime}</StyledTableCell>
+                <StyledTableCell rowSpan={ rowspan(row) } align="right">{doller(row.payment)}</StyledTableCell>
+                <StyledTableCell rowSpan={ rowspan(row) } align="right">{doller(row.total)}</StyledTableCell>
+              </StyledTableRow>
+              {row.detail.map((detail) => (
+                <StyledTableRow>
+                  <StyledTableCell>{detail.title}</StyledTableCell>
+                  <StyledTableCell align="right">{doller(detail.price)}</StyledTableCell>
+                  <StyledTableCell align="right">{detail.qty}</StyledTableCell>
+                </StyledTableRow>
+              ))}
+            </Fragment>
           ))}
         </TableBody>
       </Table>

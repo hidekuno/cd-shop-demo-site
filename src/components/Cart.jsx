@@ -1,3 +1,9 @@
+/*
+ * cd shop demo program
+ *
+ * hidekuno@gmail.com
+ *
+ */
 'use strict'
 
 import React, { useRef, useState, useContext } from 'react'
@@ -16,7 +22,8 @@ import Payment from '@mui/icons-material/Payment'
 import Delete from '@mui/icons-material/Delete'
 
 import { delToCart, clearToCart, delPoint, addPoint } from '../actions/cartAction'
-import { CartContext } from '../store'
+import { addOrder } from '../actions/shopAction'
+import { CartContext, ShopContext } from '../store'
 import { COMPLETE_MESSAGE, NOCART_MESSAGE } from '../constants'
 
 const cartClass = {
@@ -82,6 +89,7 @@ class TextValidation {
 }
 export const Cart = () => {
   const {state, dispatch} = useContext(CartContext)
+  const dispatchShop = useContext(ShopContext).dispatch
 
   const [open, setOpen] = useState(false)
   const [checked, setChecked] = useState(false)
@@ -106,6 +114,7 @@ export const Cart = () => {
     }
     sale.dispatchWrap(dispatch,checked)
     initUi()
+    dispatchShop(addOrder({total: sale.totalPrices, payment: sale.calcTotalPrices(checked), detail: sale.cartItems}))
     setMessage(COMPLETE_MESSAGE)
   }
 
@@ -134,7 +143,7 @@ export const Cart = () => {
       </Container>
       <p className='cart_artist'>{item.artist}</p>
       <p className='cart_price'>${item.price}</p>
-      <p className='cart_stock'>{item.stock}</p>
+      <p className='cart_qty'>{item.qty}</p>
       <Button
         variant='outlined'
         color='primary'

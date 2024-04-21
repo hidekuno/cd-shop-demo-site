@@ -46,7 +46,7 @@ a:hover {
 .cart_price {
     margin: 0;
 }
-.cart_stock {
+.cart_qty {
     font-size: 1.0rem;
     margin-left: 1.0rem;
     margin-right: 1.0rem;
