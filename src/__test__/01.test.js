@@ -1,3 +1,9 @@
+/*
+ * cd shop demo program
+ *
+ * hidekuno@gmail.com
+ *
+ */
 'use strict'
 
 import {screen, waitFor, fireEvent, within} from '@testing-library/react'

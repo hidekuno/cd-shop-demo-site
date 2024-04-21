@@ -1,6 +1,11 @@
+/*
+ * cd shop demo program
+ *
+ * hidekuno@gmail.com
+ *
+ */
 'use strict'
 
-// fix. ReferenceError: React is not defined when npm test
 import React, {useContext, useState} from 'react'
 import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'

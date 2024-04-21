@@ -1,3 +1,11 @@
+/*
+ * cd shop demo program
+ *
+ * hidekuno@gmail.com
+ *
+ */
+'use strict'
+
 import React, {useContext} from 'react'
 import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'

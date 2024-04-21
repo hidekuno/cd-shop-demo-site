@@ -1,3 +1,9 @@
+/*
+ * cd shop demo program
+ *
+ * hidekuno@gmail.com
+ *
+ */
 'use strict'
 
 export const ADD_ITEM = 'ADD_ITEM'
@@ -22,8 +28,8 @@ export const cartReducer = (state, action) => {
           return [
             {
               ...item,
-              stock: item.stock + 1,
-              totalPrice: item.price * (item.stock + 1),
+              qty: item.qty + 1,
+              totalPrice: item.price * (item.qty + 1),
             },
             ...deleteItem(state.cart, action.payload.id),
           ]
@@ -36,7 +42,7 @@ export const cartReducer = (state, action) => {
               price,
               artist,
               imageUrl,
-              stock: 1,
+              qty: 1,
               totalPrice: price,
             },
             ...state.cart,
@@ -46,18 +52,18 @@ export const cartReducer = (state, action) => {
     }
   case DEL_ITEM: {
     const item = getItem(state.cart, action.payload.id)
-    const stock = item.stock - 1
+    const qty = item.qty - 1
     return {
       ...state,
       cart: (() => {
-        if (stock === 0) {
+        if (qty === 0) {
           return deleteItem(state.cart, action.payload.id)
         } else {
           return [
             {
               ...item,
-              stock: stock,
-              totalPrice: item.price * stock,
+              qty: qty,
+              totalPrice: item.price * qty,
             },
             ...deleteItem(state.cart, action.payload.id),
           ]

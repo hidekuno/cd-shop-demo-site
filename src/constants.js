@@ -1,3 +1,9 @@
+/*
+ * cd shop demo program
+ *
+ * hidekuno@gmail.com
+ *
+ */
 'use strict'
 
 export const FETCH_TIMEOUT = 5000
