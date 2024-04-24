@@ -48,7 +48,7 @@ export const History = () => {
       <Table stickyHeader sx={{ minWidth: 750 , tableLayout: 'fixed'}} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell style={{ width: 240 }}>Order No.</StyledTableCell>
+            <StyledTableCell style={{ width: 180 }}>Order No.</StyledTableCell>
             <StyledTableCell style={{ width: 140 }}>Order Date Time</StyledTableCell>
             <StyledTableCell style={{ width: 50 }}>Payment</StyledTableCell>
             <StyledTableCell style={{ width: 50 }}>Total</StyledTableCell>
@@ -59,8 +59,8 @@ export const History = () => {
         </TableHead>
         <TableBody>
           {order.map((row, index) => (
-            <Fragment>
-              <StyledTableRow key={index}>
+            <Fragment key={index}>
+              <StyledTableRow>
                 <StyledTableCell component="th" scope="row" rowSpan={rowspan(row)}>
                   {row.orderno}
                 </StyledTableCell>
@@ -68,8 +68,8 @@ export const History = () => {
                 <StyledTableCell rowSpan={ rowspan(row) } align="right">{doller(row.payment)}</StyledTableCell>
                 <StyledTableCell rowSpan={ rowspan(row) } align="right">{doller(row.total)}</StyledTableCell>
               </StyledTableRow>
-              {row.detail.map((detail) => (
-                <StyledTableRow>
+              {row.detail.map((detail,index) => (
+                <StyledTableRow key={index}>
                   <StyledTableCell>{detail.title}</StyledTableCell>
                   <StyledTableCell align="right">{doller(detail.price)}</StyledTableCell>
                   <StyledTableCell align="right">{detail.qty}</StyledTableCell>
