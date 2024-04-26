@@ -88,6 +88,8 @@ class TextValidation {
   }
 }
 export const Cart = () => {
+  //console.log('render Cart')
+
   const {state, dispatch} = useContext(CartContext)
   const dispatchShop = useContext(ShopContext).dispatch
 

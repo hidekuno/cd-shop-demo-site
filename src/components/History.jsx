@@ -38,6 +38,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }))
 
 export const History = () => {
+  //console.log('render History')
+
   const state = useContext(ShopContext).state
   const order = state.order
   const doller = (n) => '$' + n

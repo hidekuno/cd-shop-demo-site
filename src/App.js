@@ -22,7 +22,6 @@ export const Store = () => {
       <Header index={0} />
       <Container sx={{'padding': '1rem'}}>
         <Shop />
-        <CartPart />
       </Container>
     </div>
   )
