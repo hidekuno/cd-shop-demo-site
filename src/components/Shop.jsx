@@ -22,11 +22,12 @@ import DialogContentText from '@mui/material/DialogContentText'
 import DialogActions from '@mui/material/DialogActions'
 import Alert from '@mui/material/Alert'
 import AlertTitle from '@mui/material/AlertTitle'
-import { useNavigate } from 'react-router-dom'
+import MenuItem from '@mui/material/MenuItem'
+import Select from '@mui/material/Select'
 
 import { addToCart } from '../actions/cartAction'
-import { ShopContext, CartContext } from '../store'
-import { FETCH_TIMEOUT, BAD_REQUEST } from '../constants'
+import { CartContext } from '../store'
+import { FETCH_TIMEOUT, BAD_REQUEST, JSON_INIT_VAL } from '../constants'
 
 const StyledTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} />
@@ -51,21 +52,21 @@ const tooltipTop = {
 }
 
 export const Shop = () => {
-  const state = useContext(ShopContext).state
+  //console.log('render Shop')
+
+  const [state, setState] = useState(JSON_INIT_VAL)
   const dispatch = useContext(CartContext).dispatch
   const [data, setData] = useState([])
   const [open, setOpen] = useState(false)
   const [work, setWork] = useState({})
   const [error, setError] = useState('')
-  const navigate = useNavigate()
 
   useEffect(() => {
-    if (!state.username) {
-      navigate('/')
-    }
+    //console.log('call useEffect()')
+
     const fetchData = async () => {
       try {
-        const response = await fetch(state.jsonfile,{ signal: AbortSignal.timeout(FETCH_TIMEOUT) })
+        const response = await fetch(state,{ signal: AbortSignal.timeout(FETCH_TIMEOUT) })
 
         if (response.status >= BAD_REQUEST) {
           throw new Error(response.status + ' error')
@@ -74,14 +75,18 @@ export const Shop = () => {
         setData(jsonData)
       } catch (err) {
         setError(err.message)
-        console.log('fetch error!', err)
+        console.error('fetch error!', err)
       }
     }
     fetchData()
-  }, [state.jsonfile])
+  }, [state])
+
+  const handleChange = (event) => {
+    setState(event.target.value)
+  }
 
   return (
-    <Container sx={{height: '405px', overflowY: 'auto',}}>
+    <Container sx={{height: '625px', overflowY: 'auto',}}>
       {(error.length > 0)?
         <Alert variant='outlined' severity='error' onClose={() => {setError('')}}>
           <AlertTitle>Error</AlertTitle>
@@ -101,6 +106,18 @@ export const Shop = () => {
           <Button onClick={() => setOpen(false)} color='primary'>Close</Button>
         </DialogActions>
       </Dialog>
+
+      <Select
+        labelId="demo-simple-select-label"
+        sx={{ height: 25, marginLeft: '50%'}}
+        onChange={handleChange}
+        value={state}
+        data-testid="select-element"
+        id="demo-simple-select">
+        <MenuItem value={'cd.json'}>CD</MenuItem>
+        <MenuItem value={'lp.json'}>LP</MenuItem>
+        <MenuItem value={'mp3.json'}>MP3</MenuItem>
+      </Select>
       <Grid container rowSpacing={1}>
         {
           data.map((item) => (

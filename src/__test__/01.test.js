@@ -126,9 +126,6 @@ describe('unit test', () => {
   })
   test('select test', async () => {
     await waitFor(() => { testRender() })
-    await waitFor(() => {
-      fireEvent.click(screen.getAllByRole('link')[0])
-    })
     const button = within(screen.getByTestId('select-element')).getByRole('button')
     fireEvent.mouseDown(button)
     const options = within(within(screen.getByRole('presentation')).getByRole('listbox')).getAllByRole('option')

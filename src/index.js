@@ -12,21 +12,19 @@ import './index.css'
 import { Signin } from './components/Signin'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Store, Order, Cart } from './App'
-import { ShopContextProvider, CartContextProvider } from './store'
+import { StoreContextProvider } from './store'
 
 const root = createRoot(document.getElementById('root'))
 root.render(
-  <ShopContextProvider>
-    <CartContextProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path={'/'} element={<Signin />} />
-          <Route path={'/shop'} element={<Store />} />
-          <Route path={'/order'} element={<Order />} />
-          <Route path={'/cart'} element={<Cart />} />
-          <Route path={'*'} element={<Signin />} />
-        </Routes>
-      </BrowserRouter>
-    </CartContextProvider>
-  </ShopContextProvider>
+  <StoreContextProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path={'/'} element={<Signin />} />
+        <Route path={'/shop'} element={<Store />} />
+        <Route path={'/order'} element={<Order />} />
+        <Route path={'/cart'} element={<Cart />} />
+        <Route path={'*'} element={<Signin />} />
+      </Routes>
+    </BrowserRouter>
+  </StoreContextProvider>
 )
