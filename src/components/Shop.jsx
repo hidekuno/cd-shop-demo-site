@@ -24,6 +24,7 @@ import Alert from '@mui/material/Alert'
 import AlertTitle from '@mui/material/AlertTitle'
 import MenuItem from '@mui/material/MenuItem'
 import Select from '@mui/material/Select'
+import { Snackbar } from '@mui/material'
 
 import { addToCart } from '../actions/cartAction'
 import { CartContext } from '../store'
@@ -60,6 +61,7 @@ export const Shop = () => {
   const [open, setOpen] = useState(false)
   const [work, setWork] = useState({})
   const [error, setError] = useState('')
+  const [openAddCart, setOpenAddCart] = useState(false)
 
   useEffect(() => {
     //console.log('call useEffect()')
@@ -84,7 +86,6 @@ export const Shop = () => {
   const handleChange = (event) => {
     setState(event.target.value)
   }
-
   return (
     <Container sx={{height: '625px', overflowY: 'auto',}}>
       {(error.length > 0)?
@@ -140,7 +141,7 @@ export const Shop = () => {
                     size='small'
                     sx={{marginLeft: '1.8rem'}}
                     startIcon={<AddShoppingCart />}
-                    onClick={() => {dispatch(addToCart(item))}}>
+                    onClick={() => {setOpenAddCart(true); dispatch(addToCart(item))}}>
                     Cart
                   </Button>
                 </Stack>
@@ -149,6 +150,12 @@ export const Shop = () => {
           ))
         }
       </Grid>
+      <Snackbar open={openAddCart} autoHideDuration={3000} onClose={()=>{setOpenAddCart(false)}}
+        sx={{ height: '100%' }} anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
+        <Alert severity="success">
+          Added to cart.
+        </Alert>
+      </Snackbar>
     </Container>
   )
 }
