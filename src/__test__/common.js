@@ -7,20 +7,20 @@
 'use strict'
 
 import React from 'react'
-import {render} from '@testing-library/react'
-import {Store,Order,Cart} from '../App'
-import {Signin} from '../components/Signin'
-import {StoreContextProvider} from '../store'
-import {BrowserRouter,Routes,Route} from 'react-router-dom'
-import {Shop} from '../components/Shop'
-import {Header} from '../components/Header'
-import {Cart as CartPart} from '../components/Cart'
+import { render } from '@testing-library/react'
+import { Store, Order, Cart } from '../App'
+import { Signin } from '../components/Signin'
+import { StoreContextProvider } from '../store'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Shop } from '../components/Shop'
+import { Cart as CartPart } from '../components/Cart'
 
-export const response = class {
-  constructor(filename) {
+export const Response = class {
+  constructor (filename) {
     this.filename = filename
   }
-  json() {
+
+  json () {
     const fs = require('fs')
     return JSON.parse(fs.readFileSync(this.filename, 'utf8'))
   }

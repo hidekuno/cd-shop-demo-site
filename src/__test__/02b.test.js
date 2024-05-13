@@ -6,11 +6,11 @@
  */
 'use strict'
 
-import {screen, waitFor, fireEvent,} from '@testing-library/react'
+import { screen, waitFor, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import {testRender, response} from './common'
+import { testRender, Response } from './common'
 
-global.fetch = jest.fn(() => new response('public/cd-mini.json'))
+global.fetch = jest.fn(() => new Response('public/cd-mini.json'))
 AbortSignal.timeout = jest.fn().mockReturnValue({ timeout: 5000 })
 
 describe('unit test', () => {
@@ -28,9 +28,9 @@ describe('unit test', () => {
     expect(screen.getByText('Your Point: $100')).toBeInTheDocument()
     expect(screen.getAllByText('Total Amount: $50')).toHaveLength(2)
     const textMail = screen.getByRole('textbox', { name: 'Email' })
-    fireEvent.change(textMail, {target: {value: 'foo@hoge.com'}})
+    fireEvent.change(textMail, { target: { value: 'foo@hoge.com' } })
     const textAddress = screen.getByRole('textbox', { name: 'Address' })
-    fireEvent.change(textAddress, {target: {value: 'Osaka,Japan'}})
+    fireEvent.change(textAddress, { target: { value: 'Osaka,Japan' } })
 
     await waitFor(() => {
       fireEvent.click(screen.getByRole('button', { name: 'OK' }))
@@ -68,7 +68,7 @@ describe('unit test', () => {
       fireEvent.click(screen.getByRole('button', { name: 'Buy' }))
     })
     const textMail = screen.getByRole('textbox', { name: 'Email' })
-    fireEvent.change(textMail, {target: {value: 'foo@hoge.'}})
+    fireEvent.change(textMail, { target: { value: 'foo@hoge.' } })
 
     await waitFor(() => {
       fireEvent.click(screen.getByRole('button', { name: 'OK' }))
@@ -86,7 +86,7 @@ describe('unit test', () => {
       fireEvent.click(screen.getByRole('button', { name: 'Buy' }))
     })
     const textMail = screen.getByRole('textbox', { name: 'Email' })
-    fireEvent.change(textMail, {target: {value: 'foo@hoge.com'}})
+    fireEvent.change(textMail, { target: { value: 'foo@hoge.com' } })
 
     await waitFor(() => {
       fireEvent.click(screen.getByRole('button', { name: 'OK' }))

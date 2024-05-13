@@ -6,7 +6,7 @@
  */
 'use strict'
 
-import React, {useContext} from 'react'
+import React, { useContext } from 'react'
 import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import CssBaseline from '@mui/material/CssBaseline'
@@ -31,7 +31,7 @@ export const Signin = () => {
     const data = new FormData(event.currentTarget)
     console.log({
       username: data.get('username'),
-      password: data.get('password'),
+      password: data.get('password')
     })
     dispatch(signinUsername(data.get('username')))
     navigate('/shop')
@@ -45,7 +45,7 @@ export const Signin = () => {
           marginTop: 8,
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
+          alignItems: 'center'
         }}
       >
         <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
