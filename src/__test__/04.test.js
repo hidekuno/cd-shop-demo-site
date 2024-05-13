@@ -7,10 +7,10 @@
 'use strict'
 
 import '@testing-library/jest-dom'
-import {screen, waitFor, fireEvent,} from '@testing-library/react'
-import {testRender, testLoginRender, response,} from './common'
+import { screen, waitFor, fireEvent } from '@testing-library/react'
+import { testLoginRender, Response } from './common'
 
-global.fetch = jest.fn(() => new response('public/cd-mini.json'))
+global.fetch = jest.fn(() => new Response('public/cd-mini.json'))
 AbortSignal.timeout = jest.fn().mockReturnValue({ timeout: 5000 })
 jest.spyOn(console, 'log').mockImplementation(x => x)
 
@@ -19,11 +19,11 @@ describe('unit test link', () => {
     await waitFor(() => { testLoginRender() })
 
     const textUser = screen.getByRole('textbox', { name: 'Username' })
-    fireEvent.change(textUser, {target: {value: 'testtaro'}})
+    fireEvent.change(textUser, { target: { value: 'testtaro' } })
 
     // It's not work screen.getByRole('textbox', { name: 'Password' })
-    const textPassword =  screen.getByLabelText(/Password/)
-    fireEvent.change(textPassword, {target: {value: 'hogehoge'}})
+    const textPassword = screen.getByLabelText(/Password/)
+    fireEvent.change(textPassword, { target: { value: 'hogehoge' } })
 
     await waitFor(() => {
       fireEvent.click(screen.getAllByRole('button')[0])
@@ -39,11 +39,11 @@ describe('unit test link', () => {
     await waitFor(() => { testLoginRender() })
 
     const textUser = screen.getByRole('textbox', { name: 'Username' })
-    fireEvent.change(textUser, {target: {value: 'testtaro'}})
+    fireEvent.change(textUser, { target: { value: 'testtaro' } })
 
     // It's not work screen.getByRole('textbox', { name: 'Password' })
-    const textPassword =  screen.getByLabelText(/Password/)
-    fireEvent.change(textPassword, {target: {value: 'hogehoge'}})
+    const textPassword = screen.getByLabelText(/Password/)
+    fireEvent.change(textPassword, { target: { value: 'hogehoge' } })
 
     await waitFor(() => {
       fireEvent.click(screen.getAllByRole('button')[0])
@@ -56,7 +56,7 @@ describe('unit test link', () => {
     expect(screen.getByText(/Order History/)).toBeInTheDocument()
 
     await waitFor(() => {
-       fireEvent.click(screen.getByRole('tab', { name: 'Cart', selected: false }))
+      fireEvent.click(screen.getByRole('tab', { name: 'Cart', selected: false }))
     })
     expect(screen.getByText(/There are no items in your cart./)).toBeInTheDocument()
 
@@ -68,11 +68,11 @@ describe('unit test link', () => {
     await waitFor(() => { testLoginRender() })
 
     const textUser = screen.getByRole('textbox', { name: 'Username' })
-    fireEvent.change(textUser, {target: {value: 'testtaro'}})
+    fireEvent.change(textUser, { target: { value: 'testtaro' } })
 
     // It's not work screen.getByRole('textbox', { name: 'Password' })
-    const textPassword =  screen.getByLabelText(/Password/)
-    fireEvent.change(textPassword, {target: {value: 'hogehoge'}})
+    const textPassword = screen.getByLabelText(/Password/)
+    fireEvent.change(textPassword, { target: { value: 'hogehoge' } })
 
     await waitFor(() => {
       fireEvent.click(screen.getAllByRole('button')[0])
@@ -86,15 +86,15 @@ describe('unit test link', () => {
       fireEvent.click(screen.getAllByRole('button', { name: 'Cart' })[1])
     })
     await waitFor(() => {
-       fireEvent.click(screen.getByRole('tab', { name: 'Cart', selected: false }))
+      fireEvent.click(screen.getByRole('tab', { name: 'Cart', selected: false }))
     })
     await waitFor(() => {
       fireEvent.click(screen.getByRole('button', { name: 'Buy' }))
     })
     const textMail = screen.getByRole('textbox', { name: 'Email' })
-    fireEvent.change(textMail, {target: {value: 'foo@hoge.com'}})
+    fireEvent.change(textMail, { target: { value: 'foo@hoge.com' } })
     const textAddress = screen.getByRole('textbox', { name: 'Address' })
-    fireEvent.change(textAddress, {target: {value: 'Osaka,Japan'}})
+    fireEvent.change(textAddress, { target: { value: 'Osaka,Japan' } })
     await waitFor(() => {
       fireEvent.click(screen.getByRole('button', { name: 'OK' }))
     })
@@ -107,7 +107,7 @@ describe('unit test link', () => {
     expect(screen.getByText(/Order History/)).toBeInTheDocument()
     expect(screen.getByText('Revolver')).toBeInTheDocument()
     expect(screen.getByText('Pet Shop Sounds')).toBeInTheDocument()
-    expect(screen.getAllByText('\$48')).toHaveLength(2)
-    expect(screen.getByText('\$25')).toBeInTheDocument()
+    expect(screen.getAllByText('$48')).toHaveLength(2)
+    expect(screen.getByText('$25')).toBeInTheDocument()
   })
 })

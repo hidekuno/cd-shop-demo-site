@@ -6,11 +6,11 @@
  */
 'use strict'
 
-import {screen, waitFor, fireEvent,} from '@testing-library/react'
+import { screen, waitFor, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import {testRender, response} from './common'
+import { testRender, Response } from './common'
 
-global.fetch = jest.fn(() => new response('public/cd-mini.json'))
+global.fetch = jest.fn(() => new Response('public/cd-mini.json'))
 AbortSignal.timeout = jest.fn().mockReturnValue({ timeout: 5000 })
 
 describe('unit test', () => {

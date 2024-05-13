@@ -17,28 +17,27 @@ import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import { ShopContext } from '../store'
 
-
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
+    color: theme.palette.common.white
   },
   [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
+    fontSize: 14
+  }
 }))
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '&:nth-of-type(odd)': {
-    color: theme.palette.common.white,
+    color: theme.palette.common.white
   },
   // hide last border
   '&:last-child td, &:last-child th': {
-    border: 0,
-  },
+    border: 0
+  }
 }))
 
 export const History = () => {
-  //console.log('render History')
+  // console.log('render History')
 
   const state = useContext(ShopContext).state
   const order = state.order
@@ -47,7 +46,7 @@ export const History = () => {
 
   return (
     <TableContainer component={Paper} sx={{ height: '80vh' }}>
-      <Table stickyHeader sx={{ minWidth: 750 , tableLayout: 'fixed'}} aria-label="customized table">
+      <Table stickyHeader sx={{ minWidth: 750, tableLayout: 'fixed' }} aria-label="customized table">
         <TableHead>
           <TableRow>
             <StyledTableCell style={{ width: 180 }}>Order No.</StyledTableCell>
@@ -70,7 +69,7 @@ export const History = () => {
                 <StyledTableCell rowSpan={ rowspan(row) } align="right">{doller(row.payment)}</StyledTableCell>
                 <StyledTableCell rowSpan={ rowspan(row) } align="right">{doller(row.total)}</StyledTableCell>
               </StyledTableRow>
-              {row.detail.map((detail,index) => (
+              {row.detail.map((detail, index) => (
                 <StyledTableRow key={index}>
                   <StyledTableCell>{detail.title}</StyledTableCell>
                   <StyledTableCell align="right">{doller(detail.price)}</StyledTableCell>

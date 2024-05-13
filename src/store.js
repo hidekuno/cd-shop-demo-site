@@ -15,13 +15,13 @@ export const ShopContext = createContext({})
 export const CartContext = createContext({})
 
 export const StoreContextProvider = (props) => {
-  const [shopState, shopDispatch] = useReducer(shopReducer, {username: '' ,order: []})
-  const [cartState, cartDispatch] = useReducer(cartReducer, {cart: [], point: POINT_INIT_VAL})
+  const [shopState, shopDispatch] = useReducer(shopReducer, { username: '', order: [] })
+  const [cartState, cartDispatch] = useReducer(cartReducer, { cart: [], point: POINT_INIT_VAL })
 
   // console.log('StoreContextProvider render')
   return (
-    <ShopContext.Provider value={{state:shopState, dispatch:shopDispatch}}>
-      <CartContext.Provider value={{state:cartState, dispatch:cartDispatch}}>
+    <ShopContext.Provider value={{ state: shopState, dispatch: shopDispatch }}>
+      <CartContext.Provider value={{ state: cartState, dispatch: cartDispatch }}>
         {props.children}
       </CartContext.Provider>
     </ShopContext.Provider>

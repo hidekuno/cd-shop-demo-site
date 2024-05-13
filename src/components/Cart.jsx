@@ -31,39 +31,42 @@ const cartClass = {
   display: 'grid',
   justifyContent: 'center',
   borderTop: '1px solid #d0d0d0',
-  paddingTop:'0.1rem'
+  paddingTop: '0.1rem'
 }
 const dialogClass = {
   textAlign: 'center',
   fontWeight: 'bold',
   mx: 0.5,
-  fontSize: 16,
+  fontSize: 16
 }
 class Sale {
-  constructor(state) {
+  constructor (state) {
     this.cartItems = state.cart
     this.userPoint = state.point
     this.totalPrices = this.cartItems.map((item) => item.totalPrice).reduce((a, b) => a + b, 0)
   }
-  calcTotalPrices(checked) {
-    const result = checked? this.totalPrices - this.userPoint : this.totalPrices
-    return (0 > result)? 0 : result
+
+  calcTotalPrices (checked) {
+    const result = checked ? this.totalPrices - this.userPoint : this.totalPrices
+    return (result < 0) ? 0 : result
   }
-  calcPoint(checked) {
-    const result = checked? (this.userPoint - this.totalPrices) : this.userPoint
-    return (0 > result)? 0 : result
+
+  calcPoint (checked) {
+    const result = checked ? (this.userPoint - this.totalPrices) : this.userPoint
+    return (result < 0) ? 0 : result
   }
-  dispatchWrap(dispatch, checked) {
+
+  dispatchWrap (dispatch, checked) {
     if (checked) {
       dispatch(delPoint(this.totalPrices))
     } else {
-      dispatch(addPoint(Math.floor(this.totalPrices/10)))
+      dispatch(addPoint(Math.floor(this.totalPrices / 10)))
     }
     dispatch(clearToCart())
   }
 }
 class TextValidation {
-  constructor() {
+  constructor () {
     [this.value, this.setValue] = useState('');
     [this.error, this.setError] = useState(false)
 
@@ -74,23 +77,26 @@ class TextValidation {
     // We will discuss effects on the next pages.
     this.ref = useRef(null)
   }
-  validateText() {
+
+  validateText () {
     const v = this.ref.current.validity.valid
     this.setError(!v)
-    return(v)
+    return (v)
   }
-  handleChange(e) {
+
+  handleChange (e) {
     this.setValue(e.target.value)
     return this.validateText()
   }
-  helpText() {
+
+  helpText () {
     return this.error && this.ref.current.validationMessage
   }
 }
 export const Cart = () => {
-  //console.log('render Cart')
+  // console.log('render Cart')
 
-  const {state, dispatch} = useContext(CartContext)
+  const { state, dispatch } = useContext(CartContext)
   const dispatchShop = useContext(ShopContext).dispatch
 
   const [open, setOpen] = useState(false)
@@ -114,15 +120,15 @@ export const Cart = () => {
     if (!validate()) {
       return
     }
-    sale.dispatchWrap(dispatch,checked)
+    sale.dispatchWrap(dispatch, checked)
     initUi()
-    dispatchShop(addOrder({total: sale.totalPrices, payment: sale.calcTotalPrices(checked), detail: sale.cartItems}))
+    dispatchShop(addOrder({ total: sale.totalPrices, payment: sale.calcTotalPrices(checked), detail: sale.cartItems }))
     setMessage(COMPLETE_MESSAGE)
   }
 
   if (sale.cartItems.length === 0) {
     return (
-      <Container sx={{...cartClass}}>
+      <Container sx={{ ...cartClass }}>
         <Dialog open={message !== ''} onClose={() => setMessage('')}>
           <DialogTitle>Complete</DialogTitle>
           <DialogContent><DialogContentText>{message}</DialogContentText></DialogContent>
@@ -137,10 +143,10 @@ export const Cart = () => {
   const cart = sale.cartItems.map((item) => (
     <Container
       key={item.id}
-      sx={{display: 'flex',alignItems: 'center',margin: '0.1rem'}}>
+      sx={{ display: 'flex', alignItems: 'center', margin: '0.1rem' }}>
       <img src={item.imageUrl} width='45px' height='45px' alt='{item.title}' />
 
-      <Container sx={{width: '600px',marginLeft: '0.2rem'}}>
+      <Container sx={{ width: '600px', marginLeft: '0.2rem' }}>
         <p className='cart_item'>{item.title}</p>
       </Container>
       <p className='cart_artist'>{item.artist}</p>
@@ -151,7 +157,7 @@ export const Cart = () => {
         color='primary'
         size='small'
         startIcon={<Delete />}
-        onClick={() => {dispatch(delToCart(item))}}>
+        onClick={() => { dispatch(delToCart(item)) }}>
         Delete
       </Button>
     </Container>))
@@ -159,63 +165,63 @@ export const Cart = () => {
   return (
     <Container sx={cartClass}>
       <p className='cart_title'>In your cart</p>
-      <Container sx={{marginTop: '0.1rem'}}>{cart}</Container>
+      <Container sx={{ marginTop: '0.1rem' }}>{cart}</Container>
       <Container
-        sx={{marginTop: '0.5rem', fontSize: '1.2rem',color: '#c9171e',display: 'flex',justifyContent: 'flex-end',alignItems: 'center'}}>
+        sx={{ marginTop: '0.5rem', fontSize: '1.2rem', color: '#c9171e', display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
         Total Amount: ${sale.totalPrices}
         <Button
           variant='outlined'
           color='primary'
           onClick={() => setOpen(true)}
           startIcon={<Payment />}
-          sx={{marginLeft: '2.0rem'}}>
+          sx={{ marginLeft: '2.0rem' }}>
           Buy
         </Button>
       </Container>
       <Dialog open={open} onClose={() => initUi()}>
         <DialogTitle>{'Confirm'}</DialogTitle>
         <DialogContent>
-          <DialogContentText sx={{...dialogClass}}>
-            <span style={{ color: '#1976d2'}}> Your Point: ${sale.calcPoint(checked)} </span>
-            <FormControlLabel sx={{paddingLeft: '1rem'}} disabled={(0 >= sale.userPoint)}
+          <DialogContentText sx={{ ...dialogClass }}>
+            <span style={{ color: '#1976d2' }}> Your Point: ${sale.calcPoint(checked)} </span>
+            <FormControlLabel sx={{ paddingLeft: '1rem' }} disabled={(sale.userPoint <= 0)}
               control={<Switch checked={checked} onChange={(e) => setChecked(e.target.checked)} name='points' />}
               label='Use Points' />
           </DialogContentText>
-          <FormGroup sx={{marginLeft: '0.5rem'}}>
+          <FormGroup sx={{ marginLeft: '0.5rem' }}>
             <TextField
               id='email-address'
               label='Email'
               margin='dense'
-              sx={{m: 1, width: '50ch'}}
+              sx={{ m: 1, width: '50ch' }}
               type='email'
               variant='standard'
               inputRef={mailAddr.ref}
               value={mailAddr.value}
               error={mailAddr.error}
               helperText={mailAddr.helpText()}
-              inputProps={{required: true}}
-              onChange={(e) => {mailAddr.handleChange(e)}}
+              inputProps={{ required: true }}
+              onChange={(e) => { mailAddr.handleChange(e) }}
               required/>
             <TextField
               id='recipent-address'
               label='Address'
               margin='dense'
-              sx={{m: 1, width: '50ch'}}
+              sx={{ m: 1, width: '50ch' }}
               variant='standard'
               inputRef={recipentAddr.ref}
               value={recipentAddr.value}
               error={recipentAddr.error}
               helperText={recipentAddr.helpText()}
-              inputProps={{required: true}}
-              onChange={(e) => {recipentAddr.handleChange(e)}}
+              inputProps={{ required: true }}
+              onChange={(e) => { recipentAddr.handleChange(e) }}
               required/>
           </FormGroup>
         </DialogContent>
         <DialogContent>
-          <DialogContentText sx={{...dialogClass, color: 'success.dark'}}>
+          <DialogContentText sx={{ ...dialogClass, color: 'success.dark' }}>
             Total Amount: ${sale.calcTotalPrices(checked)}
           </DialogContentText>
-          <DialogContentText sx={{marginTop: '1.5rem', textAlign: 'center'}}>
+          <DialogContentText sx={{ marginTop: '1.5rem', textAlign: 'center' }}>
             Would you like to buy?
           </DialogContentText>
         </DialogContent>

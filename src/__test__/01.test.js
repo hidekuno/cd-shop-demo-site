@@ -6,11 +6,11 @@
  */
 'use strict'
 
-import {screen, waitFor, fireEvent, within} from '@testing-library/react'
+import { screen, waitFor, fireEvent, within } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import {testRender, response} from './common'
+import { testRender, Response } from './common'
 
-global.fetch = jest.fn(() => new response('public/cd-mini.json'))
+global.fetch = jest.fn(() => new Response('public/cd-mini.json'))
 AbortSignal.timeout = jest.fn().mockReturnValue({ timeout: 5000 })
 
 describe('unit test', () => {
@@ -91,7 +91,7 @@ describe('unit test', () => {
     await waitFor(() => {
       const switchElement = screen.getByLabelText('Use Points')
       fireEvent.click(switchElement)
-      fireEvent.change(switchElement, { target: { checked: true }})
+      fireEvent.change(switchElement, { target: { checked: true } })
     })
     expect(screen.getByText('Your Point: $50')).toBeInTheDocument()
     expect(screen.getByText('Total Amount: $0')).toBeInTheDocument()
@@ -119,7 +119,7 @@ describe('unit test', () => {
     await waitFor(() => {
       const switchElement = screen.getByLabelText('Use Points')
       fireEvent.click(switchElement)
-      fireEvent.change(switchElement, { target: { checked: true }})
+      fireEvent.change(switchElement, { target: { checked: true } })
     })
     expect(screen.getByText('Your Point: $0')).toBeInTheDocument()
     expect(screen.getByText('Total Amount: $25')).toBeInTheDocument()
@@ -132,6 +132,6 @@ describe('unit test', () => {
     await waitFor(() => {
       fireEvent.click(options[1])
     })
-    expect(button).toHaveTextContent('LP');
+    expect(button).toHaveTextContent('LP')
   })
 })

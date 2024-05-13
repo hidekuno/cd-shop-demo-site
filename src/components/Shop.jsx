@@ -6,7 +6,7 @@
  */
 'use strict'
 
-import React, {useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
@@ -34,7 +34,7 @@ const StyledTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} />
 ))(({ theme }) => ({
   zIndex: theme.zIndex.tooltip + 1,
-  ['& .MuiTooltip-tooltip']: {
+  '& .MuiTooltip-tooltip': {
     maxWidth: '200px',
     fontFamily: 'Helvetica',
     fontSize: '12px',
@@ -53,7 +53,7 @@ const tooltipTop = {
 }
 
 export const Shop = () => {
-  //console.log('render Shop')
+  // console.log('render Shop')
 
   const [state, setState] = useState(JSON_INIT_VAL)
   const dispatch = useContext(CartContext).dispatch
@@ -64,11 +64,11 @@ export const Shop = () => {
   const [openAddCart, setOpenAddCart] = useState(false)
 
   useEffect(() => {
-    //console.log('call useEffect()')
+    // console.log('call useEffect()')
 
     const fetchData = async () => {
       try {
-        const response = await fetch(state,{ signal: AbortSignal.timeout(FETCH_TIMEOUT) })
+        const response = await fetch(state, { signal: AbortSignal.timeout(FETCH_TIMEOUT) })
 
         if (response.status >= BAD_REQUEST) {
           throw new Error(response.status + ' error')
@@ -87,19 +87,20 @@ export const Shop = () => {
     setState(event.target.value)
   }
   return (
-    <Container sx={{height: '625px', overflowY: 'auto',}}>
-      {(error.length > 0)?
-        <Alert variant='outlined' severity='error' onClose={() => {setError('')}}>
+    <Container sx={{ height: '625px', overflowY: 'auto' }}>
+      {(error.length > 0)
+        ? <Alert variant='outlined' severity='error' onClose={() => { setError('') }}>
           <AlertTitle>Error</AlertTitle>
           {error}
-        </Alert> : <></>
+        </Alert>
+        : <></>
       }
       <Dialog open={open} onClose={() => setOpen(false)}>
-        <DialogTitle sx={{paddingBottom: 0}}>{work.title}</DialogTitle>
-        <DialogContentText sx={{marginLeft: '2.0rem', fontSize: 14}}>{work.artist}</DialogContentText>
+        <DialogTitle sx={{ paddingBottom: 0 }}>{work.title}</DialogTitle>
+        <DialogContentText sx={{ marginLeft: '2.0rem', fontSize: 14 }}>{work.artist}</DialogContentText>
         <DialogContent>
           <Stack direction='row' spacing={2}>
-            <Box component="img" sx={{maxWidth: '320px', maxHeight: '320px'}} alt={work.title} src={work.imageUrl}/>
+            <Box component="img" sx={{ maxWidth: '320px', maxHeight: '320px' }} alt={work.title} src={work.imageUrl}/>
             <DialogContentText sx={{ fontSize: 12 }}>{work.description}</DialogContentText>
           </Stack>
         </DialogContent>
@@ -110,7 +111,7 @@ export const Shop = () => {
 
       <Select
         labelId="demo-simple-select-label"
-        sx={{ height: 25, marginLeft: '50%'}}
+        sx={{ height: 25, marginLeft: '50%' }}
         onChange={handleChange}
         value={state}
         data-testid="select-element"
@@ -124,24 +125,24 @@ export const Shop = () => {
           data.map((item) => (
             <Grid item xs={2} key={item.id}>
               <Box
-                sx={{padding: '0.5rem',borderBottom: '1px solid #d0d0d0',boxShadow: '1px 1px 3px #b1b1b1',textAlign: 'center'}}>
+                sx={{ padding: '0.5rem', borderBottom: '1px solid #d0d0d0', boxShadow: '1px 1px 3px #b1b1b1', textAlign: 'center' }}>
                 <StyledTooltip arrow title={'Please click'} placement="bottom" sx={tooltipTop}>
                   <Box
                     component="img"
-                    sx={{width: '120px', height: '120px'}}
+                    sx={{ width: '120px', height: '120px' }}
                     alt={item.title}
                     src={item.imageUrl}
-                    onClick={() => {setWork(item); setOpen(true)}}/>
+                    onClick={() => { setWork(item); setOpen(true) }}/>
                 </StyledTooltip>
-                <Stack direction='row' sx={{marginTop: '0.2rem',alignItems:'center',justifyContent: 'center'}}>
+                <Stack direction='row' sx={{ marginTop: '0.2rem', alignItems: 'center', justifyContent: 'center' }}>
                   <p className='shop_price'>${item.price}</p>
                   <Button
                     variant='contained'
                     color='primary'
                     size='small'
-                    sx={{marginLeft: '1.8rem'}}
+                    sx={{ marginLeft: '1.8rem' }}
                     startIcon={<AddShoppingCart />}
-                    onClick={() => {setOpenAddCart(true); dispatch(addToCart(item))}}>
+                    onClick={() => { setOpenAddCart(true); dispatch(addToCart(item)) }}>
                     Cart
                   </Button>
                 </Stack>
@@ -150,7 +151,7 @@ export const Shop = () => {
           ))
         }
       </Grid>
-      <Snackbar open={openAddCart} autoHideDuration={3000} onClose={()=>{setOpenAddCart(false)}}
+      <Snackbar open={openAddCart} autoHideDuration={3000} onClose={() => { setOpenAddCart(false) }}
         sx={{ height: '100%' }} anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
         <Alert severity="success">
           Added to cart.
