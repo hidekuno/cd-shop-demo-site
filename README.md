@@ -24,14 +24,13 @@ React demo site program
 git clone https://github.com/hidekuno/cd-shop-demo-site
 cd cd-shop-demo-site
 npm install
-npm start
+npm run dev
 ```
 ![image](https://github.com/hidekuno/cd-shop-demo-site/assets/22115777/e3291d37-c719-44d4-8a0c-5fa02c3affbc)
 
-## Lint & fix
+## Lint
 ```
 npm run lint
-npm run lint:fix
 ```
 
 ## Test

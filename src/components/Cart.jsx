@@ -66,16 +66,17 @@ class Sale {
   }
 }
 class TextValidation {
-  constructor () {
-    [this.value, this.setValue] = useState('');
-    [this.error, this.setError] = useState(false)
-
+  constructor (value, error, ref) {
     // https://react.dev/learn/manipulating-the-dom-with-refs#getting-a-ref-to-the-node
     //
     // Usually, you will access refs from event handlers. If you want to do something with a ref,
     // but there is no particular event to do it in, you might need an Effect.
     // We will discuss effects on the next pages.
-    this.ref = useRef(null)
+    this.value = value[0]
+    this.setValue = value[1]
+    this.error = error[0]
+    this.setError = error[1]
+    this.ref = ref
   }
 
   validateText () {
@@ -104,8 +105,8 @@ export const Cart = () => {
   const [message, setMessage] = useState('')
 
   const sale = new Sale(state)
-  const mailAddr = new TextValidation()
-  const recipentAddr = new TextValidation()
+  const mailAddr = new TextValidation(useState(''), useState(false), useRef(null))
+  const recipentAddr = new TextValidation(useState(''), useState(false), useRef(null))
 
   const initUi = () => {
     setChecked(false)

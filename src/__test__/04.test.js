@@ -31,7 +31,7 @@ describe('unit test link', () => {
     expect(screen.getByText('testtaro')).toBeInTheDocument()
     expect(screen.getByText(/Sign out/)).toBeInTheDocument()
     await waitFor(() => {
-      fireEvent.click(screen.getAllByRole('link')[1])
+      fireEvent.click(screen.getByText(/Sign out/))
     })
     expect(screen.getByText(/Sign in to CD Shop/)).toBeInTheDocument()
   })
