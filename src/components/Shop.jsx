@@ -126,7 +126,7 @@ export const Shop = () => {
             <Grid item xs={2} key={item.id}>
               <Box
                 sx={{ padding: '0.5rem', borderBottom: '1px solid #d0d0d0', boxShadow: '1px 1px 3px #b1b1b1', textAlign: 'center' }}>
-                <StyledTooltip arrow title={'Please click'} placement="bottom" sx={tooltipTop}>
+                <StyledTooltip arrow title={'Click to view description'} placement="right" sx={tooltipTop}>
                   <Box
                     component="img"
                     sx={{ width: '120px', height: '120px' }}

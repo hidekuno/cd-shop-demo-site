@@ -30,7 +30,6 @@ const cartClass = {
   margin: '0.5rem',
   display: 'grid',
   justifyContent: 'center',
-  borderTop: '1px solid #d0d0d0',
   paddingTop: '0.1rem'
 }
 const dialogClass = {
