@@ -40,7 +40,6 @@ export const Order = () => {
   return (
     <div>
       <Header index={2} />
-      <p style={{ marginLeft: '40%' }}>Order History</p>
       <Container sx={{ padding: '1rem' }}>
         <History />
       </Container>

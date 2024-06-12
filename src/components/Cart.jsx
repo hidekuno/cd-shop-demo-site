@@ -18,6 +18,7 @@ import FormGroup from '@mui/material/FormGroup'
 import Switch from '@mui/material/Switch'
 import Container from '@mui/material/Container'
 import TextField from '@mui/material/TextField'
+import IconButton from '@mui/material/IconButton'
 import Payment from '@mui/icons-material/Payment'
 import Delete from '@mui/icons-material/Delete'
 
@@ -152,14 +153,13 @@ export const Cart = () => {
       <p className='cart_artist'>{item.artist}</p>
       <p className='cart_price'>${item.price}</p>
       <p className='cart_qty'>{item.qty}</p>
-      <Button
-        variant='outlined'
+      <IconButton
+        aria-label='Delete'
         color='primary'
         size='small'
-        startIcon={<Delete />}
         onClick={() => { dispatch(delToCart(item)) }}>
-        Delete
-      </Button>
+        <Delete />
+      </IconButton>
     </Container>))
 
   return (
