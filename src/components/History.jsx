@@ -20,10 +20,14 @@ import { ShopContext } from '../store'
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white
+    color: theme.palette.common.white,
+    paddingTop: 5,
+    paddingBottom: 5,
   },
   [`&.${tableCellClasses.body}`]: {
-    fontSize: 14
+    fontSize: 14,
+    paddingTop: 5,
+    paddingBottom: 5,
   }
 }))
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
@@ -45,15 +49,17 @@ export const History = () => {
   const rowspan = (row) => row.detail.length + 1
 
   return (
-    <TableContainer component={Paper} sx={{ height: '80vh' }}>
+    <TableContainer component={Paper}>
+      <p className='order_title'>Order History</p>
       <Table stickyHeader sx={{ minWidth: 750, tableLayout: 'fixed' }} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell style={{ width: 180 }}>Order No.</StyledTableCell>
+            <StyledTableCell style={{ width: 150 }}>Order No.</StyledTableCell>
             <StyledTableCell style={{ width: 140 }}>Order Date Time</StyledTableCell>
-            <StyledTableCell style={{ width: 50 }}>Payment</StyledTableCell>
-            <StyledTableCell style={{ width: 50 }}>Total</StyledTableCell>
-            <StyledTableCell>Title</StyledTableCell>
+            <StyledTableCell style={{ width: 40 }}>Payment</StyledTableCell>
+            <StyledTableCell style={{ width: 40 }}>Total</StyledTableCell>
+            <StyledTableCell style={{ width: 30 }}>Title</StyledTableCell>
+            <StyledTableCell></StyledTableCell>
             <StyledTableCell style={{ width: 30 }}align="right">Price</StyledTableCell>
             <StyledTableCell style={{ width: 30 }}align="right">Qty</StyledTableCell>
           </TableRow>
@@ -71,6 +77,7 @@ export const History = () => {
               </StyledTableRow>
               {row.detail.map((detail, index) => (
                 <StyledTableRow key={index}>
+                  <StyledTableCell><img src={detail.imageUrl} width='30px' height='30px' /></StyledTableCell>
                   <StyledTableCell>{detail.title}</StyledTableCell>
                   <StyledTableCell align="right">{doller(detail.price)}</StyledTableCell>
                   <StyledTableCell align="right">{detail.qty}</StyledTableCell>

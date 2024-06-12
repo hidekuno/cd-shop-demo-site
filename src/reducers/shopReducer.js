@@ -14,7 +14,7 @@ const makeOrder = (order) => {
 
   const detail = []
   for (const i in order.detail) {
-    detail.push({ title: order.detail[i].title, price: order.detail[i].price, qty: order.detail[i].qty })
+    detail.push({ title: order.detail[i].title, imageUrl: order.detail[i].imageUrl, price: order.detail[i].price, qty: order.detail[i].qty })
   }
   const d = new Date()
   const orderDatetime = d.toLocaleDateString('sv-SE') + ' ' + d.toLocaleTimeString('sv-SE')
