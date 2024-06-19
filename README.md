@@ -8,7 +8,7 @@ React demo site program
 |--------|--------|--------|
 | cpu    | Intel(R) Core(TM) i5-5250U CPU @ 1.60GHz||
 | os     | Darwin 21.6.0 |Monterey|
-| node    | 18.16.0||
+| node    | 20.13.1||
 | react   | 18.2.0||
 
 ## Development(2)
@@ -16,7 +16,7 @@ React demo site program
 |--------|--------|--------|
 | cpu     | Intel(R) Core(TM) i7-10510U CPU @ 1.80GHz ||
 | os     | Ubuntu 20.04 LTS |WSL2|
-| node    | 18.16.0||
+| node    | 20.13.1||
 | react   | 18.2.0||
 
 ## Install and Run
