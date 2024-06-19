@@ -8,7 +8,7 @@
 
 import React from 'react'
 import { render } from '@testing-library/react'
-import { Store, Order, Cart } from '../App'
+import {Store, Order, Cart, Viewed} from '../App'
 import { Signin } from '../components/Signin'
 import { StoreContextProvider } from '../store'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
@@ -42,6 +42,7 @@ export const testLoginRender = () => {
         <Routes>
           <Route path={'/'} element={<Signin />} />
           <Route path={'/shop'} element={<Store />} />
+          <Route path={'/viewed'} element={<Viewed />} />
           <Route path={'/cart'} element={<Cart />} />
           <Route path={'/order'} element={<Order />} />
           <Route path={'*'} element={<Signin />} />
