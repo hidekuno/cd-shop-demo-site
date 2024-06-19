@@ -27,7 +27,8 @@ import Select from '@mui/material/Select'
 import { Snackbar } from '@mui/material'
 
 import { addToCart } from '../actions/cartAction'
-import { CartContext } from '../store'
+import { addViewed } from '../actions/shopAction'
+import { CartContext,ShopContext } from '../store'
 import { FETCH_TIMEOUT, BAD_REQUEST, JSON_INIT_VAL } from '../constants'
 
 const StyledTooltip = styled(({ className, ...props }) => (
@@ -56,6 +57,7 @@ export const Shop = () => {
   // console.log('render Shop')
 
   const [state, setState] = useState(JSON_INIT_VAL)
+  const shopDispatch = useContext(ShopContext).dispatch
   const dispatch = useContext(CartContext).dispatch
   const [data, setData] = useState([])
   const [open, setOpen] = useState(false)
@@ -132,7 +134,7 @@ export const Shop = () => {
                     sx={{ width: '120px', height: '120px' }}
                     alt={item.title}
                     src={item.imageUrl}
-                    onClick={() => { setWork(item); setOpen(true) }}/>
+                    onClick={() => { setWork(item); setOpen(true); shopDispatch(addViewed(item)); }}/>
                 </StyledTooltip>
                 <Stack direction='row' sx={{ marginTop: '0.2rem', alignItems: 'center', justifyContent: 'center' }}>
                   <p className='shop_price'>${item.price}</p>

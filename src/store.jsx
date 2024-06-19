@@ -15,7 +15,7 @@ export const ShopContext = createContext({})
 export const CartContext = createContext({})
 
 export const StoreContextProvider = (props) => {
-  const [shopState, shopDispatch] = useReducer(shopReducer, { username: '', order: [] })
+  const [shopState, shopDispatch] = useReducer(shopReducer, { username: '', order: [], views: [] })
   const [cartState, cartDispatch] = useReducer(cartReducer, { cart: [], point: POINT_INIT_VAL })
 
   // console.log('StoreContextProvider render')

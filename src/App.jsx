@@ -12,9 +12,10 @@ import React from 'react'
 import Container from '@mui/material/Container'
 import './App.css'
 import { Shop } from './components/Shop'
-import { Cart as CartPart } from './components/Cart'
 import { Header } from './components/Header'
-import { History } from './components/History'
+import { Cart as CartPart } from './components/Cart'
+import { Order as OrderPart } from './components/Order'
+import { Viewed as ViewedPart } from './components/Viewed'
 
 export const Store = () => {
   return (
@@ -26,10 +27,20 @@ export const Store = () => {
     </div>
   )
 }
-export const Cart = () => {
+export const Viewed = () => {
   return (
     <div>
       <Header index={1} />
+      <Container sx={{ padding: '1rem' }}>
+        <ViewedPart />
+      </Container>
+    </div>
+  )
+}
+export const Cart = () => {
+  return (
+    <div>
+      <Header index={2} />
       <Container sx={{ padding: '1rem' }}>
         <CartPart />
       </Container>
@@ -39,9 +50,9 @@ export const Cart = () => {
 export const Order = () => {
   return (
     <div>
-      <Header index={2} />
+      <Header index={3} />
       <Container sx={{ padding: '1rem' }}>
-        <History />
+        <OrderPart />
       </Container>
     </div>
   )
