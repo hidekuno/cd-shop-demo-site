@@ -12,13 +12,12 @@ import TableCell, {tableCellClasses} from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
-import Paper from '@mui/material/Paper'
 
 import {ShopContext} from '../store'
 
 const StyledTableCell = styled(TableCell)(({theme}) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
+    backgroundColor: '#898989',
     color: theme.palette.common.white,
     paddingTop: 5,
     paddingBottom: 5,
@@ -44,7 +43,7 @@ export const Viewed = () => {
   const dollar = (n) => '$' + n
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer>
       <p className='order_title'>Viewed Item History</p>
       <Table stickyHeader sx={{minWidth: 750, tableLayout: 'fixed'}} aria-label="customized table">
         <TableHead>
