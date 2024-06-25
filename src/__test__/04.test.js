@@ -82,7 +82,7 @@ describe('unit test link', () => {
       fireEvent.click(screen.getAllByRole('button', { name: 'Cart' })[1])
     })
     await waitFor(() => {
-      fireEvent.click(screen.getByRole('tab', { name: 'Cart', selected: false }))
+      fireEvent.click(screen.getByRole('tab', { name: /Cart/, selected: false }))
     })
     await waitFor(() => {
       fireEvent.click(screen.getByRole('button', { name: 'Buy' }))
