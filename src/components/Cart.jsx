@@ -21,8 +21,9 @@ import TextField from '@mui/material/TextField'
 import IconButton from '@mui/material/IconButton'
 import Payment from '@mui/icons-material/Payment'
 import Delete from '@mui/icons-material/Delete'
+import AddCircle from '@mui/icons-material/AddCircle'
 
-import { delToCart, clearToCart, delPoint, addPoint } from '../actions/cartAction'
+import { addToCart, delToCart, clearToCart, delPoint, addPoint } from '../actions/cartAction'
 import { addOrder } from '../actions/shopAction'
 import { CartContext, ShopContext } from '../store'
 import { COMPLETE_MESSAGE, NOCART_MESSAGE } from '../constants'
@@ -141,6 +142,7 @@ export const Cart = () => {
       </Container>
     )
   }
+
   const cart = sale.cartItems.map((item) => (
     <Container
       key={item.id}
@@ -159,6 +161,13 @@ export const Cart = () => {
         size='small'
         onClick={() => { dispatch(delToCart(item)) }}>
         <Delete />
+      </IconButton>
+      <IconButton
+        aria-label="Add"
+        color='primary'
+        size='small'
+        onClick={() => { dispatch(addToCart(item)) }}>
+        <AddCircle />
       </IconButton>
     </Container>))
 
