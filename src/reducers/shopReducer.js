@@ -18,13 +18,8 @@ const getNow = () => {
 const makeOrder = (order) => {
   const random = (min, max, digit) => (Math.floor(Math.random() * (max + min))).toString().padStart(digit, '0')
 
-  const detail = []
-  for (const i in order.detail) {
-    detail.push({ title: order.detail[i].title, imageUrl: order.detail[i].imageUrl, price: order.detail[i].price, qty: order.detail[i].qty })
-  }
-
   const orderno = random(1, 1000, 3) + '-' + random(1, 10000000, 7) + '-' + random(1, 10000000, 7)
-  return { orderno, orderDatetime:getNow(), total: order.total, payment: order.payment, detail }
+  return { orderno, orderDatetime:getNow(), total: order.total, payment: order.payment, detail: order.detail }
 }
 export const shopReducer = (state, action) => {
   switch (action.type) {

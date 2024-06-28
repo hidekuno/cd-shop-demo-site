@@ -105,6 +105,9 @@ describe('unit test link', () => {
     expect(screen.getByText('Pet Shop Sounds')).toBeInTheDocument()
     expect(screen.getAllByText('$48')).toHaveLength(2)
     expect(screen.getByText('$25')).toBeInTheDocument()
+    await waitFor(() => {
+      fireEvent.click(screen.getByText('Shop'))
+    })
   })
   test('viewed', async () => {
     await waitFor(() => { testLoginRender() })

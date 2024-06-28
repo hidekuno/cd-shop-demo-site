@@ -166,6 +166,7 @@ export const Cart = () => {
         aria-label="Add"
         color='primary'
         size='small'
+        disabled={item.stock <= item.qty}
         onClick={() => { dispatch(addToCart(item)) }}>
         <AddCircle />
       </IconButton>
