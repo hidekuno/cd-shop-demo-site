@@ -52,12 +52,29 @@ const tooltipTop = {
     color: 'black'
   }
 }
-
+const makeStock = (jsonData, order) => {
+  const m = new Map()
+  for (const item of order.map((row) => (row.detail.map((item) => [item.id,item.qty])))) {
+    for (const rec of item) {
+      const [k,v] = rec
+      if(m.has(k)) {
+        m.set(k, m.get(k) + v)
+      } else {
+        m.set(k, v)
+      }
+    }
+  }
+  return jsonData.map((row) => {
+    row.stock = m.has(row.id) ? row.stock - m.get(row.id) : row.stock
+    return row
+  })
+}
 export const Shop = () => {
   // console.log('render Shop')
 
   const [state, setState] = useState(JSON_INIT_VAL)
   const shopDispatch = useContext(ShopContext).dispatch
+  const shopState = useContext(ShopContext).state
   const dispatch = useContext(CartContext).dispatch
   const [data, setData] = useState([])
   const [open, setOpen] = useState(false)
@@ -76,18 +93,17 @@ export const Shop = () => {
           throw new Error(response.status + ' error')
         }
         const jsonData = await response.json()
-        setData(jsonData)
+        setData(makeStock(jsonData, shopState.order))
       } catch (err) {
         setError(err.message)
         console.error('fetch error!', err)
       }
     }
     fetchData()
-  }, [state])
+  }, [state, shopState])
 
-  const handleChange = (event) => {
-    setState(event.target.value)
-  }
+  const handleChange = (event) => setState(event.target.value)
+
   return (
     <Container sx={{ height: '625px', overflowY: 'auto' }}>
       {(error.length > 0)
@@ -144,9 +160,11 @@ export const Shop = () => {
                     size='small'
                     sx={{ marginLeft: '1.8rem' }}
                     startIcon={<AddShoppingCart />}
+                    disabled={item.stock <= 0}
                     onClick={() => { setOpenAddCart(true); dispatch(addToCart(item)) }}>
                     Cart
                   </Button>
+                  <p className='shop_stock'>{(state !== 'mp3.json') && item.stock}</p>
                 </Stack>
               </Box>
             </Grid>
