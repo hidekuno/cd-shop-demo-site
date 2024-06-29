@@ -52,7 +52,7 @@ const tooltipTop = {
     color: 'black'
   }
 }
-const makeStock = (jsonData, order) => {
+const makeStock = (jsonData, order, cart) => {
   const m = new Map()
   for (const item of order.map((row) => (row.detail.map((item) => [item.id,item.qty])))) {
     for (const rec of item) {
@@ -62,6 +62,13 @@ const makeStock = (jsonData, order) => {
       } else {
         m.set(k, v)
       }
+    }
+  }
+  for (const rec of cart) {
+    if(m.has(rec.id)) {
+      m.set(rec.id, m.get(rec.id) + rec.qty)
+    } else {
+      m.set(rec.id, rec.qty)
     }
   }
   return jsonData.map((row) => {
@@ -75,7 +82,8 @@ export const Shop = () => {
   const [state, setState] = useState(JSON_INIT_VAL)
   const shopDispatch = useContext(ShopContext).dispatch
   const shopState = useContext(ShopContext).state
-  const dispatch = useContext(CartContext).dispatch
+  const cartDispatch = useContext(CartContext).dispatch
+  const cartState = useContext(CartContext).state
   const [data, setData] = useState([])
   const [open, setOpen] = useState(false)
   const [work, setWork] = useState({})
@@ -93,14 +101,14 @@ export const Shop = () => {
           throw new Error(response.status + ' error')
         }
         const jsonData = await response.json()
-        setData(makeStock(jsonData, shopState.order))
+        setData(makeStock(jsonData, shopState.order, cartState.cart))
       } catch (err) {
         setError(err.message)
         console.error('fetch error!', err)
       }
     }
     fetchData()
-  }, [state, shopState])
+  }, [state, shopState, cartState])
 
   const handleChange = (event) => setState(event.target.value)
 
@@ -161,17 +169,17 @@ export const Shop = () => {
                     sx={{ marginLeft: '1.8rem' }}
                     startIcon={<AddShoppingCart />}
                     disabled={item.stock <= 0}
-                    onClick={() => { setOpenAddCart(true); dispatch(addToCart(item)) }}>
+                    onClick={() => { setOpenAddCart(true); cartDispatch(addToCart(item)) }}>
                     Cart
                   </Button>
-                  <p className='shop_stock'>{(state !== 'mp3.json') && item.stock}</p>
+                  <p className='shop_stock'>{(item.digital === false) && item.stock}</p>
                 </Stack>
               </Box>
             </Grid>
           ))
         }
       </Grid>
-      <Snackbar open={openAddCart} autoHideDuration={3000} onClose={() => { setOpenAddCart(false) }}
+      <Snackbar open={openAddCart} autoHideDuration={1000} onClose={() => { setOpenAddCart(false) }}
         sx={{ height: '100%' }} anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
         <Alert severity="success">
           Added to cart.
