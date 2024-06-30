@@ -37,6 +37,8 @@ const StyledBadge = styled(Badge)(({theme}) => ({
   },
 }));
 
+const calcCartQty = (cart) => cart.reduce((sum, current) => sum + current.qty,0)
+
 export const Header = (props) => {
   // console.log('render Header')
 
@@ -61,7 +63,7 @@ export const Header = (props) => {
   const getTabs = (row, index) => {
     if (row.label === 'Cart' && cart.cart.length > 0) {
       return (
-        <Tab label={<StyledBadge badgeContent={cart.cart.length} color="secondary">Cart</StyledBadge>}
+        <Tab label={<StyledBadge badgeContent={calcCartQty(cart.cart)} color="secondary">Cart</StyledBadge>}
           icon={row.icon()} component="a" iconPosition="start" sx={{...menubar,}} key={index}/>
       )
     } else {
