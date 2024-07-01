@@ -4,7 +4,7 @@
  * hidekuno@gmail.com
  *
  */
-import React, {Fragment, useContext} from 'react'
+import React, {Fragment, useContext, useState} from 'react'
 import {styled} from '@mui/material/styles'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -12,8 +12,11 @@ import TableCell, {tableCellClasses} from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
+import Pagination from '@mui/material/Pagination'
+import Stack from '@mui/material/Stack'
 
 import {ShopContext} from '../store'
+import {PAGE_COUNT} from '../constants'
 
 const StyledTableCell = styled(TableCell)(({theme}) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -38,13 +41,25 @@ const StyledTableRow = styled(TableRow)(({theme}) => ({
   },
 }))
 
+const calcPage = (len) => (len > PAGE_COUNT) ? Math.ceil(len / PAGE_COUNT) : 1
+
+const getViewData = (views,page) => views.slice((page - 1) * PAGE_COUNT, page * PAGE_COUNT)
+
 export const Viewed = () => {
   const state = useContext(ShopContext).state
   const dollar = (n) => '$' + n
+  const [page, setPage] = useState(1)
+  const pageCount = calcPage(state.views.length)
+  const handleChange = (event, page) => setPage(page)
 
   return (
     <TableContainer>
       <p className='order_title'>Viewed Item History</p>
+      {pageCount > 1 &&
+        <Stack spacing={2} sx={{ alignItems: 'center', justifyContent: 'center' }}>
+          <Pagination count={pageCount} page={page} color="primary" size="small" onChange={handleChange} />
+        </Stack>
+      }
       <Table stickyHeader sx={{minWidth: 750, tableLayout: 'fixed'}} aria-label="customized table">
         <TableHead>
           <TableRow>
@@ -56,7 +71,7 @@ export const Viewed = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {state.views.map((row, index) => (
+          {getViewData(state.views,page).map((row, index) => (
             <Fragment key={index}>
               <StyledTableRow>
                 <StyledTableCell>{row.datetime}</StyledTableCell>

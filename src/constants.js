@@ -14,3 +14,5 @@ export const NOCART_MESSAGE = 'There are no items in your cart.'
 
 export const POINT_INIT_VAL = 100
 export const JSON_INIT_VAL = 'cd.json'
+
+export const PAGE_COUNT = 10
