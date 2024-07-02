@@ -55,7 +55,8 @@ export const Viewed = () => {
   return (
     <TableContainer>
       <p className='order_title'>Viewed Item History</p>
-      {pageCount > 1 &&
+      {
+        pageCount > 1 &&
         <Stack spacing={2} sx={{ alignItems: 'center', justifyContent: 'center' }}>
           <Pagination count={pageCount} page={page} color="primary" size="small" onChange={handleChange} />
         </Stack>

@@ -6,7 +6,7 @@
  */
 'use strict'
 
-import React, { Fragment, useContext } from 'react'
+import React, { Fragment, useContext, useState } from 'react'
 import { styled } from '@mui/material/styles'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -14,7 +14,11 @@ import TableCell, { tableCellClasses } from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
+import Pagination from '@mui/material/Pagination'
+import Stack from '@mui/material/Stack'
+
 import { ShopContext } from '../store'
+import { PAGE_COUNT } from '../constants'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -39,6 +43,21 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   }
 }))
 
+const pageInfo = (order) => {
+  let s = 0
+  let r = [0]
+
+  for (let i = 0; i < order.length; i++) {
+    s += order[i].detail.length
+    if (s >= PAGE_COUNT && (i + 1) !== order.length) {
+      r.push(i + 1)
+      s = 0
+    }
+  }
+  // console.log(r)
+  return r
+}
+
 export const Order = () => {
   // console.log('render Order')
 
@@ -47,9 +66,26 @@ export const Order = () => {
   const doller = (n) => '$' + n
   const rowspan = (row) => row.detail.length + 1
 
+  const [page, setPage] = useState(1)
+  const pages = pageInfo(order)
+  const pageCount = pages.length
+
+  // If indexEnd is omitted, undefined, cannot be converted to a number (using Number(indexEnd)),
+  // or indexEnd >= str.length, slice() extracts to the end of the string.
+  // https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String/slice
+  const getViewData = () => order.slice(pages[page - 1], pages[page])
+
+  const handleChange = (event, page) => setPage(page)
+
   return (
     <TableContainer>
       <p className='order_title'>Order History</p>
+      {
+        pageCount > 1 &&
+        <Stack spacing={2} sx={{ alignItems: 'center', justifyContent: 'center' }}>
+          <Pagination count={pageCount} page={page} color="primary" size="small" onChange={handleChange} />
+        </Stack>
+      }
       <Table stickyHeader sx={{ minWidth: 750, tableLayout: 'fixed' }} aria-label="customized table">
         <TableHead>
           <TableRow>
@@ -64,7 +100,7 @@ export const Order = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {order.map((row, index) => (
+          {getViewData().map((row, index) => (
             <Fragment key={index}>
               <StyledTableRow>
                 <StyledTableCell component="th" scope="row" rowSpan={rowspan(row)}>
