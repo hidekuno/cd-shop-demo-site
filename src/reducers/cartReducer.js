@@ -24,14 +24,9 @@ export const cartReducer = (state, action) => {
       cart: (() => {
         if (existsItem(state.cart, action.payload.id)) {
           const item = getItem(state.cart, action.payload.id)
-          return [
-            {
-              ...item,
-              qty: item.qty + 1,
-              totalPrice: item.price * (item.qty + 1)
-            },
-            ...deleteItem(state.cart, action.payload.id)
-          ]
+          item.qty = item.qty + 1
+          item.totalPrice = item.price * item.qty
+          return [ ...state.cart ]
         } else {
           const { id, title, artist, price, imageUrl, stock } = action.payload
           return [
@@ -52,21 +47,15 @@ export const cartReducer = (state, action) => {
     }
   case DEL_ITEM: {
     const item = getItem(state.cart, action.payload.id)
-    const qty = item.qty - 1
+    item.qty = item.qty - 1
     return {
       ...state,
       cart: (() => {
-        if (qty === 0) {
+        if (item.qty === 0) {
           return deleteItem(state.cart, action.payload.id)
         } else {
-          return [
-            {
-              ...item,
-              qty,
-              totalPrice: item.price * qty
-            },
-            ...deleteItem(state.cart, action.payload.id)
-          ]
+          item.totalPrice = item.price * item.qty
+          return [ ...state.cart ]
         }
       })()
     }

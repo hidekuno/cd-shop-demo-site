@@ -108,7 +108,8 @@ export const Shop = () => {
       }
     }
     fetchData()
-  }, [state, shopState, cartState])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state])
 
   const handleChange = (event) => setState(event.target.value)
 
