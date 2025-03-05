@@ -6,7 +6,7 @@
  */
 'use strict'
 
-import React, { useRef, useState, useContext } from 'react'
+import { useRef, useState, useContext } from 'react'
 import Button from '@mui/material/Button'
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'

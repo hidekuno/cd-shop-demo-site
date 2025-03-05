@@ -6,7 +6,7 @@
  */
 'use strict'
 
-import React, { useEffect, useState, useContext } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
@@ -108,7 +108,6 @@ export const Shop = () => {
       }
     }
     fetchData()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state])
 
   const handleChange = (event) => setState(event.target.value)

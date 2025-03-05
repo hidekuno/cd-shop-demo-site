@@ -6,7 +6,7 @@
  */
 'use strict'
 
-import React, { useContext, useState, useEffect } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import Link from '@mui/material/Link'
 import { useNavigate, useLocation } from 'react-router-dom'
 import Tabs from '@mui/material/Tabs'
