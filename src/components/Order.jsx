@@ -6,7 +6,7 @@
  */
 'use strict'
 
-import React, { Fragment, useContext, useState } from 'react'
+import { Fragment, useContext, useState } from 'react'
 import { styled } from '@mui/material/styles'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'

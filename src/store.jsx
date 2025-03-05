@@ -6,7 +6,7 @@
  */
 'use strict'
 
-import React, { createContext, useReducer } from 'react'
+import { createContext, useReducer } from 'react'
 import { cartReducer } from './reducers/cartReducer.js'
 import { shopReducer } from './reducers/shopReducer.js'
 import { POINT_INIT_VAL } from './constants'

@@ -3,3 +3,4 @@ build
 dist
 __snapshots__
 coverage
+stats.html

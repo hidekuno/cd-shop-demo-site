@@ -6,9 +6,6 @@
  */
 'use strict'
 
-// fix. ReferenceError: React is not defined when npm test
-import React from 'react'
-
 import Container from '@mui/material/Container'
 import './App.css'
 import { Shop } from './components/Shop'
