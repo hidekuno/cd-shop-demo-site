@@ -169,7 +169,10 @@ export const Shop = () => {
                     sx={{ marginLeft: '1.8rem' }}
                     startIcon={<AddShoppingCart />}
                     disabled={item.stock <= 0}
-                    onClick={() => { setOpenAddCart(true); cartDispatch(addToCart(item)) }}>
+                    onClick={() => { setOpenAddCart(true);
+                                     cartDispatch(addToCart(item));
+                                     item.stock--;
+                                   }}>
                     Cart
                   </Button>
                   <p className='shop_stock'>{(item.digital === false) && item.stock}</p>
